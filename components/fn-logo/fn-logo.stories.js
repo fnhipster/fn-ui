@@ -9,7 +9,11 @@ export default {
     // More on how to position stories at: https://storybook.js.org/docs/configure/story-layout
     layout: 'centered',
   },
-  render: ({ ...args }) => CustomElement('fn-logo', args),
+  render: ({ ...args }) => {
+    const element = CustomElement('fn-logo', args);
+    element.style.fontSize = '4rem';
+    return element;
+  },
   argTypes: {},
 };
 

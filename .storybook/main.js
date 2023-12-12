@@ -20,6 +20,12 @@ const config = {
     ${head}
     <link rel="stylesheet" href="/styles/fn.css">
     <link rel="stylesheet" href="https://use.typekit.net/joe8rol.css">
+
+    <style>
+      body {
+        font-size: 18px;
+      }
+    </style>
 `,
 };
 export default config;
