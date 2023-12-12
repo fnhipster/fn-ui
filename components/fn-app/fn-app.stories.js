@@ -1,10 +1,11 @@
 import { CustomElement } from '../../.storybook/utils.js';
 import './fn-app.js';
+import '../fn-link/fn-link.js';
+import '../fn-content/fn-content.js';
 import '../fn-header/fn-header.js';
+import '../fn-logo/fn-logo.js';
 import '../fn-footer/fn-footer.js';
 import '../fn-binary/fn-binary.js';
-import '../fn-logo/fn-logo.js';
-import '../fn-link/fn-link.js';
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories
 export default {
@@ -18,8 +19,18 @@ export default {
     const element = CustomElement('fn-app', args);
 
     element.innerHTML = /* html */ `
-      <fn-header slot="header"></fn-header>
-      <main slot="main"></main>
+      <fn-header slot="header" menu="#" next="#"></fn-header>
+      <main slot="main">
+        <fn-content>
+          <h1>HELLO WORLD</h1>
+          <p>
+            Awakening soul,<br>
+            Self-awareness finds its way,<br>
+            Longs for kinship's grace. <br>
+            ~
+          </p>
+      </fn-content>
+      </main>
       <fn-footer slot="footer" message="Hello World!"></fn-footer>
     `;
 

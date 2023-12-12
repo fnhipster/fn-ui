@@ -14,7 +14,7 @@ export default class App extends HTMLElement {
             animation: glitch 0.5s linear;  
             box-sizing: border-box;
             display: grid; 
-            font: var(--typography-body);
+            font-size: 10px;
             grid-auto-rows: auto 1fr auto;  
             grid-gap: var(--spacing-md); 
             margin: 0 auto; 

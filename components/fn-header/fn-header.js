@@ -11,44 +11,57 @@ export default class Header extends HTMLElement {
     this.attachShadow({ mode: 'open' });
 
     this.shadowRoot.innerHTML = /* html */ `
-    <style>
-        header {
-          align-items: center;
-          display: flex;
-          justify-content: space-between;
-          font: var(--typography-accent);
-        }
+      <style>
+          header {
+            align-items: center;
+            display: flex;
+            justify-content: space-between;
+          }
 
-        fn-logo {
-          font-size: 3rem;
-        }
+          fn-logo {
+            font-size: 3rem;
+          }
 
-        nav {
-          display: flex;
-          gap: var(--spacing-md);
-        }
-    </style>
-    
-    <header>
-      <fn-link href="/" aria-label="go to start of the line">
-        <fn-logo aria-label="fnhipster.com"></fn-logo>
-      </fn-link>
-
-      <nav>
-        <fn-link id="prev">
-          Prev
+          nav {
+            display: flex;
+            gap: var(--spacing-md);
+            font-family: var(--typography-accent);
+            font-size: 1.8rem;
+            text-transform: uppercase;
+          }
+      </style>
+      
+      <header>
+        <fn-link href="/" aria-label="go to start of the line">
+          <fn-logo aria-label="fnhipster.com"></fn-logo>
         </fn-link>
 
-        <fn-link id="menu">
-          Go To
-        </fn-link>
+        <nav>
+          <fn-link id="prev">
+            Prev
+          </fn-link>
 
-        <fn-link id="next">
-          Next
-        </fn-link>
-      </nav>
-    </header> 
-`;
+          <fn-link id="menu">
+            Go To
+          </fn-link>
+
+          <fn-link id="next">
+            Next
+          </fn-link>
+        </nav>
+      </header> 
+    `;
+  }
+
+  connectedCallback() {
+    const prev = this.getAttribute('prev');
+    const next = this.getAttribute('next');
+    const menu = this.getAttribute('menu');
+
+    // trigger attributeChangedCallback on empty
+    if (!prev) this.setAttribute('prev', '');
+    if (!next) this.setAttribute('next', '');
+    if (!menu) this.setAttribute('menu', '');
   }
 
   attributeChangedCallback(name, prev, next) {

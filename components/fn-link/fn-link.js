@@ -20,9 +20,10 @@ export default class Link extends HTMLElement {
       <style>
         .link {
           color: var(--color-fg, currentColor);
-          position: relative;
           display: inline-block;
-          transition: transform 0.2s linear;
+          position: relative;
+          text-decoration: none;
+          transition: transform 0.2s linear;          
         }
 
         .link::before {
@@ -57,6 +58,10 @@ export default class Link extends HTMLElement {
           outline: none;
         }
 
+        .link:not([aria-disabled]) {
+          cursor: pointer;
+        }
+
         .link:hover:not([aria-disabled])::before {
           opacity: 1;
         }
@@ -79,7 +84,7 @@ export default class Link extends HTMLElement {
         }
 
         .link[aria-disabled] {
-          opacity: 0.5;
+          opacity: 0.4;
         }
 
       </style>

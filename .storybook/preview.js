@@ -1,4 +1,3 @@
-import '../styles/fn.css'
 /** @type { import('@storybook/html').Preview } */
 const preview = {
   parameters: {
