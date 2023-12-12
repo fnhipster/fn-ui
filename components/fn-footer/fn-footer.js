@@ -1,0 +1,51 @@
+const tagName = 'fn-footer';
+
+export default class Footer extends HTMLElement {
+  static get observedAttributes() {
+    return ['message'];
+  }
+
+  constructor() {
+    super();
+
+    this.attachShadow({ mode: 'open' });
+
+    this.shadowRoot.innerHTML = /* html */ `
+      <style>
+          footer {
+            align-items: center;
+            display: flex;
+            font: var(--typography-accent);
+            justify-content: space-between;
+            text-transform: uppercase;
+            gap: var(--spacing-sm);
+          }
+      </style>
+        
+      <footer className="fnh-footer">
+        <fn-binary></fn-binary>
+        <span>© ${new Date().getUTCFullYear()}, fnhipster</span>
+      </footer>
+    `;
+  }
+
+  attributeChangedCallback(name, prev, next) {
+    if (prev === next) return;
+
+    switch (name) {
+      case 'message':
+        this.renderMessage(next);
+        break;
+
+      default:
+        break;
+    }
+  }
+
+  renderMessage(message) {
+    const element = this.shadowRoot.querySelector('fn-binary');
+    element.innerHTML = message;
+  }
+}
+
+if (!customElements.get(tagName)) customElements.define(tagName, Footer);
