@@ -1,3 +1,5 @@
+import '../fn-binary/fn-binary.js';
+
 const tagName = 'fn-footer';
 
 export default class Footer extends HTMLElement {

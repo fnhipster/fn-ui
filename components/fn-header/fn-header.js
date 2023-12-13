@@ -1,3 +1,6 @@
+import '../fn-logo/fn-logo.js';
+import '../fn-link/fn-link.js';
+
 const tagName = 'fn-header';
 
 export default class Header extends HTMLElement {

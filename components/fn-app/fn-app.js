@@ -1,3 +1,7 @@
+import '../fn-header/fn-header.js';
+import '../fn-content/fn-content.js';
+import '../fn-footer/fn-footer.js';
+
 const tagName = 'fn-app';
 
 export default class App extends HTMLElement {
