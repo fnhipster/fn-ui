@@ -8,7 +8,7 @@ export default class Link extends HTMLElement {
   prefetched = false;
 
   static get observedAttributes() {
-    return ['href', 'target', 'prefetch', 'disabled'];
+    return ['href', 'target', 'prefetch', 'disabled', 'underlined'];
   }
 
   constructor() {
@@ -18,12 +18,17 @@ export default class Link extends HTMLElement {
 
     this.shadowRoot.innerHTML = /* html */ `
       <style>
+   
         .link {
           color: var(--color-fg, currentColor);
           display: inline-block;
           position: relative;
           text-decoration: none;
           transition: transform 0.2s linear;          
+        }
+
+        .link.underlined {
+          text-decoration: underline;
         }
 
         .link::before {
@@ -121,6 +126,11 @@ export default class Link extends HTMLElement {
 
       case 'prefetch':
         if (next === 'true') this.handlePrefetch();
+        break;
+
+      case 'underlined':
+        if (next === 'true') this.linkElement.classList.add('underlined');
+        else this.linkElement.classList.remove('underlined');
         break;
 
       // default to setting the attribute on the a tag
