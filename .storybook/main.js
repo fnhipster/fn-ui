@@ -16,7 +16,7 @@ const config = {
   docs: {
     autodocs: "tag",
   },
-  staticDirs: ['..'], // 👈 Configures the static asset folder in Storybook
+  staticDirs: [{ from: '../styles', to: '/styles' }],
   previewHead: (head) => `
     ${head}
     <link rel="stylesheet" href="styles/fn.css">
