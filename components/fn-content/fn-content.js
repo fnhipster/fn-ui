@@ -11,6 +11,7 @@ export default class Content extends HTMLElement {
         :host {
           font-family: var(--typography-body);
           font-size: 1.8rem;
+          line-height: 1.5;
         }
 
         strong {
@@ -51,6 +52,10 @@ export default class Content extends HTMLElement {
 
         h6 {
           font-size: 2.5rem;
+        }
+
+        p {
+          margin: var(--spacing-md) 0;
         }
 
         img,

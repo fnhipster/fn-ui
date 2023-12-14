@@ -19,6 +19,7 @@ export default class Header extends HTMLElement {
             align-items: center;
             display: flex;
             justify-content: space-between;
+            padding: var(--spacing-sm) 0;
           }
 
           fn-logo {
@@ -32,6 +33,12 @@ export default class Header extends HTMLElement {
             font-size: 1.8rem;
             text-transform: uppercase;
           }
+
+          @media (width >= 650px) {
+            header {
+              padding: var(--spacing-md) 0;
+            }
+          }
       </style>
       
       <header>
@@ -40,15 +47,15 @@ export default class Header extends HTMLElement {
         </fn-link>
 
         <nav>
-          <fn-link id="prev">
+          <fn-link id="prev" decoration="none">
             Prev
           </fn-link>
 
-          <fn-link id="menu">
+          <fn-link id="menu" decoration="none">
             Go To
           </fn-link>
 
-          <fn-link id="next">
+          <fn-link id="next" decoration="none">
             Next
           </fn-link>
         </nav>

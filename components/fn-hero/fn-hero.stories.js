@@ -12,16 +12,16 @@ export default {
     // More on how to position stories at: https://storybook.js.org/docs/configure/story-layout
     layout: 'centered',
   },
-  render: ({ ...args }) => {
+  render: ({ title, ...args }) => {
     const element = CustomElement('fn-hero', args);
 
     element.innerHTML = /* html */ `
-        <fn-image slot="image" >
-            <img src="https://picsum.photos/seed/picsum/960/530" alt="placeholder image" width="960" height="530"/>
-        </fn-image>
-
-        <h1 slot="title">Hero Title</h1>
-      `;
+      <fn-image slot="image" >
+        <img src="https://picsum.photos/seed/picsum/960/530" alt="placeholder image" width="960" height="530"/>
+      </fn-image>
+        
+      <h1 slot="title">${title}</h1>
+    `;
 
     return element;
   },
@@ -30,5 +30,7 @@ export default {
 
 // More on writing stories with args: https://storybook.js.org/docs/writing-stories/args
 export const Primary = {
-  args: { },
+  args: {
+    title: 'Hero Title',
+  },
 };

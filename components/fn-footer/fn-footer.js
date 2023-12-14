@@ -22,6 +22,13 @@ export default class Footer extends HTMLElement {
             justify-content: space-between;
             text-transform: uppercase;
             gap: var(--spacing-sm);
+            padding: var(--spacing-sm) 0;
+          }
+
+          @media (width >= 650px) {
+            footer {
+              padding: var(--spacing-md) 0;
+            }
           }
       </style>
         

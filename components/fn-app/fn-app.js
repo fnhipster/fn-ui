@@ -20,11 +20,10 @@ export default class App extends HTMLElement {
             display: grid; 
             font-size: 10px;
             grid-auto-rows: auto 1fr auto;  
-            grid-gap: var(--spacing-md); 
             margin: 0 auto; 
             max-width: 100rem; 
             min-height: 100vh; 
-            padding: var(--margin); 
+            padding: 0 var(--margin); 
             transform-origin: top center; 
             width: 100%; 
           }

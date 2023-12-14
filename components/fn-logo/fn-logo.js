@@ -9,7 +9,8 @@ export default class Logo extends HTMLElement {
     this.shadowRoot.innerHTML = /* html */ `
       <style>
         :host {
-          display: inline-block;
+          display: flex;
+          align-items: center;
         }
         
         svg {
