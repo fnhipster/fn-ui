@@ -20,11 +20,7 @@ export default class Binary extends HTMLElement {
   mutationObserver = new MutationObserver((mutations) => {
     mutations.forEach((mutation) => {
       if (mutation.type === 'childList' && mutation.target === this) {
-        const message = this.textContent.trim();
-
-        this.binary = message
-          .split('')
-          .map(char => char.charCodeAt(0).toString(2).padStart(8, '0'));
+        this.initialize();
       }
     });
   });
@@ -36,6 +32,8 @@ export default class Binary extends HTMLElement {
   }
 
   connectedCallback() {
+    this.initialize();
+
     // observe changes to innerHTML
     this.mutationObserver.observe(this, {
       childList: true,
@@ -62,6 +60,14 @@ export default class Binary extends HTMLElement {
     // remove event listeners
     this.removeEventListener('mouseenter', this.stop);
     this.removeEventListener('mouseleave', this.play);
+  }
+
+  initialize() {
+    const message = this.textContent.trim();
+
+    this.binary = message
+      .split('')
+      .map(char => char.charCodeAt(0).toString(2).padStart(8, '0'));
   }
 
   play() {
