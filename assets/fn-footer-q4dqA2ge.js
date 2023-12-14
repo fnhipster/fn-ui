@@ -1,4 +1,4 @@
-import"./fn-binary--uW2OfcL.js";const a="fn-footer";class n extends HTMLElement{static get observedAttributes(){return["message"]}constructor(){super(),this.attachShadow({mode:"open"}),this.shadowRoot.innerHTML=`
+import"./fn-binary-flkvMwlJ.js";const a="fn-footer";class n extends HTMLElement{static get observedAttributes(){return["message"]}constructor(){super(),this.attachShadow({mode:"open"}),this.shadowRoot.innerHTML=`
       <style>
           footer {
             align-items: center;
