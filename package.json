@@ -5,7 +5,7 @@
   "main": "index.js",
   "homepage": "http://fnhipster.github.io/fn-ui",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "echo \"No test specified\"",
     "lint": "eslint --ext .js,.html . --ignore-path .gitignore",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build"
