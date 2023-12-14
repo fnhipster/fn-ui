@@ -18,7 +18,7 @@ const config = {
   },
   previewHead: (head) => `
     ${head}
-    <link rel="stylesheet" href="/styles/fn.css">
+    <link rel="stylesheet" href="./styles/fn.css">
     <link rel="stylesheet" href="https://use.typekit.net/joe8rol.css">
 
     <style>
