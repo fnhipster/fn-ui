@@ -1,0 +1,1 @@
+function i(r,o){if(!r)throw new Error("tagName is required");const t=document.createElement(r);return Object.entries(o).forEach(([e,n])=>{if(e.startsWith("on")){const s=e.substring(2).toLowerCase();t.addEventListener(s,n);return}t.setAttribute(e,n.toString())}),t}export{i as C};
