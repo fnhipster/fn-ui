@@ -1,6 +1,8 @@
 const tagName = 'fn-image';
 
 export default class Image extends HTMLElement {
+  initialized = false;
+
   constructor() {
     super();
 
@@ -44,7 +46,42 @@ export default class Image extends HTMLElement {
     `;
   }
 
+  mutationObserver = new MutationObserver((mutations) => {
+    mutations.forEach((mutation) => {
+      if (mutation.type === 'childList' && mutation.target === this) {
+        this.initialize();
+      }
+    });
+  });
+
   connectedCallback() {
+    this.initialize();
+
+    // observe changes to innerHTML
+    this.mutationObserver.observe(this, {
+      childList: true,
+      subtree: true,
+    });
+    //   const wrapper = this.shadowRoot.querySelector('.wrapper');
+    //   const child = this.querySelector(':scope > img, :scope > picture');
+    //   const img = this.querySelector('img');
+
+    //   if (!img) return;
+
+    //   // glow effect
+    //   const glow = child.cloneNode(true);
+    //   glow.classList.add('glow');
+    //   glow.setAttribute('aria-hidden', 'true');
+    //   wrapper.append(glow);
+
+  //   img.addEventListener('load', () => {
+  //     wrapper.style.opacity = 1;
+  //   });
+  }
+
+  initialize() {
+    if (this.initialized) return;
+
     const wrapper = this.shadowRoot.querySelector('.wrapper');
     const child = this.querySelector(':scope > img, :scope > picture');
     const img = this.querySelector('img');
@@ -59,7 +96,12 @@ export default class Image extends HTMLElement {
 
     img.addEventListener('load', () => {
       wrapper.style.opacity = 1;
+      this.initialized = true;
     });
+  }
+
+  disconnectedCallback() {
+    this.mutationObserver.disconnect();
   }
 }
 
