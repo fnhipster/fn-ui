@@ -1,4 +1,4 @@
-import{C as m}from"./utils-tdRvqGzf.js";import"./fn-header-nr_Mz0dc.js";import"./fn-content-0eNp-8xh.js";import"./fn-footer-q4dqA2ge.js";import"./fn-logo-RDFmdBMZ.js";import"./fn-link-fbIxC-i2.js";import"./fn-binary-flkvMwlJ.js";const s="fn-app";class i extends HTMLElement{constructor(){super(),this.attachShadow({mode:"open"})}connectedCallback(){this.shadowRoot.innerHTML=`
+import{C as m}from"./utils-tdRvqGzf.js";import"./fn-header-nr_Mz0dc.js";import"./fn-content-0eNp-8xh.js";import"./fn-footer-LR3FvZp8.js";import"./fn-logo-RDFmdBMZ.js";import"./fn-link-fbIxC-i2.js";import"./fn-binary-sFT9UnJZ.js";const s="fn-app";class i extends HTMLElement{constructor(){super(),this.attachShadow({mode:"open"})}connectedCallback(){this.shadowRoot.innerHTML=`
       <style>
           :host {
             animation: glitch 0.5s linear;  
@@ -14,15 +14,7 @@ import{C as m}from"./utils-tdRvqGzf.js";import"./fn-header-nr_Mz0dc.js";import".
             width: 100%; 
           }
 
-          @keyframes glitch {
-            /* Fade In */
-            0% {
-              opacity: 0;
-            }
-            70% {
-              opacity: 1;
-            }
-          
+          @keyframes glitch {          
             /* Glitch */
             0%,
             40%,

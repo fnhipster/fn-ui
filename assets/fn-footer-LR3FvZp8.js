@@ -1,4 +1,4 @@
-import"./fn-binary-flkvMwlJ.js";const a="fn-footer";class n extends HTMLElement{static get observedAttributes(){return["message"]}constructor(){super(),this.attachShadow({mode:"open"}),this.shadowRoot.innerHTML=`
+import"./fn-binary-sFT9UnJZ.js";const a="fn-footer";class n extends HTMLElement{static get observedAttributes(){return["message"]}constructor(){super(),this.attachShadow({mode:"open"}),this.shadowRoot.innerHTML=`
       <style>
           footer {
             align-items: center;
@@ -22,4 +22,4 @@ import"./fn-binary-flkvMwlJ.js";const a="fn-footer";class n extends HTMLElement{
         <fn-binary></fn-binary>
         <span>© ${new Date().getUTCFullYear()}, fnhipster</span>
       </footer>
-    `}attributeChangedCallback(e,t,s){if(t!==s)switch(e){case"message":this.renderMessage(s);break}}renderMessage(e){const t=this.shadowRoot.querySelector("fn-binary");t.innerHTML=e}}customElements.get(a)||customElements.define(a,n);
+    `}attributeChangedCallback(e,t,s){if(t!==s)switch(e){case"message":this.renderMessage(s);break}}renderMessage(e){this.shadowRoot.querySelector("fn-binary").setAttribute("message",e)}}customElements.get(a)||customElements.define(a,n);
