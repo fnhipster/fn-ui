@@ -20,7 +20,7 @@ export default class Image extends HTMLElement {
           position: relative;
           display: inline-block;
           opacity: 0;
-          transition: opacity 0.3s ease-in-out;
+          transition: opacity 100ms ease-in-out;
         }
 
         .glow {
