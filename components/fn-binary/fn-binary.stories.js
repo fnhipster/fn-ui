@@ -9,17 +9,13 @@ export default {
     // More on how to position stories at: https://storybook.js.org/docs/configure/story-layout
     layout: 'centered',
   },
-  render: ({ innerText, ...args }) => {
-    const element = CustomElement('fn-binary', args);
-    element.innerText = innerText;
-    return element;
-  },
+  render: ({ ...args }) => CustomElement('fn-binary', args),
   argTypes: {},
 };
 
 // More on writing stories with args: https://storybook.js.org/docs/writing-stories/args
 export const Primary = {
   args: {
-    innerText: 'Hello World',
+    message: 'Hello World',
   },
 };
