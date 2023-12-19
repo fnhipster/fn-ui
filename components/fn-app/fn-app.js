@@ -25,7 +25,8 @@ export default class App extends HTMLElement {
             min-height: 100vh; 
             padding: 0 var(--margin); 
             transform-origin: top center; 
-            width: 100%; 
+            width: 100%;
+            color: var(--color-fg);
           }
 
           @keyframes glitch {          

@@ -9,10 +9,36 @@
       transparent 50%) center / 5px 5px,
     var(--color-bg) 50%;
 
-  /* Typography */
-  --typography-body: 'IBM Plex Mono', Courier, monospace;
-  --typography-accent: Handjet, Arial Narrow, sans-serif;
-  --typography-heading: Arial Narrow, sans-serif;
+
+  /* Typography: Main */
+  --font-family: Courier New, monospace;
+  --font-normal: 400;
+  --font-bold: 700;
+  --font-sm: 1.2rem;
+  --font-md: 1.2rem;
+  --font-lg: 1.8rem;
+  --font-xl: 3.6rem;
+  --font-xxl: 5.4rem;
+  --font: var(--font-normal) var(--font-md)/var(--leading-tight) var(--font-family);
+
+  /* Typography: Accent */
+  --font-accent-family: Handjet, Arial Narrow, sans-serif;
+  --font-accent-normal: 400;
+  --font-accent-sm: 1rem;
+  --font-accent-md: 1.2rem;
+  --font-accent-lg: 1.8rem;
+  --font-accent-xl: 3.6rem;
+  --font-accent-xxl: 5.4rem;
+  --font-accent: var(--font-accent-normal) var(--font-accent-sm)/var(--leading-tight) var(--font-accent-family);
+
+
+  /* Typography: Headings */
+  --font-heading: 400 1.5rem/1 Handjet, Arial Narrow, sans-serif;
+
+  /* Typography: Leading */
+  --leading-normal: 1.5;
+  --leading-tight: 1.25;
+  --leading-loose: 1.75;
 
 
   /* Spacing */
@@ -26,7 +52,7 @@
   --margin: 2rem;
 }
 
-html {
+/* html {
   color: var(--color-fg);
   font-size: 62.5%;
   background-color: var(--color-bg);
@@ -36,4 +62,4 @@ html {
 body {
   margin: 0;
   font-size: 10px;
-}
+} */

@@ -23,8 +23,9 @@ const config = {
     <link rel="stylesheet" href="styles/fonts.css">
 
     <style>
-      body {
-        font-size: 18px;
+      :root {
+        background-color: var(--color-bg);
+        background: var(--color-bg-pattern);
       }
     </style>
 `,

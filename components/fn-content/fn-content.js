@@ -9,13 +9,12 @@ export default class Content extends HTMLElement {
     this.shadowRoot.innerHTML = /* html */ `
       <style>
         :host {
-          font-family: var(--typography-body);
-          font-size: 1.8rem;
-          line-height: 1.5;
+          font: var(--font);
+          color: var(--color-fg);
         }
 
         strong {
-          font-weight: 600;
+          font-weight: var(--font-bold);
           text-shadow: 0 0 0.2rem currentColor;
         }
 
@@ -25,7 +24,7 @@ export default class Content extends HTMLElement {
         h4,
         h5,
         h6 {
-          font-family: var(--typography-heading);
+          font: var(--font-heading);
           margin: var(--spacing-lg) 0;
           text-transform: uppercase;
         }

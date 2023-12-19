@@ -29,8 +29,7 @@ export default class Header extends HTMLElement {
           nav {
             display: flex;
             gap: var(--spacing-md);
-            font-family: var(--typography-accent);
-            font-size: 1.5rem;
+            font: var(--font-accent);
             text-transform: uppercase;
           }
 
