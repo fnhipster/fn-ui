@@ -3,8 +3,7 @@ import"./fn-binary-sFT9UnJZ.js";const a="fn-footer";class n extends HTMLElement{
           footer {
             align-items: center;
             display: flex;
-            font-family: var(--typography-accent);
-            font-size: 1.8rem;
+            font: var(--font-accent);
             justify-content: space-between;
             text-transform: uppercase;
             gap: var(--spacing-sm);

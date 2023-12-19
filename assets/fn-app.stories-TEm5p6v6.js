@@ -1,4 +1,4 @@
-import{C as m}from"./utils-tdRvqGzf.js";import"./fn-header-nr_Mz0dc.js";import"./fn-content-0eNp-8xh.js";import"./fn-footer-LR3FvZp8.js";import"./fn-logo-RDFmdBMZ.js";import"./fn-link-fbIxC-i2.js";import"./fn-binary-sFT9UnJZ.js";const s="fn-app";class i extends HTMLElement{constructor(){super(),this.attachShadow({mode:"open"})}connectedCallback(){this.shadowRoot.innerHTML=`
+import{C as m}from"./utils-tdRvqGzf.js";import"./fn-header-EhLKetUb.js";import"./fn-content-8dPzMN-V.js";import"./fn-footer-R2rd6NPE.js";import"./fn-logo-RDFmdBMZ.js";import"./fn-link-fbIxC-i2.js";import"./fn-binary-sFT9UnJZ.js";const o="fn-app";class i extends HTMLElement{constructor(){super(),this.attachShadow({mode:"open"})}connectedCallback(){this.shadowRoot.innerHTML=`
       <style>
           :host {
             animation: glitch 0.5s linear;  
@@ -11,7 +11,8 @@ import{C as m}from"./utils-tdRvqGzf.js";import"./fn-header-nr_Mz0dc.js";import".
             min-height: 100vh; 
             padding: 0 var(--margin); 
             transform-origin: top center; 
-            width: 100%; 
+            width: 100%;
+            color: var(--color-fg);
           }
 
           @keyframes glitch {          
@@ -54,7 +55,7 @@ import{C as m}from"./utils-tdRvqGzf.js";import"./fn-header-nr_Mz0dc.js";import".
       <slot name="header"></slot>
       <slot name="main"></slot>
       <slot name="footer"></slot>
-    `}}customElements.get(s)||customElements.define(s,i);const w={title:"components/fn-app",tags:["autodocs"],parameters:{layout:"fullscreen"},render:({...t})=>{const r=m("fn-app",t);return r.innerHTML=`
+    `}}customElements.get(o)||customElements.define(o,i);const w={title:"components/fn-app",tags:["autodocs"],parameters:{layout:"fullscreen"},render:({...r})=>{const t=m("fn-app",r);return t.innerHTML=`
       <fn-header slot="header" menu="#" next="#"></fn-header>
       <main slot="main">
         <fn-content>
@@ -68,6 +69,6 @@ import{C as m}from"./utils-tdRvqGzf.js";import"./fn-header-nr_Mz0dc.js";import".
       </fn-content>
       </main>
       <fn-footer slot="footer" message="Hello World!"></fn-footer>
-    `,r},argTypes:{}},e={args:{}};var o,n,a;e.parameters={...e.parameters,docs:{...(o=e.parameters)==null?void 0:o.docs,source:{originalSource:`{
+    `,t},argTypes:{}},e={args:{}};var s,n,a;e.parameters={...e.parameters,docs:{...(s=e.parameters)==null?void 0:s.docs,source:{originalSource:`{
   args: {}
 }`,...(a=(n=e.parameters)==null?void 0:n.docs)==null?void 0:a.source}}};const u=["Primary"];export{e as Primary,u as __namedExportsOrder,w as default};

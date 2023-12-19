@@ -8,14 +8,13 @@ import"./fn-logo-RDFmdBMZ.js";import"./fn-link-fbIxC-i2.js";const i="fn-header";
           }
 
           fn-logo {
-            font-size: 3rem;
+            font-size: 2rem;
           }
 
           nav {
             display: flex;
             gap: var(--spacing-md);
-            font-family: var(--typography-accent);
-            font-size: 1.8rem;
+            font: var(--font-accent);
             text-transform: uppercase;
           }
 
