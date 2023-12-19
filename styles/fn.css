@@ -11,15 +11,15 @@
 
 
   /* Typography: Main */
-  --font-family: Courier New, monospace;
+  --font-family: 'Noto Sans Mono', Courier New, monospace;
   --font-normal: 400;
   --font-bold: 700;
   --font-sm: 1.2rem;
-  --font-md: 1.2rem;
+  --font-md: 1rem;
   --font-lg: 1.8rem;
   --font-xl: 3.6rem;
   --font-xxl: 5.4rem;
-  --font: var(--font-normal) var(--font-md)/var(--leading-tight) var(--font-family);
+  --font: var(--font-normal) var(--font-md)/var(--leading-loose) var(--font-family);
 
   /* Typography: Accent */
   --font-accent-family: Handjet, Arial Narrow, sans-serif;
