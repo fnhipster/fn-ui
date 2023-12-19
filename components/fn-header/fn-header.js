@@ -23,7 +23,7 @@ export default class Header extends HTMLElement {
           }
 
           fn-logo {
-            font-size: 3rem;
+            font-size: 2rem;
           }
 
           nav {

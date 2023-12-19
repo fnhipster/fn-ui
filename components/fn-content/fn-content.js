@@ -20,37 +20,23 @@ export default class Content extends HTMLElement {
 
         h1,
         h2,
-        h3,
-        h4,
-        h5,
-        h6 {
+        h3 {
           font: var(--font-heading);
-          margin: var(--spacing-lg) 0;
           text-transform: uppercase;
+          margin: var(--spacing-md) 0;
+          word-spacing: -0.25em;
         }
 
         h1 {
-          font-size: 4rem;
+          font-size: var(--font-heading-xl);
         }
 
         h2 {
-          font-size: 2.9rem;
+          font-size: var(--font-heading-lg);
         }
 
         h3 {
-          font-size: 2.8rem;
-        }
-
-        h4 {
-          font-size: 2.7rem;
-        }
-
-        h5 {
-          font-size: 2.6rem;
-        }
-
-        h6 {
-          font-size: 2.5rem;
+          font-size: var(--font-heading-md);
         }
 
         p {
