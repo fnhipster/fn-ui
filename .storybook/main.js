@@ -26,6 +26,7 @@ const config = {
       :root {
         background-color: var(--color-bg);
         background: var(--color-bg-pattern);
+        color: var(--color-fg);
       }
     </style>
 `,
