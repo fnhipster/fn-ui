@@ -104,4 +104,4 @@ export default class Logo extends HTMLElement {
   }
 }
 
-if (!customElements.get(tagName)) customElements.define(tagName, Logo);
+customElements.define(tagName, Logo);

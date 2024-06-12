@@ -48,4 +48,4 @@ export default class Columns extends HTMLElement {
   }
 }
 
-if (!customElements.get(tagName)) customElements.define(tagName, Columns);
+customElements.define(tagName, Columns);

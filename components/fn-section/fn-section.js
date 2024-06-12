@@ -30,4 +30,4 @@ export default class Section extends HTMLElement {
   }
 }
 
-if (!customElements.get(tagName)) customElements.define(tagName, Section);
+customElements.define(tagName, Section);

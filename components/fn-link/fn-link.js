@@ -198,4 +198,4 @@ export default class Link extends HTMLElement {
   }
 }
 
-if (!customElements.get(tagName)) customElements.define(tagName, Link);
+customElements.define(tagName, Link);

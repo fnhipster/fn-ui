@@ -89,4 +89,4 @@ export default class Binary extends HTMLElement {
   }
 }
 
-if (!customElements.get(tagName)) customElements.define(tagName, Binary);
+customElements.define(tagName, Binary);

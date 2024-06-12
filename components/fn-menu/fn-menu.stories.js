@@ -1,0 +1,43 @@
+import { CustomElement } from '../../.storybook/utils.js';
+import '../fn-link/fn-link.js';
+
+import './fn-menu.js';
+
+// More on how to set up stories at: https://storybook.js.org/docs/writing-stories
+export default {
+  title: 'components/fn-menu',
+  tags: ['autodocs'],
+  parameters: {
+    // More on how to position stories at: https://storybook.js.org/docs/configure/story-layout
+    layout: 'fullscreen',
+  },
+  render: ({ ...args }) => {
+    const element = CustomElement('fn-menu', args);
+
+    element.innerHTML = /* html */ `
+      <ul slot="links">
+        <li>
+          <fn-link href="/#one">First article title</fn-link>
+        </li>
+
+        <li>
+          <fn-link href="/#two">Here is a scond article title</fn-link>
+        </li>
+
+        <li>
+          <fn-link href="/#three">Let's finish with a third article</fn-link>
+        </li>
+      </ul>
+    `;
+
+    return element;
+  },
+  argTypes: {},
+};
+
+// More on writing stories with args: https://storybook.js.org/docs/writing-stories/args
+export const Primary = {
+  args: {
+    selected: 0,
+  },
+};

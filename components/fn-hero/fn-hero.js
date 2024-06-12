@@ -44,4 +44,4 @@ export default class Hero extends HTMLElement {
   }
 }
 
-if (!customElements.get(tagName)) customElements.define(tagName, Hero);
+customElements.define(tagName, Hero);

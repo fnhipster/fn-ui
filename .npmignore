@@ -1,5 +1,11 @@
-.DS_Store
-.cache
-.github
-.storybook
-**/*.stories.*
+# Ignore everything
+*
+
+# But not the dist directory
+!components/**/*
+!fonts/**/*
+!styles/**/*
+
+# Ignore stories
+*.stories.js
+*.test.js

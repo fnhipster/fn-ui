@@ -83,4 +83,4 @@ export default class Content extends HTMLElement {
   }
 }
 
-if (!customElements.get(tagName)) customElements.define(tagName, Content);
+customElements.define(tagName, Content);

@@ -14,7 +14,7 @@ template.innerHTML = /* html */ `
       }
 
       fn-logo {
-        font-size: 2rem;
+        font-size: 3rem;
       }
 
       nav {
@@ -22,6 +22,7 @@ template.innerHTML = /* html */ `
         gap: var(--spacing-md);
         font: var(--font-accent);
         text-transform: uppercase;
+        font-size: 1.4rem;
       }
 
       @media (width >= 650px) {
@@ -109,4 +110,4 @@ export default class Header extends HTMLElement {
   }
 }
 
-if (!customElements.get(tagName)) customElements.define(tagName, Header);
+customElements.define(tagName, Header);

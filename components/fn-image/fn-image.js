@@ -51,11 +51,15 @@ export default class Image extends HTMLElement {
   }
 
   connectedCallback() {
-    this.shadowRoot.querySelector('slot').addEventListener('slotchange', this.initialize.bind(this));
+    this.shadowRoot
+      .querySelector('slot')
+      .addEventListener('slotchange', this.initialize.bind(this));
   }
 
   disconnectedCallback() {
-    this.shadowRoot.querySelector('slot').removeEventListener('slotchange', this.initialize.bind(this));
+    this.shadowRoot
+      .querySelector('slot')
+      .removeEventListener('slotchange', this.initialize.bind(this));
   }
 
   initialize() {
@@ -74,7 +78,11 @@ export default class Image extends HTMLElement {
     img.addEventListener('load', () => {
       wrapper.style.opacity = 1;
     });
+
+    if (img.complete) {
+      img.dispatchEvent(new Event('load'));
+    }
   }
 }
 
-if (!customElements.get(tagName)) customElements.define(tagName, Image);
+customElements.define(tagName, Image);

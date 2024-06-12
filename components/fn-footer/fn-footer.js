@@ -14,6 +14,7 @@ template.innerHTML = /* html */ `
         text-transform: uppercase;
         gap: var(--spacing-sm);
         padding: var(--spacing-sm) 0;
+        font-size: 1.4rem;
       }
 
       @media (width >= 650px) {
@@ -61,4 +62,4 @@ export default class Footer extends HTMLElement {
   }
 }
 
-if (!customElements.get(tagName)) customElements.define(tagName, Footer);
+customElements.define(tagName, Footer);
