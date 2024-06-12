@@ -9,6 +9,7 @@ template.innerHTML = /* html */ `
       position: relative;
       margin-left: calc(var(--margin) * -1);
       width: calc(100% + var(--margin) * 2);
+      line-height: 0;
     }
 
     .title::slotted(h1) {
