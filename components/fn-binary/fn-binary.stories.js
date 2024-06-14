@@ -1,5 +1,4 @@
 import { CustomElement } from '../../.storybook/utils.js';
-import './fn-binary.js';
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories
 export default {

@@ -7,8 +7,10 @@ template.innerHTML = /* html */ `
     :host {
       display: block;
       position: relative;
+      /*
       margin-left: calc(var(--margin) * -1);
       width: calc(100% + var(--margin) * 2);
+      */
       line-height: 0;
     }
 
@@ -27,11 +29,19 @@ template.innerHTML = /* html */ `
       text-transform: uppercase !important;
     }
 
-    
+    fn-image {
+      display: block;
+    }
+
+    .image::slotted(*) {
+      width: 100%;
+      height: auto;
+      display: block;
+    }    
   </style>
 
-      
   <slot class="image" name="image"></slot>
+    
   <slot class="title" name="title"></slot>
 `;
 
@@ -42,6 +52,13 @@ export default class Hero extends HTMLElement {
     const shadowRoot = this.attachShadow({ mode: 'open' });
 
     shadowRoot.appendChild(template.content.cloneNode(true));
+  }
+
+  connectedCallback() {
+    this.image = this.querySelector('img');
+
+    this.image.style.width = '100%';
+    this.image.style.height = 'auto';
   }
 }
 

@@ -18,9 +18,8 @@ template.innerHTML = /* html */ `
     }
 
     .glow {
-      filter: blur(15px);
-      opacity: 0.75;
-      height: 100%;
+      filter: blur(2rem) opacity(0.5);
+      transform: scaleX(-1);
       left: 0;
       position: absolute;
       top: 0;
@@ -28,14 +27,15 @@ template.innerHTML = /* html */ `
       z-index: -1;
     }
 
-    .glow img {
+    .wrapper {
       width: 100%;
-      height: 100%;
+      display: block;
     }
   </style>
 
   <div class="wrapper">
-      <slot></slot>    
+      <slot class="image"></slot>
+      <canvas class="glow" aria-hidden></canvas>
   </div>
 `;
 
@@ -51,37 +51,43 @@ export default class Image extends HTMLElement {
   }
 
   connectedCallback() {
-    this.shadowRoot
-      .querySelector('slot')
-      .addEventListener('slotchange', this.initialize.bind(this));
+    this.image = this.querySelector('img');
+
+    if (this.image?.complete) {
+      this.initialize();
+    } else {
+      this.image?.addEventListener('load', this.initialize.bind(this));
+    }
   }
 
   disconnectedCallback() {
-    this.shadowRoot
-      .querySelector('slot')
-      .removeEventListener('slotchange', this.initialize.bind(this));
+    this.image?.removeEventListener('load', this.initialize);
   }
 
   initialize() {
     const wrapper = this.shadowRoot.querySelector('.wrapper');
-    const child = this.querySelector(':scope > img, :scope > picture');
-    const img = this.querySelector('img');
 
-    if (!img) return;
+    const canvas = this.shadowRoot.querySelector('canvas');
+    const ctx = canvas.getContext('2d');
 
-    // glow effect
-    const glow = child.cloneNode(true);
-    glow.classList.add('glow');
-    glow.setAttribute('aria-hidden', 'true');
-    wrapper.append(glow);
+    if (ctx) {
+      // Set the canvas width and height to match the image
+      const { width, height } = this.image;
 
-    img.addEventListener('load', () => {
-      wrapper.style.opacity = 1;
-    });
+      canvas.width = width;
+      canvas.height = height;
 
-    if (img.complete) {
-      img.dispatchEvent(new Event('load'));
+      // Translate to the center of the canvas
+      ctx.translate(width, 0);
+
+      // Scale the x by -1, effectively flipping the context
+      ctx.scale(-1, 1);
+
+      // Draw the image to the canvas
+      ctx.drawImage(this.image, 0, 0, width, height);
     }
+
+    wrapper.style.opacity = 1;
   }
 }
 

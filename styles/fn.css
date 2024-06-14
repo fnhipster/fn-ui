@@ -51,6 +51,67 @@
   background: var(--color-bg-pattern);
 }
 
+main {
+  font: var(--font);
+  color: var(--color-fg);
+}
+
+main strong {
+  font-weight: var(--font-bold);
+  text-shadow: 0 0 0.2rem currentColor;
+}
+
+main h1,
+main h2,
+main h3 {
+  font: var(--font-heading);
+  text-transform: uppercase;
+  margin: var(--spacing-md) 0;
+  word-spacing: -0.25em;
+}
+
+main h1 {
+  font-size: var(--font-heading-xl);
+}
+
+main h2 {
+  font-size: var(--font-heading-lg);
+}
+
+main h3 {
+  font-size: var(--font-heading-md);
+}
+
+main p {
+  margin: var(--spacing-md) 0;
+}
+
+main img,
+main video,
+main iframe {
+  max-inline-size: 100%;
+  block-size: auto;
+}
+
+main hr {
+  border-color: var(--color-fg);
+  border-style: solid;
+  border-width: 0.3rem;
+  max-width: 20rem;
+  display: inline-block;
+  width: 100%;
+  margin: var(--spacing-md) 0;
+}
+
+main blockquote {
+  font-size: 1.2em;
+  line-height: 1.3;
+  font-style: italic;
+  margin: 0;
+  padding: var(--spacing-md);
+  border-left: 0.5em solid;
+}
+
 @keyframes glitch {
   /* Glitch */
   0%,

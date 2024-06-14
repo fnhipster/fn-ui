@@ -1,5 +1,4 @@
 export { default as Binary } from './fn-binary/fn-binary.js';
-export { default as Content } from './fn-content/fn-content.js';
 export { default as Footer } from './fn-footer/fn-footer.js';
 export { default as Header } from './fn-header/fn-header.js';
 export { default as Image } from './fn-image/fn-image.js';
