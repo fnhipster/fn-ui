@@ -9,7 +9,7 @@
 
 
   /* Typography: Main */
-  --font-family: 'Noto Sans Mono', monospace;
+  --font-family: 'lexia-mono-variable', sans-serif;
   --font-normal: 400;
   --font-bold: 700;
   --font-md: 1.6rem;
@@ -44,7 +44,7 @@
 
   /* Base */
   font-size: 10px;
-  animation: glitch 0.5s linear;
+  /* animation: glitch 0.5s linear; */
   line-height: 1.5;
   transform-origin: top center;
   color: var(--color-fg);

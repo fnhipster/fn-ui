@@ -6,30 +6,29 @@ const tagName = 'fn-header';
 const template = document.createElement('template');
 template.innerHTML = /* html */ `
   <style>
-      header {
-        align-items: center;
-        display: flex;
-        justify-content: space-between;
-        padding: var(--spacing-sm) 0;
-      }
+    :host {
+      align-items: center;
+      display: flex;
+    }
 
-      fn-logo {
-        font-size: 3rem;
-      }
+    header {
+      align-items: center;
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+    }
 
-      nav {
-        display: flex;
-        gap: var(--spacing-md);
-        font: var(--font-accent);
-        text-transform: uppercase;
-        font-size: 1.4rem;
-      }
+    fn-logo {
+      font-size: 3rem;
+    }
 
-      @media (width >= 650px) {
-        header {
-          padding: var(--spacing-md) 0;
-        }
-      }
+    nav {
+      display: flex;
+      gap: var(--spacing-md);
+      font: var(--font-accent);
+      text-transform: uppercase;
+      font-size: 1.4rem;
+    }
   </style>
 
   <header>

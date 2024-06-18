@@ -6,22 +6,21 @@ const template = document.createElement('template');
 
 template.innerHTML = /* html */ `
   <style>
-      footer {
-        align-items: center;
-        display: flex;
-        font: var(--font-accent);
-        justify-content: space-between;
-        text-transform: uppercase;
-        gap: var(--spacing-sm);
-        padding: var(--spacing-sm) 0;
-        font-size: 1.4rem;
-      }
+    :host {
+      align-items: center;
+      display: flex;
+    }
 
-      @media (width >= 650px) {
-        footer {
-          padding: var(--spacing-md) 0;
-        }
-      }
+    footer {
+      align-items: center;
+      display: flex;
+      font: var(--font-accent);
+      justify-content: space-between;
+      text-transform: uppercase;
+      gap: var(--spacing-sm);
+      font-size: 1.4rem;
+      width: 100%;
+    }
   </style>
     
   <footer className="fnh-footer">
