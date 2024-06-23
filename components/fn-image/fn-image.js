@@ -5,9 +5,8 @@ const template = document.createElement('template');
 template.innerHTML = /* html */ `
   <style>
     :host {
-      --transition-loaded: opacity 250ms ease-in;
-      --transition-after-loaded: opacity 250ms ease-out 250ms;
-      background: currentColor;
+      --transition-after-loaded: opacity 250ms ease-out;
+      background: var(--color-fg);
       display: inline-block;
       line-height: 0;
     }
@@ -15,13 +14,7 @@ template.innerHTML = /* html */ `
     .wrapper {
       position: relative;
       display: inline-block;
-      transition: var(--transition-loaded);
       width: 100%;
-      opacity: 0;
-    }
-
-    .wrapper.loaded {
-      opacity: 1;
     }
 
     .glow {
@@ -45,10 +38,10 @@ template.innerHTML = /* html */ `
       left: 0;
       width: 100%;
       height: 100%;
-      transition: var(--transition-after-loaded);
+      transition: var(--transition-after-loaded);  
     }
 
-    .poster.loaded {
+    .loaded .poster {
       opacity: 0;
     }
 
@@ -64,16 +57,14 @@ template.innerHTML = /* html */ `
   </div>
 `;
 
-export default class Image extends HTMLElement {
+export default class FnImage extends HTMLElement {
   loaded = false;
 
-  intersectionObserver = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      if (!this.loaded && entry.isIntersecting) {
-        this.load();
-      }
-    });
-  });
+  poster = false;
+
+  posterSrc = null;
+
+  glow = false;
 
   constructor() {
     super();
@@ -83,72 +74,87 @@ export default class Image extends HTMLElement {
     shadowRoot.appendChild(template.content.cloneNode(true));
   }
 
-  connectedCallback() {
+  async connectedCallback() {
+    if (this.loaded) return;
+
     this.image = this.querySelector('img');
 
-    // initialize on image load
+    this.posterSrc = this.getAttribute('poster') ?? null;
+
+    if (this.posterSrc && !this.poster) await this.loadPoster();
+
     if (this.image?.complete) {
-      this.initialize();
+      this.load();
     } else {
-      this.image?.addEventListener('load', this.initialize.bind(this));
+      this.image?.addEventListener('load', this.load.bind(this));
     }
   }
 
   disconnectedCallback() {
     // remove event listeners
-    this.image?.removeEventListener('load', this.initialize.bind(this));
-
-    // stop observing intersection
-    this.intersectionObserver.unobserve(this);
-  }
-
-  initialize() {
-    // observe intersection
-    this.intersectionObserver.observe(this);
+    this.image?.removeEventListener('load', this.load.bind(this));
   }
 
   load() {
-    this.loaded = true;
-    
     const wrapper = this.shadowRoot.querySelector('.wrapper');
 
-    this.poster();
-    this.glow();
-
     wrapper.classList.add('loaded');
+
     console.log('Loaded', this.image);
+    this.loaded = true;
+    
+    if (!this.glow) this.loadGlow();
   }
 
-  poster() {
-    const canvas = this.shadowRoot.querySelector('canvas#poster');
-    const ctx = canvas.getContext('2d');
+  async loadPoster() {
+    return new Promise((resolve) => {
+      const canvas = this.shadowRoot.querySelector('canvas#poster');
+      const ctx = canvas.getContext('2d');
 
-    // Set the canvas width and height to match the image
-    const { width, height } = this.image;
-    canvas.width = width;
-    canvas.height = height;
+      // Set the canvas width and height to match the image
+      const { width, height } = this.image;
+      canvas.width = width;
+      canvas.height = height;
 
-    // Draw the image to the canvas
-    const pixels = 0.2;
-    const w = width * pixels;
-    const h = height * pixels;
+      // Download poster image
+      const poster = new Image();
+      poster.src = this.posterSrc;
 
-    ctx.drawImage(this.image, 0, 0, w, h);
+      // TODO: move to add
+      poster.onload = () => {        
+        // Draw the image to the canvas
+        const pixels = 0.05;
+        const w = width * pixels;
+        const h = height * pixels;
 
-    // turn off image aliasing
-    ctx.msImageSmoothingEnabled = false;
-    ctx.mozImageSmoothingEnabled = false;
-    ctx.webkitImageSmoothingEnabled = false;
-    ctx.imageSmoothingEnabled = false;
+        ctx.drawImage(poster, 0, 0, w, h);
 
-    // draw the image back to the canvas
-    ctx.drawImage(canvas, 0, 0, w, h, 0, 0, canvas.width, canvas.height);
+        // turn off image aliasing
+        ctx.msImageSmoothingEnabled = false;
+        ctx.mozImageSmoothingEnabled = false;
+        ctx.webkitImageSmoothingEnabled = false;
+        ctx.imageSmoothingEnabled = false;
 
-    // transition the poster canvas
-    canvas.classList.add('loaded');
+        // draw the image back to the canvas
+        ctx.drawImage(canvas, 0, 0, w, h, 0, 0, canvas.width, canvas.height);
+
+        // tint
+        const computedStyle = getComputedStyle(this);
+        const color = computedStyle.getPropertyValue('--color-fg');
+        ctx.globalCompositeOperation = 'color';
+        ctx.fillStyle = color;
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+        this.poster = true;
+        canvas.classList.add('loaded');
+        resolve();
+        console.log('Loaded poster', this.poster);
+      };
+    });
   }
 
-  glow() {
+  // TODO
+  loadGlow() {
     const canvas = this.shadowRoot.querySelector('canvas#glow');
     const ctx = canvas.getContext('2d');
 
@@ -162,8 +168,10 @@ export default class Image extends HTMLElement {
 
     ctx.drawImage(this.image, 0, 0, width, height);
 
+    this.glow = true;
     canvas.classList.add('loaded');
+    console.log('Loaded glow');
   }
 }
 
-customElements.define(tagName, Image);
+customElements.define(tagName, FnImage);

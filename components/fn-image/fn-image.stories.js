@@ -26,5 +26,7 @@ export default {
 
 // More on writing stories with args: https://storybook.js.org/docs/writing-stories/args
 export const Primary = {
-  args: { },
+  args: {
+    poster: 'https://picsum.photos/200/300',
+  },
 };
