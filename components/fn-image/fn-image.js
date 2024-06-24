@@ -5,7 +5,7 @@ const template = document.createElement('template');
 template.innerHTML = /* html */ `
   <style>
     :host {
-      --transition-after-loaded: opacity 250ms ease-out;
+      --transition-after-loaded: opacity 350ms ease-out 500ms;
       background: var(--color-fg);
       display: inline-block;
       line-height: 0;
@@ -59,8 +59,6 @@ template.innerHTML = /* html */ `
 
 export default class FnImage extends HTMLElement {
   loaded = false;
-
-  poster = false;
 
   constructor() {
     super();
@@ -125,9 +123,9 @@ export default class FnImage extends HTMLElement {
     canvas.height = height;
 
     // Draw the image to the canvas
-    const pixels = 0.05;
-    const w = width * pixels;
-    const h = height * pixels;
+    const pixels = 0.15;
+    const w = canvas.width * pixels;
+    const h = canvas.height * pixels;
 
     ctx.drawImage(this.poster, 0, 0, w, h);
 

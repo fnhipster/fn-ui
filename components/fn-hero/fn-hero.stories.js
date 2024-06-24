@@ -33,7 +33,7 @@ export const Primary = {
 export const Picture = {
   args: {
     innerHTML: /* html */ `
-    <fn-image slot="image">
+    <fn-image slot="image" poster="https://picsum.photos/seed/picsum/960/530">
       <picture>
         <source type="image/webp" srcset="https://picsum.photos/seed/picsum/960/530" media="(min-width: 600px)">
         <source type="image/webp" srcset="https://picsum.photos/seed/picsum/660/230">
