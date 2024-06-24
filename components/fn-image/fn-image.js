@@ -62,10 +62,6 @@ export default class FnImage extends HTMLElement {
 
   poster = false;
 
-  posterSrc = null;
-
-  glow = false;
-
   constructor() {
     super();
 
@@ -78,21 +74,35 @@ export default class FnImage extends HTMLElement {
     if (this.loaded) return;
 
     this.image = this.querySelector('img');
+    this._handlePoster = this.handlePoster.bind(this);
+    this._handleLoad = this.load.bind(this);
 
-    this.posterSrc = this.getAttribute('poster') ?? null;
+    // Poster
+    const poster = this.getAttribute('poster');
 
-    if (this.posterSrc && !this.poster) await this.loadPoster();
+    if (poster) {
+      this.poster = new Image();
+      this.poster.src = poster;
 
+      if (this.poster.complete) {
+        this.handlePoster();
+      } else {
+        this.poster.addEventListener('load', this._handlePoster);
+      }
+    }
+
+    // Image
     if (this.image?.complete) {
       this.load();
     } else {
-      this.image?.addEventListener('load', this.load.bind(this));
+      this.image?.addEventListener('load', this._handleLoad);
     }
   }
 
   disconnectedCallback() {
     // remove event listeners
-    this.image?.removeEventListener('load', this.load.bind(this));
+    this.image?.removeEventListener('load', this._handleLoad);
+    this.poster?.removeEventListener('load', this._handlePoster);
   }
 
   load() {
@@ -100,61 +110,47 @@ export default class FnImage extends HTMLElement {
 
     wrapper.classList.add('loaded');
 
-    console.log('Loaded', this.image);
+    this.handleGlow();
+
     this.loaded = true;
-    
-    if (!this.glow) this.loadGlow();
   }
 
-  async loadPoster() {
-    return new Promise((resolve) => {
-      const canvas = this.shadowRoot.querySelector('canvas#poster');
-      const ctx = canvas.getContext('2d');
+  handlePoster() {
+    const canvas = this.shadowRoot.querySelector('canvas#poster');
+    const ctx = canvas.getContext('2d');
 
-      // Set the canvas width and height to match the image
-      const { width, height } = this.image;
-      canvas.width = width;
-      canvas.height = height;
+    // Set the canvas width and height to match the image
+    const { width, height } = this.image;
+    canvas.width = width;
+    canvas.height = height;
 
-      // Download poster image
-      const poster = new Image();
-      poster.src = this.posterSrc;
+    // Draw the image to the canvas
+    const pixels = 0.05;
+    const w = width * pixels;
+    const h = height * pixels;
 
-      // TODO: move to add
-      poster.onload = () => {        
-        // Draw the image to the canvas
-        const pixels = 0.05;
-        const w = width * pixels;
-        const h = height * pixels;
+    ctx.drawImage(this.poster, 0, 0, w, h);
 
-        ctx.drawImage(poster, 0, 0, w, h);
+    // turn off image aliasing
+    ctx.msImageSmoothingEnabled = false;
+    ctx.mozImageSmoothingEnabled = false;
+    ctx.webkitImageSmoothingEnabled = false;
+    ctx.imageSmoothingEnabled = false;
 
-        // turn off image aliasing
-        ctx.msImageSmoothingEnabled = false;
-        ctx.mozImageSmoothingEnabled = false;
-        ctx.webkitImageSmoothingEnabled = false;
-        ctx.imageSmoothingEnabled = false;
+    // draw the image back to the canvas
+    ctx.drawImage(canvas, 0, 0, w, h, 0, 0, canvas.width, canvas.height);
 
-        // draw the image back to the canvas
-        ctx.drawImage(canvas, 0, 0, w, h, 0, 0, canvas.width, canvas.height);
+    // tint
+    const computedStyle = getComputedStyle(this);
+    const color = computedStyle.getPropertyValue('--color-fg');
+    ctx.globalCompositeOperation = 'color';
+    ctx.fillStyle = color;
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-        // tint
-        const computedStyle = getComputedStyle(this);
-        const color = computedStyle.getPropertyValue('--color-fg');
-        ctx.globalCompositeOperation = 'color';
-        ctx.fillStyle = color;
-        ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-        this.poster = true;
-        canvas.classList.add('loaded');
-        resolve();
-        console.log('Loaded poster', this.poster);
-      };
-    });
+    canvas.classList.add('loaded');
   }
 
-  // TODO
-  loadGlow() {
+  handleGlow() {
     const canvas = this.shadowRoot.querySelector('canvas#glow');
     const ctx = canvas.getContext('2d');
 
@@ -168,9 +164,7 @@ export default class FnImage extends HTMLElement {
 
     ctx.drawImage(this.image, 0, 0, width, height);
 
-    this.glow = true;
     canvas.classList.add('loaded');
-    console.log('Loaded glow');
   }
 }
 
