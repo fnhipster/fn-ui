@@ -60,6 +60,22 @@ template.innerHTML = /* html */ `
 export default class FnImage extends HTMLElement {
   loaded = false;
 
+  observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        const wrapper = this.shadowRoot.querySelector('.wrapper');
+
+        wrapper.classList.add('loaded');
+
+        this.handleGlow();
+
+        this.loaded = true;
+
+        this.observer.disconnect();
+      }
+    });
+  });
+
   constructor() {
     super();
 
@@ -72,8 +88,12 @@ export default class FnImage extends HTMLElement {
     if (this.loaded) return;
 
     this.image = this.querySelector('img');
+
     this._handlePoster = this.handlePoster.bind(this);
-    this._handleLoad = this.load.bind(this);
+
+    this._handleLoad = () => {
+      this.observer.observe(this.image);
+    };
 
     // Poster
     const poster = this.getAttribute('poster');
@@ -83,7 +103,7 @@ export default class FnImage extends HTMLElement {
       this.poster.src = poster;
 
       if (this.poster.complete) {
-        this.handlePoster();
+        this._handlePoster();
       } else {
         this.poster.addEventListener('load', this._handlePoster);
       }
@@ -91,7 +111,7 @@ export default class FnImage extends HTMLElement {
 
     // Image
     if (this.image?.complete) {
-      this.load();
+      this._handleLoad();
     } else {
       this.image?.addEventListener('load', this._handleLoad);
     }
@@ -101,16 +121,9 @@ export default class FnImage extends HTMLElement {
     // remove event listeners
     this.image?.removeEventListener('load', this._handleLoad);
     this.poster?.removeEventListener('load', this._handlePoster);
-  }
 
-  load() {
-    const wrapper = this.shadowRoot.querySelector('.wrapper');
-
-    wrapper.classList.add('loaded');
-
-    this.handleGlow();
-
-    this.loaded = true;
+    // disconnect the observer
+    this.observer.disconnect();
   }
 
   handlePoster() {
