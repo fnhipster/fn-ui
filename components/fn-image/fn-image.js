@@ -5,8 +5,7 @@ const template = document.createElement('template');
 template.innerHTML = /* html */ `
   <style>
     :host {
-      --transition-after-loaded: opacity 350ms ease-out 500ms;
-      background: var(--color-fg);
+      --transition-after-loaded: opacity .35s ease-in .5s;
       display: inline-block;
       line-height: 0;
     }
@@ -48,11 +47,18 @@ template.innerHTML = /* html */ `
     .poster, .glow {
       user-select: none;
     }
+
+    .inline-wrapper {
+      background: var(--color-fg);
+      clip-path: polygon(0 1em,1em 0,calc(100% - 1em) 0,100% 1em,100% calc(100% - 1em),calc(100% - 1em) 100%,1em 100%,0 calc(100% - 1em));
+    }
   </style>
 
   <div class="wrapper">
-    <canvas id="poster" class="poster" aria-hidden></canvas>
-    <slot class="image"></slot>
+    <div class="inline-wrapper">
+      <canvas id="poster" class="poster" aria-hidden></canvas>
+      <slot class="image"></slot>
+    </div>
     <canvas id="glow" class="glow" aria-hidden></canvas>
   </div>
 `;
@@ -136,7 +142,7 @@ export default class FnImage extends HTMLElement {
     canvas.height = height;
 
     // Draw the image to the canvas
-    const pixels = 0.15;
+    const pixels = 0.05;
     const w = canvas.width * pixels;
     const h = canvas.height * pixels;
 
