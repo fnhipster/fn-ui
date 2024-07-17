@@ -41,11 +41,12 @@
 
   /* Base */
   font-size: 10px;
-  /* animation: glitch 0.5s linear; */
+  animation: glitch 0.5s linear;
   line-height: 1.5;
   transform-origin: top center;
   color: var(--color-fg);
   background: var(--color-bg);
+  cursor: var(--cursor-default, default);
 }
 
 :root::before {
@@ -62,6 +63,19 @@
   animation: glitch-anim 0.2s infinite;
   opacity: 0.05;
   pointer-events: none;
+}
+
+*::selection {
+  color: var(--color-bg);
+  background: var(--color-fg);
+}
+
+*:active {
+  cursor: var(--cursor-default-click, default);
+}
+
+p, p:active {
+  cursor: var(--cursor-text, text);
 }
 
 main {

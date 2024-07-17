@@ -10,7 +10,7 @@ template.innerHTML = /* html */ `
       display: inline-block;
       position: relative;
       text-decoration: var(--decoration, underline);
-      transition: transform 0.2s linear;          
+      transition: transform 0.1s linear;          
     }
 
     .link::before {
@@ -46,7 +46,7 @@ template.innerHTML = /* html */ `
     }
 
     .link:not([aria-disabled]) {
-      cursor: pointer;
+      cursor: var(--cursor-pointer, pointer);
     }
 
     .link:hover:not([aria-disabled])::before {
@@ -55,7 +55,8 @@ template.innerHTML = /* html */ `
 
     .link.pressed:not([aria-disabled]),
     .link:not([aria-disabled]):active {
-      transform: translateY(2px) scale(0.9);
+      transform: translateY(1px) scale(0.95);
+      cursor: var(--cursor-pointer-click, pointer);
     }
 
     .link:not([aria-disabled]):focus,
@@ -103,17 +104,21 @@ export default class Link extends HTMLElement {
   }
 
   connectedCallback() {
+    this._handlePrefetch = this.handlePrefetch.bind(this);
+    this._handleKeyDown = this.handleKeyDown.bind(this);
+    this._handleKeyUp = this.handleKeyUp.bind(this);
+
     // add event listeners
-    this.linkElement.addEventListener('mousedown', this.handlePrefetch.bind(this));
-    this.linkElement.addEventListener('keydown', this.handleKeyDown.bind(this));
-    this.linkElement.addEventListener('keyup', this.handleKeyUp.bind(this));
+    this.linkElement.addEventListener('mousedown', this._handlePrefetch);
+    this.linkElement.addEventListener('keydown', this._handleKeyDown);
+    this.linkElement.addEventListener('keyup', this._handleKeyUp);
   }
 
   disconnectedCallback() {
     // remove event listeners
-    this.linkElement.removeEventListener('mousedown', this.handlePrefetch.bind(this));
-    this.linkElement.removeEventListener('keydown', this.handleKeyDown.bind(this));
-    this.linkElement.removeEventListener('keyup', this.handleKeyUp.bind(this));
+    this.linkElement.removeEventListener('mousedown', this._handlePrefetch);
+    this.linkElement.removeEventListener('keydown', this._handleKeyDown);
+    this.linkElement.removeEventListener('keyup', this._handleKeyUp);
   }
 
   attributeChangedCallback(name, prev, next) {
@@ -176,7 +181,7 @@ export default class Link extends HTMLElement {
 
     // prefetch only relative links
     if (href.startsWith('#')) return;
-    if ((/^[^/]+\/[^/].*$|^\/[^/].*$/gmi).test(href) === false) return;
+    if (/^(http|https):\/\/[^ "]+$/.test(href)) return;
 
     const prefetchTag = Object.assign(document.createElement('link'), {
       rel: 'prefetch',

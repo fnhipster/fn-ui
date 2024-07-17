@@ -23,8 +23,7 @@ const config = {
 
     <style>
       :root {
-        background-color: var(--color-bg);
-        background: var(--color-bg-pattern);
+        background: var(--color-bg);
         color: var(--color-fg);
       }
     </style>

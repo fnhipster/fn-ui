@@ -5,6 +5,7 @@ const template = document.createElement('template');
 template.innerHTML = /* html */ `
   <style>
     :host {
+      --corner: 1rem;
       --transition-after-loaded: opacity .35s ease-in .5s;
       display: inline-block;
       line-height: 0;
@@ -50,7 +51,7 @@ template.innerHTML = /* html */ `
 
     .inline-wrapper {
       background: var(--color-fg);
-      clip-path: polygon(0 1em,1em 0,calc(100% - 1em) 0,100% 1em,100% calc(100% - 1em),calc(100% - 1em) 100%,1em 100%,0 calc(100% - 1em));
+      clip-path: polygon(0 var(--corner),var(--corner) 0,calc(100% - var(--corner)) 0,100% var(--corner),100% calc(100% - var(--corner)),calc(100% - var(--corner)) 100%,var(--corner) 100%,0 calc(100% - var(--corner)));
     }
   </style>
 
