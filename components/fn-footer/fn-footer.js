@@ -14,8 +14,8 @@ template.innerHTML = /* html */ `
     footer {
       align-items: center;
       display: flex;
-      font-size: 1.4rem;
       font: var(--font-accent);
+      font-size: 1.4rem;
       gap: var(--spacing-sm);
       justify-content: space-between;
       padding: var(--margin);
