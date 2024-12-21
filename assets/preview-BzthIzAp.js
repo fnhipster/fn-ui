@@ -371,9 +371,14 @@ var C=Object.defineProperty;var $=(r,s,e)=>s in r?C(r,s,{enumerable:!0,configura
   </nav>
 `;class q extends HTMLElement{static get observedAttributes(){return["selected"]}constructor(){super(),this.attachShadow({mode:"open"}).appendChild(y.content.cloneNode(!0))}attributeChangedCallback(s,e,t){if(e!==t)switch(s){case"selected":this.handleSelected(parseInt(t,10));break}}handleSelected(s){const e=this.querySelectorAll("fn-link");e==null||e.forEach((t,i)=>{i===s?t.setAttribute("selected",""):t.removeAttribute("selected")})}}customElements.define(j,q);const X="fn-section",b=document.createElement("template");b.innerHTML=`
   <style>
+    :host([layout="default"]) {
+      max-width: 70rem;
+      align-self: center;
+    }
+
     :host([layout="centered"]) {
         display: flex;
-        height: 100%;
+        flex: 1;
         justify-content: center;
         align-items: center;
         text-align: center;

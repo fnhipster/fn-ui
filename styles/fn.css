@@ -15,7 +15,7 @@
   /* Typography: Accent */
   --font-accent-family: Handjet, Arial Narrow, sans-serif;
   --font-accent-normal: 400;
-  --font-accent-md: 0.9rem;
+  --font-accent-md: 1.4rem;
   --font-accent-leading: 1.5;
   --font-accent-xxl: 5.4rem;
   --font-accent: var(--font-accent-normal) var(--font-accent-md) /
@@ -32,6 +32,7 @@
     var(--font-heading-leading) var(--font-heading-family);
 
   /* Spacing */
+  --spacing-xs: 0.6rem;
   --spacing-sm: 1rem;
   --spacing-md: 2rem;
   --spacing-lg: 3rem;
@@ -92,9 +93,10 @@ main {
   color: var(--color-fg);
   flex: 1;
   font: var(--font);
-  max-width: 700px;
   padding: var(--margin);
   width: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
 main strong {
