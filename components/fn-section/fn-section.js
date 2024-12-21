@@ -4,9 +4,14 @@ const template = document.createElement('template');
 
 template.innerHTML = /* html */ `
   <style>
+    :host([layout="default"]) {
+      max-width: 70rem;
+      align-self: center;
+    }
+
     :host([layout="centered"]) {
         display: flex;
-        height: 100%;
+        flex: 1;
         justify-content: center;
         align-items: center;
         text-align: center;

@@ -30,12 +30,17 @@ export default {
 
     return wrapper;
   },
-  argTypes: {},
+  argTypes: {
+    layout: {
+      control: 'select',
+      options: ['default', 'centered'],
+    },
+  },
 };
 
 // More on writing stories with args: https://storybook.js.org/docs/writing-stories/args
 export const Primary = {
   args: {
-    layout: 'default',
+    layout: 'centered',
   },
 };
