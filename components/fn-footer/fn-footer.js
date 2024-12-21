@@ -14,11 +14,12 @@ template.innerHTML = /* html */ `
     footer {
       align-items: center;
       display: flex;
-      font: var(--font-accent);
-      justify-content: space-between;
-      text-transform: uppercase;
-      gap: var(--spacing-sm);
       font-size: 1.4rem;
+      font: var(--font-accent);
+      gap: var(--spacing-sm);
+      justify-content: space-between;
+      padding: var(--margin);
+      text-transform: uppercase;
       width: 100%;
     }
   </style>

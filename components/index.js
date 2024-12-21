@@ -7,6 +7,7 @@ export { default as Logo } from './fn-logo/fn-logo.js';
 export { default as Columns } from './fn-columns/fn-columns.js';
 export { default as Hero } from './fn-hero/fn-hero.js';
 export { default as Menu } from './fn-menu/fn-menu.js';
+export { default as Section } from './fn-section/fn-section.js';
 
 /** Cursors */
 function makeCursor(cursor = 'default') {

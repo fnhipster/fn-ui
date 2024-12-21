@@ -16,6 +16,8 @@ template.innerHTML = /* html */ `
       display: flex;
       justify-content: space-between;
       width: 100%;
+      box-sizing: border-box;
+      padding: var(--margin);
     }
 
     fn-logo {
