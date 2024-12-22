@@ -24,7 +24,7 @@ template.innerHTML = /* html */ `
     }
   </style>
     
-  <footer className="fnh-footer">
+  <footer class="fnh-footer">
     <fn-binary></fn-binary>
     <span>© ${new Date().getUTCFullYear()}, fnhipster</span>
   </footer>

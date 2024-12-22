@@ -4,7 +4,6 @@ const template = document.createElement('template');
 
 template.innerHTML = /* html */ `
   <style>
-
     .link {
       color: var(--color-fg, currentColor);
       display: inline-block;
