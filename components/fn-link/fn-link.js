@@ -48,8 +48,12 @@ template.innerHTML = /* html */ `
       cursor: var(--cursor-pointer, pointer);
     }
 
-    .link:hover:not([aria-disabled])::before {
+    .link:hover:not([aria-disabled]):not(.button)::before {
       opacity: 1;
+    }
+
+    .button:hover:not([aria-disabled])::before {
+      opacity: 0.5;
     }
 
     .link.pressed:not([aria-disabled]),
@@ -64,14 +68,41 @@ template.innerHTML = /* html */ `
       color: var(--color-bg);
     }
 
-    .link:not([aria-disabled]):focus::after,
-    .link.pressed:not([aria-disabled]),
-    .link:not([aria-disabled]):active::after {
+    .button:not([aria-disabled]):focus::before {
+      opacity: 0.5;
+      outline-offset: 0.2rem;
+    }
+
+    .link:not([aria-disabled]):not(.button):focus::after,
+    .link.pressed:not([aria-disabled]):not(.button),
+    .link:not([aria-disabled]):not(.button):active::after {
       opacity: 1;
     }
 
-    .link[aria-disabled] {
+    .button.pressed:not([aria-disabled]) {
+      opacity: 0.8;
+    }
+
+    .link[aria-disabled], .button[disabled] {
       opacity: 0.4;
+    }
+
+    .button {
+      padding: var(--spacing-xs) var(--spacing-sm);
+      background: var(--color-fg);
+      color: var(--color-bg);
+      text-decoration: none;
+    }
+
+    .button::before {
+      opacity: 0;
+    }
+
+    .button::after {
+      transform: translateY(3px) translateX(4px);
+      opacity: 0.2;
+      width: 95%;
+      height: 95%;
     }
 
   </style>
@@ -89,7 +120,7 @@ export default class Link extends HTMLElement {
   prefetched = false;
 
   static get observedAttributes() {
-    return ['href', 'target', 'prefetch', 'disabled', 'decoration'];
+    return ['href', 'target', 'prefetch', 'disabled', 'decoration', 'button'];
   }
 
   constructor() {
@@ -99,7 +130,7 @@ export default class Link extends HTMLElement {
 
     shadowRoot.appendChild(template.content.cloneNode(true));
 
-    this.linkElement = this.shadowRoot.querySelector('.link');
+    this.linkElement = this.shadowRoot.querySelector('a');
   }
 
   connectedCallback() {
@@ -121,8 +152,6 @@ export default class Link extends HTMLElement {
   }
 
   attributeChangedCallback(name, prev, next) {
-    if (prev === next) return;
-
     switch (name) {
       case 'disabled':
         this.handleDisable(next === 'true');
@@ -134,6 +163,14 @@ export default class Link extends HTMLElement {
 
       case 'decoration':
         this.style.setProperty('--decoration', next);
+        break;
+
+      case 'button':
+        if (next === 'true') {
+          this.linkElement.classList.add('button');
+        } else {
+          this.linkElement.classList.remove('button');
+        }
         break;
 
       // default to setting the attribute on the a tag

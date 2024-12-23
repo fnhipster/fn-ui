@@ -13,7 +13,7 @@ export default {
     element.innerHTML = innerHTML;
     return element;
   },
-  argTypes: {},
+  argTypes: { },
 };
 
 // More on writing stories with args: https://storybook.js.org/docs/writing-stories/args
@@ -23,5 +23,16 @@ export const Primary = {
     target: '_blank',
     innerHTML: 'Hello World',
     disabled: false,
+    button: false,
+  },
+};
+
+export const Button = {
+  args: {
+    href: '/foo',
+    target: '_blank',
+    innerHTML: 'Hello World',
+    disabled: false,
+    button: true,
   },
 };
