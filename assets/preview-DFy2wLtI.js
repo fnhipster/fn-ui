@@ -202,6 +202,9 @@ var $=Object.defineProperty;var S=(n,s,t)=>s in n?$(n,s,{enumerable:!0,configura
       background: var(--color-fg);
       color: var(--color-bg);
       text-decoration: none;
+      font: var(--font-accent);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
     }
 
     .button::before {
