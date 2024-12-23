@@ -380,7 +380,6 @@ var $=Object.defineProperty;var S=(o,s,t)=>s in o?$(o,s,{enumerable:!0,configura
         flex: 1;
         justify-content: center;
         align-items: center;
-        text-align: center;
     }
 
     slot {
