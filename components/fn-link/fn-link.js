@@ -100,7 +100,7 @@ template.innerHTML = /* html */ `
 
     .button::after {
       transform: translateY(3px) translateX(4px);
-      opacity: 0.2;
+      opacity: 0.35;
       width: 95%;
       height: 95%;
     }
