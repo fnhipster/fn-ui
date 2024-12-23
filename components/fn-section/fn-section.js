@@ -14,7 +14,6 @@ template.innerHTML = /* html */ `
         flex: 1;
         justify-content: center;
         align-items: center;
-        text-align: center;
     }
 
     slot {
