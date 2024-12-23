@@ -210,7 +210,7 @@ var $=Object.defineProperty;var S=(n,s,t)=>s in n?$(n,s,{enumerable:!0,configura
 
     .button::after {
       transform: translateY(3px) translateX(4px);
-      opacity: 0.2;
+      opacity: 0.35;
       width: 95%;
       height: 95%;
     }
