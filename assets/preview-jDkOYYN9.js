@@ -357,7 +357,7 @@ var $=Object.defineProperty;var S=(o,s,t)=>s in o?$(o,s,{enumerable:!0,configura
   <slot class="image" name="image"></slot>
     
   <slot class="title" name="title"></slot>
-`;class K extends HTMLElement{constructor(){super(),this.attachShadow({mode:"open"}).appendChild(w.content.cloneNode(!0))}connectedCallback(){this.image=this.querySelector("img"),this.image.style.width="100%",this.image.style.height="auto"}}customElements.define(j,K);const X="fn-menu",y=document.createElement("template");y.innerHTML=`
+`;class K extends HTMLElement{constructor(){super(),this.attachShadow({mode:"open"}).appendChild(w.content.cloneNode(!0))}connectedCallback(){this.image=this.querySelector("img"),this.image.style.width="100%",this.image.style.height="auto"}}customElements.define(j,K);const X="fn-menu",b=document.createElement("template");b.innerHTML=`
   <style>
       ul {
         display: grid;
@@ -368,9 +368,9 @@ var $=Object.defineProperty;var S=(o,s,t)=>s in o?$(o,s,{enumerable:!0,configura
   <nav>
     <slot name="links"></slot>
   </nav>
-`;class Y extends HTMLElement{static get observedAttributes(){return["selected"]}constructor(){super(),this.attachShadow({mode:"open"}).appendChild(y.content.cloneNode(!0))}attributeChangedCallback(s,t,e){if(t!==e)switch(s){case"selected":this.handleSelected(parseInt(e,10));break}}handleSelected(s){const t=this.querySelectorAll("fn-link");t==null||t.forEach((e,i)=>{i===s?e.setAttribute("selected",""):e.removeAttribute("selected")})}}customElements.define(X,Y);const Z="fn-section",b=document.createElement("template");b.innerHTML=`
+`;class Y extends HTMLElement{static get observedAttributes(){return["selected"]}constructor(){super(),this.attachShadow({mode:"open"}).appendChild(b.content.cloneNode(!0))}attributeChangedCallback(s,t,e){if(t!==e)switch(s){case"selected":this.handleSelected(parseInt(e,10));break}}handleSelected(s){const t=this.querySelectorAll("fn-link");t==null||t.forEach((e,i)=>{i===s?e.setAttribute("selected",""):e.removeAttribute("selected")})}}customElements.define(X,Y);const Z="fn-section",y=document.createElement("template");y.innerHTML=`
   <style>
-    :host([layout="default"]) {
+    :host {
       max-width: 70rem;
       align-self: center;
     }
@@ -389,7 +389,7 @@ var $=Object.defineProperty;var S=(o,s,t)=>s in o?$(o,s,{enumerable:!0,configura
   </style>
 
   <slot></slot>
-`;class F extends HTMLElement{constructor(){super(),this.attachShadow({mode:"open"}).appendChild(b.content.cloneNode(!0))}}customElements.define(Z,F);const G="fn-button",k=document.createElement("template");k.innerHTML=`
+`;class F extends HTMLElement{constructor(){super(),this.attachShadow({mode:"open"}).appendChild(y.content.cloneNode(!0))}}customElements.define(Z,F);const G="fn-button",k=document.createElement("template");k.innerHTML=`
   <style>
     .fnh-button {
       background: none;
