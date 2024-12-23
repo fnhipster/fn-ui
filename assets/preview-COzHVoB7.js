@@ -1,4 +1,4 @@
-var $=Object.defineProperty;var S=(o,s,t)=>s in o?$(o,s,{enumerable:!0,configurable:!0,writable:!0,value:t}):o[s]=t;var n=(o,s,t)=>S(o,typeof s!="symbol"?s+"":s,t);import{N as H}from"./index-B0EJvtKl.js";import"./_commonjsHelpers-Cpj98o6Y.js";const A="fn-binary";class M extends HTMLElement{constructor(){super();n(this,"playing");n(this,"current",0);n(this,"binary",[]);n(this,"intersectionObserver",new IntersectionObserver(t=>{t.forEach(e=>{e.isIntersecting?this.play():this.stop()})}));this.attachShadow({mode:"open"})}static get observedAttributes(){return["message"]}connectedCallback(){this.intersectionObserver.observe(this),this.addEventListener("mouseenter",this.stop),this.addEventListener("mouseleave",this.play)}disconnectedCallback(){this.stop(),this.intersectionObserver.unobserve(this),this.removeEventListener("mouseenter",this.stop),this.removeEventListener("mouseleave",this.play)}attributeChangedCallback(t,e,i){if(e!==i&&t==="message"){const r=this.getAttribute("message");this.binary=r.split("").map(a=>a.charCodeAt(0).toString(2).padStart(8,"0"))}}play(){if(this.playing)return;const t=this.binary.length-1;this.render(this.binary[this.current]),this.playing=setInterval(()=>{this.current===t?this.current=0:this.current+=1,this.render(this.binary[this.current])},2e3)}stop(){clearInterval(this.playing),this.playing=void 0}render(t){t&&(this.shadowRoot.innerHTML=t)}}customElements.define(A,M);const T="fn-footer",g=document.createElement("template");g.innerHTML=`
+var $=Object.defineProperty;var S=(n,s,t)=>s in n?$(n,s,{enumerable:!0,configurable:!0,writable:!0,value:t}):n[s]=t;var i=(n,s,t)=>S(n,typeof s!="symbol"?s+"":s,t);import{N as H}from"./index-B0EJvtKl.js";import"./_commonjsHelpers-Cpj98o6Y.js";const A="fn-binary";class M extends HTMLElement{constructor(){super();i(this,"playing");i(this,"current",0);i(this,"binary",[]);i(this,"intersectionObserver",new IntersectionObserver(t=>{t.forEach(e=>{e.isIntersecting?this.play():this.stop()})}));this.attachShadow({mode:"open"})}static get observedAttributes(){return["message"]}connectedCallback(){this.intersectionObserver.observe(this),this.addEventListener("mouseenter",this.stop),this.addEventListener("mouseleave",this.play)}disconnectedCallback(){this.stop(),this.intersectionObserver.unobserve(this),this.removeEventListener("mouseenter",this.stop),this.removeEventListener("mouseleave",this.play)}attributeChangedCallback(t,e,o){if(e!==o&&t==="message"){const r=this.getAttribute("message");this.binary=r.split("").map(a=>a.charCodeAt(0).toString(2).padStart(8,"0"))}}play(){if(this.playing)return;const t=this.binary.length-1;this.render(this.binary[this.current]),this.playing=setInterval(()=>{this.current===t?this.current=0:this.current+=1,this.render(this.binary[this.current])},2e3)}stop(){clearInterval(this.playing),this.playing=void 0}render(t){t&&(this.shadowRoot.innerHTML=t)}}customElements.define(A,M);const T="fn-footer",g=document.createElement("template");g.innerHTML=`
   <style>
     :host {
       align-items: center;
@@ -158,8 +158,12 @@ var $=Object.defineProperty;var S=(o,s,t)=>s in o?$(o,s,{enumerable:!0,configura
       cursor: var(--cursor-pointer, pointer);
     }
 
-    .link:hover:not([aria-disabled])::before {
+    .link:hover:not([aria-disabled]):not(.button)::before {
       opacity: 1;
+    }
+
+    .button:hover:not([aria-disabled])::before {
+      opacity: 0.5;
     }
 
     .link.pressed:not([aria-disabled]),
@@ -174,14 +178,41 @@ var $=Object.defineProperty;var S=(o,s,t)=>s in o?$(o,s,{enumerable:!0,configura
       color: var(--color-bg);
     }
 
-    .link:not([aria-disabled]):focus::after,
-    .link.pressed:not([aria-disabled]),
-    .link:not([aria-disabled]):active::after {
+    .button:not([aria-disabled]):focus::before {
+      opacity: 0.5;
+      outline-offset: 0.2rem;
+    }
+
+    .link:not([aria-disabled]):not(.button):focus::after,
+    .link.pressed:not([aria-disabled]):not(.button),
+    .link:not([aria-disabled]):not(.button):active::after {
       opacity: 1;
     }
 
-    .link[aria-disabled] {
+    .button.pressed:not([aria-disabled]) {
+      opacity: 0.8;
+    }
+
+    .link[aria-disabled], .button[disabled] {
       opacity: 0.4;
+    }
+
+    .button {
+      padding: var(--spacing-xs) var(--spacing-sm);
+      background: var(--color-fg);
+      color: var(--color-bg);
+      text-decoration: none;
+    }
+
+    .button::before {
+      opacity: 0;
+    }
+
+    .button::after {
+      transform: translateY(3px) translateX(4px);
+      opacity: 0.2;
+      width: 95%;
+      height: 95%;
     }
 
   </style>
@@ -189,7 +220,7 @@ var $=Object.defineProperty;var S=(o,s,t)=>s in o?$(o,s,{enumerable:!0,configura
   <a class="link">
     <slot></slot>
   </a>
-`;class B extends HTMLElement{constructor(){super();n(this,"linkElement",null);n(this,"pressing",!1);n(this,"prefetched",!1);this.attachShadow({mode:"open"}).appendChild(m.content.cloneNode(!0)),this.linkElement=this.shadowRoot.querySelector(".link")}static get observedAttributes(){return["href","target","prefetch","disabled","decoration"]}connectedCallback(){this._handlePrefetch=this.handlePrefetch.bind(this),this._handleKeyDown=this.handleKeyDown.bind(this),this._handleKeyUp=this.handleKeyUp.bind(this),this.linkElement.addEventListener("mousedown",this._handlePrefetch),this.linkElement.addEventListener("keydown",this._handleKeyDown),this.linkElement.addEventListener("keyup",this._handleKeyUp)}disconnectedCallback(){this.linkElement.removeEventListener("mousedown",this._handlePrefetch),this.linkElement.removeEventListener("keydown",this._handleKeyDown),this.linkElement.removeEventListener("keyup",this._handleKeyUp)}attributeChangedCallback(t,e,i){if(e!==i)switch(t){case"disabled":this.handleDisable(i==="true");break;case"prefetch":i==="true"&&this.handlePrefetch();break;case"decoration":this.style.setProperty("--decoration",i);break;default:this.linkElement.setAttribute(t,i);break}}handleKeyDown(t){if(!this.pressing){switch(t.key){case"Enter":t.preventDefault(),this.linkElement.classList.add("pressed"),this.handlePrefetch(t);break}this.pressing=!0}}handleKeyUp(t){t.key==="Enter"&&(t.preventDefault(),this.linkElement.classList.remove("pressed"),this.linkElement.click()),this.pressing=!1}handlePrefetch(t){const e=t.currentTarget.getAttribute("href")||"";if(this.dataset.prefetched||!e||e.startsWith("#")||/^(http|https):\/\/[^ "]+$/.test(e))return;const i=Object.assign(document.createElement("link"),{rel:"prefetch",href:e});document.head.append(i),this.dataset.prefetched=!0}handleDisable(t=!0){t===!0?(this.linkElement.setAttribute("aria-disabled",!0),this.linkElement.removeAttribute("href")):(this.linkElement.removeAttribute("aria-disabled"),this.linkElement.setAttribute("href",this.getAttribute("href")))}}customElements.define(I,B);const _="fn-header",u=document.createElement("template");u.innerHTML=`
+`;class B extends HTMLElement{constructor(){super();i(this,"linkElement",null);i(this,"pressing",!1);i(this,"prefetched",!1);this.attachShadow({mode:"open"}).appendChild(m.content.cloneNode(!0)),this.linkElement=this.shadowRoot.querySelector("a")}static get observedAttributes(){return["href","target","prefetch","disabled","decoration","button"]}connectedCallback(){this._handlePrefetch=this.handlePrefetch.bind(this),this._handleKeyDown=this.handleKeyDown.bind(this),this._handleKeyUp=this.handleKeyUp.bind(this),this.linkElement.addEventListener("mousedown",this._handlePrefetch),this.linkElement.addEventListener("keydown",this._handleKeyDown),this.linkElement.addEventListener("keyup",this._handleKeyUp)}disconnectedCallback(){this.linkElement.removeEventListener("mousedown",this._handlePrefetch),this.linkElement.removeEventListener("keydown",this._handleKeyDown),this.linkElement.removeEventListener("keyup",this._handleKeyUp)}attributeChangedCallback(t,e,o){switch(t){case"disabled":this.handleDisable(o==="true");break;case"prefetch":o==="true"&&this.handlePrefetch();break;case"decoration":this.style.setProperty("--decoration",o);break;case"button":o==="true"?this.linkElement.classList.add("button"):this.linkElement.classList.remove("button");break;default:this.linkElement.setAttribute(t,o);break}}handleKeyDown(t){if(!this.pressing){switch(t.key){case"Enter":t.preventDefault(),this.linkElement.classList.add("pressed"),this.handlePrefetch(t);break}this.pressing=!0}}handleKeyUp(t){t.key==="Enter"&&(t.preventDefault(),this.linkElement.classList.remove("pressed"),this.linkElement.click()),this.pressing=!1}handlePrefetch(t){const e=t.currentTarget.getAttribute("href")||"";if(this.dataset.prefetched||!e||e.startsWith("#")||/^(http|https):\/\/[^ "]+$/.test(e))return;const o=Object.assign(document.createElement("link"),{rel:"prefetch",href:e});document.head.append(o),this.dataset.prefetched=!0}handleDisable(t=!0){t===!0?(this.linkElement.setAttribute("aria-disabled",!0),this.linkElement.removeAttribute("href")):(this.linkElement.removeAttribute("aria-disabled"),this.linkElement.setAttribute("href",this.getAttribute("href")))}}customElements.define(I,B);const _="fn-header",u=document.createElement("template");u.innerHTML=`
   <style>
     :host {
       align-items: center;
@@ -297,7 +328,7 @@ var $=Object.defineProperty;var S=(o,s,t)=>s in o?$(o,s,{enumerable:!0,configura
     </div>
     <canvas id="glow" class="glow" aria-hidden></canvas>
   </div>
-`;class D extends HTMLElement{constructor(){super();n(this,"loaded",!1);n(this,"observer",new IntersectionObserver(t=>{t.forEach(e=>{e.isIntersecting&&(this.shadowRoot.querySelector(".wrapper").classList.add("loaded"),this.handleGlow(),this.loaded=!0,this.observer.disconnect())})}));this.attachShadow({mode:"open"}).appendChild(v.content.cloneNode(!0))}async connectedCallback(){var e,i;if(this.loaded)return;this.image=this.querySelector("img"),this._handlePoster=this.handlePoster.bind(this),this._handleLoad=()=>{this.observer.observe(this.image)};const t=this.getAttribute("poster");t&&(this.poster=new Image,this.poster.src=t,this.poster.complete?this._handlePoster():this.poster.addEventListener("load",this._handlePoster)),(e=this.image)!=null&&e.complete?this._handleLoad():(i=this.image)==null||i.addEventListener("load",this._handleLoad)}disconnectedCallback(){var t,e;(t=this.image)==null||t.removeEventListener("load",this._handleLoad),(e=this.poster)==null||e.removeEventListener("load",this._handlePoster),this.observer.disconnect()}handlePoster(){const t=this.shadowRoot.querySelector("canvas#poster"),e=t.getContext("2d"),{width:i,height:r}=this.image;t.width=i,t.height=r;const a=.05,l=t.width*a,h=t.height*a;e.drawImage(this.poster,0,0,l,h),e.msImageSmoothingEnabled=!1,e.mozImageSmoothingEnabled=!1,e.webkitImageSmoothingEnabled=!1,e.imageSmoothingEnabled=!1,e.drawImage(t,0,0,l,h,0,0,t.width,t.height);const c=getComputedStyle(this).getPropertyValue("--color-fg");e.globalCompositeOperation="color",e.fillStyle=c,e.fillRect(0,0,t.width,t.height),t.classList.add("loaded")}handleGlow(){const t=this.shadowRoot.querySelector("canvas#glow"),e=t.getContext("2d"),{width:i,height:r}=this.image;t.width=i,t.height=r,t.style.filter="blur(1.5rem) opacity(0.5)",e.drawImage(this.image,0,0,i,r),t.classList.add("loaded")}}customElements.define(O,D);const V="fn-columns",f=document.createElement("template");f.innerHTML=`
+`;class D extends HTMLElement{constructor(){super();i(this,"loaded",!1);i(this,"observer",new IntersectionObserver(t=>{t.forEach(e=>{e.isIntersecting&&(this.shadowRoot.querySelector(".wrapper").classList.add("loaded"),this.handleGlow(),this.loaded=!0,this.observer.disconnect())})}));this.attachShadow({mode:"open"}).appendChild(v.content.cloneNode(!0))}async connectedCallback(){var e,o;if(this.loaded)return;this.image=this.querySelector("img"),this._handlePoster=this.handlePoster.bind(this),this._handleLoad=()=>{this.observer.observe(this.image)};const t=this.getAttribute("poster");t&&(this.poster=new Image,this.poster.src=t,this.poster.complete?this._handlePoster():this.poster.addEventListener("load",this._handlePoster)),(e=this.image)!=null&&e.complete?this._handleLoad():(o=this.image)==null||o.addEventListener("load",this._handleLoad)}disconnectedCallback(){var t,e;(t=this.image)==null||t.removeEventListener("load",this._handleLoad),(e=this.poster)==null||e.removeEventListener("load",this._handlePoster),this.observer.disconnect()}handlePoster(){const t=this.shadowRoot.querySelector("canvas#poster"),e=t.getContext("2d"),{width:o,height:r}=this.image;t.width=o,t.height=r;const a=.05,l=t.width*a,h=t.height*a;e.drawImage(this.poster,0,0,l,h),e.msImageSmoothingEnabled=!1,e.mozImageSmoothingEnabled=!1,e.webkitImageSmoothingEnabled=!1,e.imageSmoothingEnabled=!1,e.drawImage(t,0,0,l,h,0,0,t.width,t.height);const c=getComputedStyle(this).getPropertyValue("--color-fg");e.globalCompositeOperation="color",e.fillStyle=c,e.fillRect(0,0,t.width,t.height),t.classList.add("loaded")}handleGlow(){const t=this.shadowRoot.querySelector("canvas#glow"),e=t.getContext("2d"),{width:o,height:r}=this.image;t.width=o,t.height=r,t.style.filter="blur(1.5rem) opacity(0.5)",e.drawImage(this.image,0,0,o,r),t.classList.add("loaded")}}customElements.define(O,D);const V="fn-columns",f=document.createElement("template");f.innerHTML=`
   <style>
     :host {
       --gap: var(--spacing-sm);
@@ -316,7 +347,7 @@ var $=Object.defineProperty;var S=(o,s,t)=>s in o?$(o,s,{enumerable:!0,configura
   </style>
 
   <slot name="row"></slot>
-`;class q extends HTMLElement{static get observedAttributes(){return["columns"]}constructor(){super(),this.attachShadow({mode:"open"}).appendChild(f.content.cloneNode(!0))}connectedCallback(){this.style.setProperty("--size",this.children[0].children.length),[...this.children].forEach(s=>{s.style.setProperty("display","grid"),s.style.setProperty("grid-gap","var(--gap)"),s.style.setProperty("grid-template-columns","repeat(var(--columns), 1fr)")})}}customElements.define(V,q);const j="fn-hero",w=document.createElement("template");w.innerHTML=`
+`;class q extends HTMLElement{static get observedAttributes(){return["columns"]}constructor(){super(),this.attachShadow({mode:"open"}).appendChild(f.content.cloneNode(!0))}connectedCallback(){this.style.setProperty("--size",this.children[0].children.length),[...this.children].forEach(s=>{s.style.setProperty("display","grid"),s.style.setProperty("grid-gap","var(--gap)"),s.style.setProperty("grid-template-columns","repeat(var(--columns), 1fr)")})}}customElements.define(V,q);const j="fn-hero",b=document.createElement("template");b.innerHTML=`
   <style>
     :host {
       display: block;
@@ -357,7 +388,7 @@ var $=Object.defineProperty;var S=(o,s,t)=>s in o?$(o,s,{enumerable:!0,configura
   <slot class="image" name="image"></slot>
     
   <slot class="title" name="title"></slot>
-`;class K extends HTMLElement{constructor(){super(),this.attachShadow({mode:"open"}).appendChild(w.content.cloneNode(!0))}connectedCallback(){this.image=this.querySelector("img"),this.image.style.width="100%",this.image.style.height="auto"}}customElements.define(j,K);const X="fn-menu",b=document.createElement("template");b.innerHTML=`
+`;class K extends HTMLElement{constructor(){super(),this.attachShadow({mode:"open"}).appendChild(b.content.cloneNode(!0))}connectedCallback(){this.image=this.querySelector("img"),this.image.style.width="100%",this.image.style.height="auto"}}customElements.define(j,K);const X="fn-menu",w=document.createElement("template");w.innerHTML=`
   <style>
       ul {
         display: grid;
@@ -368,7 +399,7 @@ var $=Object.defineProperty;var S=(o,s,t)=>s in o?$(o,s,{enumerable:!0,configura
   <nav>
     <slot name="links"></slot>
   </nav>
-`;class Y extends HTMLElement{static get observedAttributes(){return["selected"]}constructor(){super(),this.attachShadow({mode:"open"}).appendChild(b.content.cloneNode(!0))}attributeChangedCallback(s,t,e){if(t!==e)switch(s){case"selected":this.handleSelected(parseInt(e,10));break}}handleSelected(s){const t=this.querySelectorAll("fn-link");t==null||t.forEach((e,i)=>{i===s?e.setAttribute("selected",""):e.removeAttribute("selected")})}}customElements.define(X,Y);const Z="fn-section",y=document.createElement("template");y.innerHTML=`
+`;class Y extends HTMLElement{static get observedAttributes(){return["selected"]}constructor(){super(),this.attachShadow({mode:"open"}).appendChild(w.content.cloneNode(!0))}attributeChangedCallback(s,t,e){if(t!==e)switch(s){case"selected":this.handleSelected(parseInt(e,10));break}}handleSelected(s){const t=this.querySelectorAll("fn-link");t==null||t.forEach((e,o)=>{o===s?e.setAttribute("selected",""):e.removeAttribute("selected")})}}customElements.define(X,Y);const Z="fn-section",y=document.createElement("template");y.innerHTML=`
   <style>
     :host {
       max-width: 70rem;
@@ -500,7 +531,7 @@ var $=Object.defineProperty;var S=(o,s,t)=>s in o?$(o,s,{enumerable:!0,configura
       <line class="cls-1" x1="199.36" y1="78.33" x2="199.36" y2="7"/>
     </svg>
   </fn-button>
-`;class Q extends HTMLElement{static get observedAttributes(){return["title","text","url"]}constructor(){super(),this.attachShadow({mode:"open"}).appendChild(x.content.cloneNode(!0))}connectedCallback(){this.shadowRoot.querySelector(".fnh-share").addEventListener("click",this.share.bind(this))}share(){navigator.share?navigator.share({title:this.getAttribute("title"),text:this.getAttribute("text"),url:this.getAttribute("url")}):navigator.clipboard.writeText(this.getAttribute("url"))}}customElements.define(J,Q);function tt(o="default"){const s=document.documentElement,t=getComputedStyle(s).getPropertyValue("--color-bg"),e=getComputedStyle(s).getPropertyValue("--color-fg"),i={default:`
+`;class Q extends HTMLElement{static get observedAttributes(){return["title","text","url"]}constructor(){super(),this.attachShadow({mode:"open"}).appendChild(x.content.cloneNode(!0))}connectedCallback(){this.shadowRoot.querySelector(".fnh-share").addEventListener("click",this.share.bind(this))}share(){navigator.share?navigator.share({title:this.getAttribute("title"),text:this.getAttribute("text"),url:this.getAttribute("url")}):navigator.clipboard.writeText(this.getAttribute("url"))}}customElements.define(J,Q);function tt(n="default"){const s=document.documentElement,t=getComputedStyle(s).getPropertyValue("--color-bg"),e=getComputedStyle(s).getPropertyValue("--color-fg"),o={default:`
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.89 25.09" width="20.89" height="30.09">
         <g fill="${e}" stroke="${t}">
           <path d="M14.62,14.62v-1.33h-1.33v-1.33h-1.33v-1.33h-1.33v-1.33h-1.33v-1.33h-1.33v-1.33h-1.33v-1.33h-1.33v-1.33h-1.33v-1.33h-1.33v-1.33h-1.33V0H0v22.47h2.64v-1.33h1.33v-1.33h1.33v-1.33h1.33v2.64h1.33v2.64h1.33v1.33h2.64v-1.33h1.33v-2.64h-1.33v-2.64h-1.33v-1.33h5.28v-2.64h-1.33l.07.12Z"/>
@@ -595,4 +626,4 @@ var $=Object.defineProperty;var S=(o,s,t)=>s in o?$(o,s,{enumerable:!0,configura
       <polygon fill="${e}" points=".15 32.54 .15 30.88 1.55 30.88 1.55 29.48 5.26 29.48 5.26 26.57 2.93 26.57 2.93 25.38 5.26 25.38 5.26 3.2 2.91 3.2 2.91 3.19 1.53 3.19 1.53 1.78 .12 1.78 .12 .13 1.78 .13 1.78 1.53 3.19 1.53 3.19 2 8.94 2 8.94 1.53 10.34 1.53 10.34 .13 12 .13 12 1.79 10.6 1.79 10.6 3.19 9.22 3.19 9.1 3.2 6.92 3.2 6.92 25.38 9.24 25.38 9.24 26.57 6.92 26.57 6.92 29.48 10.62 29.48 10.62 30.88 12.02 30.88 12.02 32.54 10.36 32.54 10.36 31.14 8.96 31.14 8.96 30.68 3.21 30.68 3.21 31.14 1.81 31.14 1.81 32.54 .15 32.54"/>
       <path fill="${t}" d="M1.66.25v1.4h1.41v.47h6v-.47h1.4V.25h1.41v1.41h-1.4v1.4h-1.38s-2.3,0-2.3,0v22.43h2.33v.95h-2.33v3.16h3.7v1.4h1.4v1.41h-1.41v-1.4h-1.4v-.46H3.09v.46h-1.41v1.4H.27v-1.41h1.41v-1.4h3.7v-3.16h-2.33v-.95h2.33V3.07h-2.35s-1.38,0-1.38,0v-1.4H.25V.25h1.41M1.91,0H0v1.91h1.41v1.4h1.63s2.1,0,2.1,0v21.93h-2.33v1.45h2.33v2.66H1.43v1.4H.02v1.91h1.91v-1.4h1.41v-.46h5.5v.46h1.4v1.4h1.91v-1.91h-1.4v-1.4h-3.7v-2.66h2.33v-1.45h-2.33V3.32h2.3s1.13,0,1.13,0h.25v-1.4h1.4V0h-1.91v1.4h-1.4v.47H3.32v-.47h-1.41V0h0Z"/>
     </svg>
-    `},r=new Blob([i[o]],{type:"image/svg+xml"}),a=URL.createObjectURL(r),l=new Blob([i[`${o}Click`]],{type:"image/svg+xml"}),h=URL.createObjectURL(l),d=new Blob([i.pointer],{type:"image/svg+xml"}),c=URL.createObjectURL(d),E=new Blob([i.pointerClick],{type:"image/svg+xml"}),L=URL.createObjectURL(E),C=new Blob([i.text],{type:"image/svg+xml"}),R=URL.createObjectURL(C);s.style.setProperty("--cursor-default",`url(${a}), auto`),s.style.setProperty("--cursor-default-click",`url(${h}), auto`),s.style.setProperty("--cursor-pointer",`url(${c}), auto`),s.style.setProperty("--cursor-pointer-click",`url(${L}), auto`),s.style.setProperty("--cursor-text",`url(${R}), auto`)}function et(){tt()}document.addEventListener("DOMContentLoaded",et);const nt={parameters:{controls:{matchers:{color:/(background|color)$/i,date:/Date$/i}},docs:{theme:H.dark}}};export{nt as default};
+    `},r=new Blob([o[n]],{type:"image/svg+xml"}),a=URL.createObjectURL(r),l=new Blob([o[`${n}Click`]],{type:"image/svg+xml"}),h=URL.createObjectURL(l),d=new Blob([o.pointer],{type:"image/svg+xml"}),c=URL.createObjectURL(d),E=new Blob([o.pointerClick],{type:"image/svg+xml"}),L=URL.createObjectURL(E),C=new Blob([o.text],{type:"image/svg+xml"}),R=URL.createObjectURL(C);s.style.setProperty("--cursor-default",`url(${a}), auto`),s.style.setProperty("--cursor-default-click",`url(${h}), auto`),s.style.setProperty("--cursor-pointer",`url(${c}), auto`),s.style.setProperty("--cursor-pointer-click",`url(${L}), auto`),s.style.setProperty("--cursor-text",`url(${R}), auto`)}function et(){tt()}document.addEventListener("DOMContentLoaded",et);const it={parameters:{controls:{matchers:{color:/(background|color)$/i,date:/Date$/i}},docs:{theme:H.dark}}};export{it as default};
