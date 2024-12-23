@@ -4,7 +4,7 @@ const template = document.createElement('template');
 
 template.innerHTML = /* html */ `
   <style>
-    :host([layout="default"]) {
+    :host {
       max-width: 70rem;
       align-self: center;
     }
