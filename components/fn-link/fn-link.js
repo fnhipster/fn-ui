@@ -92,6 +92,9 @@ template.innerHTML = /* html */ `
       background: var(--color-fg);
       color: var(--color-bg);
       text-decoration: none;
+      font: var(--font-accent);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
     }
 
     .button::before {
