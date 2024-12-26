@@ -5,6 +5,7 @@ const template = document.createElement('template');
 template.innerHTML = /* html */ `
   <style>
     .fnh-button {
+      line-height: inherit;
       background: none;
       border: 0 none;
       padding: var(--spacing-xs);

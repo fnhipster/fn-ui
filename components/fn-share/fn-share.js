@@ -6,35 +6,16 @@ const template = document.createElement('template');
 
 template.innerHTML = /* html */ `
   <style>
-    .fnh-share svg {
-      width: 1em;
-      height: 1em;
+    .fnh-share {
+      line-height: 0;
     }
   </style>
     
   <fn-button class="fnh-share">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 206.36 203.48">
-      <defs>
-        <style>
-          .cls-1 {
-            stroke-linecap: square;
-            stroke-linejoin: bevel;
-          }
-
-          .cls-1, .cls-2 {
-            fill: none;
-            stroke: currentColor;
-            stroke-width: 14px;
-          }
-
-          .cls-2 {
-            stroke-miterlimit: 10;
-          }
-        </style>
-      </defs>
-      <polyline class="cls-2" points="105.7 30.05 7 30.05 7 196.48 177.03 196.48 177.03 92.02"/>
-      <polyline class="cls-1" points="92.02 116.51 199.36 7 133.08 7"/>
-      <line class="cls-1" x1="199.36" y1="78.33" x2="199.36" y2="7"/>
+    <svg width="1.2em" height="1.2em" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+      <path d="M200.66,352H144a96,96,0,0,1,0-192h55.41" style="fill:none;stroke:currentColor;stroke-linecap:square;stroke-linejoin:round;stroke-width:48px"/>
+      <path d="M312.59,160H368a96,96,0,0,1,0,192H311.34" style="fill:none;stroke:currentColor;stroke-linecap:square;stroke-linejoin:round;stroke-width:48px"/>
+      <line x1="169.07" y1="256" x2="344.93" y2="256" style="fill:none;stroke:currentColor;stroke-linecap:square;stroke-linejoin:round;stroke-width:48px"/>
     </svg>
   </fn-button>
 `;
@@ -51,7 +32,9 @@ export default class Share extends HTMLElement {
   }
 
   connectedCallback() {
-    this.shadowRoot.querySelector('.fnh-share').addEventListener('click', this.share.bind(this));
+    this.shadowRoot
+      .querySelector('.fnh-share')
+      .addEventListener('click', this.share.bind(this));
   }
 
   share() {

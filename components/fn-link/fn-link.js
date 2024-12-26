@@ -6,10 +6,12 @@ template.innerHTML = /* html */ `
   <style>
     .link {
       color: var(--color-fg, currentColor);
-      display: inline-block;
+      display: inline-flex;
       position: relative;
       text-decoration: var(--decoration, underline);
-      transition: transform 0.1s linear;          
+      transition: transform 0.1s linear;    
+      justify-content: center;
+      gap: var(--spacing-xs);      
     }
 
     .link::before {
@@ -160,10 +162,6 @@ export default class Link extends HTMLElement {
         this.handleDisable(next === 'true');
         break;
 
-      case 'prefetch':
-        if (next === 'true') this.handlePrefetch();
-        break;
-
       case 'decoration':
         this.style.setProperty('--decoration', next);
         break;
@@ -220,7 +218,7 @@ export default class Link extends HTMLElement {
 
     // prefetch only relative links
     if (href.startsWith('#')) return;
-    if (/^(http|https):\/\/[^ "]+$/.test(href)) return;
+    if (/^(http|https):\/\/[^ "]+$/.test(href) && new URL(href).origin !== window.origin) return;
 
     const prefetchTag = Object.assign(document.createElement('link'), {
       rel: 'prefetch',
