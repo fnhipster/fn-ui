@@ -11,6 +11,8 @@ export { default as Section } from './fn-section/fn-section.js';
 export { default as Share } from './fn-share/fn-share.js';
 export { default as Button } from './fn-button/fn-button.js';
 export { default as TimeAgo } from './fn-timeago/fn-timeago.js';
+export { default as Head } from './fn-head/fn-head.js';
+export { default as Icon } from './fn-icon/fn-icon.js';
 
 /** Cursors */
 function makeCursor(cursor = 'default') {
