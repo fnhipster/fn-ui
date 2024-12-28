@@ -101,6 +101,10 @@ main {
   flex-direction: column;
 }
 
+main fn-head {
+  margin-bottom: var(--spacing-md)
+}
+
 main strong {
   font-weight: var(--font-bold);
   text-shadow: 0 0 0.2rem currentColor;
