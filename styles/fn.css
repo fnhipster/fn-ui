@@ -107,7 +107,6 @@ main fn-head {
 
 main strong {
   font-weight: var(--font-bold);
-  text-shadow: 0 0 0.2rem currentColor;
 }
 
 main h1,
