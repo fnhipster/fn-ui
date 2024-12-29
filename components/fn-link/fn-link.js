@@ -55,6 +55,7 @@ template.innerHTML = /* html */ `
 
     ::slotted(.button:hover:not([aria-disabled]))::before {
       opacity: 0.5;
+      outline-offset: 0.2rem;
     }
 
     ::slotted(a.pressed:not([aria-disabled])),
@@ -83,7 +84,7 @@ template.innerHTML = /* html */ `
     ::slotted(a.button.pressed:not([aria-disabled])) {
       opacity: 0.8;
     }
-
+    
     ::slotted(a[aria-disabled]), ::slotted(.button[disabled]) {
       opacity: 0.4;
     }
