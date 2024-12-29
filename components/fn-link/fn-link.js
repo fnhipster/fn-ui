@@ -8,7 +8,9 @@ template.innerHTML = /* html */ `
       color: var(--color-fg, currentColor);
       position: relative;
       text-decoration: var(--decoration, underline);
-      transition: transform 0.1s linear;      
+      transition: transform 0.1s linear;    
+      display: inline-flex;
+      justify-content: center;  
     }
 
     ::slotted(a)::before {
