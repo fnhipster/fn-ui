@@ -116,12 +116,9 @@ var T=Object.defineProperty;var N=(n,o,t)=>o in n?T(n,o,{enumerable:!0,configura
   <style>
     ::slotted(a) {
       color: var(--color-fg, currentColor);
-      display: inline-flex;
       position: relative;
       text-decoration: var(--decoration, underline);
-      transition: transform 0.1s linear;    
-      justify-content: center;
-      gap: var(--spacing-xs);   
+      transition: transform 0.1s linear;      
     }
 
     ::slotted(a)::before {
@@ -200,13 +197,16 @@ var T=Object.defineProperty;var N=(n,o,t)=>o in n?T(n,o,{enumerable:!0,configura
     }
 
     ::slotted(.button) {
-      padding: var(--spacing-xs) var(--spacing-sm);
       background: var(--color-fg);
       color: var(--color-bg);
-      text-decoration: none;
+      display: inline-flex;
       font: var(--font-accent);
-      text-transform: uppercase;
+      gap: var(--spacing-xs); 
+      justify-content: center;
       letter-spacing: 0.05em;
+      padding: var(--spacing-xs) var(--spacing-sm);
+      text-decoration: none;
+      text-transform: uppercase;
     }
 
     ::slotted(.button)::before {
