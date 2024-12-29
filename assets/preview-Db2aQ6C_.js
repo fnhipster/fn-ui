@@ -22,7 +22,7 @@ var T=Object.defineProperty;var N=(n,o,t)=>o in n?T(n,o,{enumerable:!0,configura
     <fn-binary></fn-binary>
     <span>© ${new Date().getUTCFullYear()}, fnhipster</span>
   </footer>
-`;class q extends HTMLElement{static get observedAttributes(){return["message"]}constructor(){super(),this.attachShadow({mode:"open"}).appendChild(m.content.cloneNode(!0))}attributeChangedCallback(o,t,e){if(t!==e)switch(o){case"message":this.renderMessage(e);break}}renderMessage(o){this.shadowRoot.querySelector("fn-binary").setAttribute("message",o)}}customElements.define(B,q);const z="fn-logo",u=document.createElement("template");u.innerHTML=`
+`;class j extends HTMLElement{static get observedAttributes(){return["message"]}constructor(){super(),this.attachShadow({mode:"open"}).appendChild(m.content.cloneNode(!0))}attributeChangedCallback(o,t,e){if(t!==e)switch(o){case"message":this.renderMessage(e);break}}renderMessage(o){this.shadowRoot.querySelector("fn-binary").setAttribute("message",o)}}customElements.define(B,j);const q="fn-logo",u=document.createElement("template");u.innerHTML=`
   <style>
     :host {
       display: flex;
@@ -112,13 +112,15 @@ var T=Object.defineProperty;var N=(n,o,t)=>o in n?T(n,o,{enumerable:!0,configura
     />
     <path class="logo-cursor" d="m12.23,7.21v.6l-5.3-.02v-.6l5.3.02Z" />
   </svg>
-`;class j extends HTMLElement{constructor(){super(),this.attachShadow({mode:"open"}).appendChild(u.content.cloneNode(!0))}}customElements.define(z,j);const D="fn-link",v=document.createElement("template");v.innerHTML=`
+`;class z extends HTMLElement{constructor(){super(),this.attachShadow({mode:"open"}).appendChild(u.content.cloneNode(!0))}}customElements.define(q,z);const D="fn-link",f=document.createElement("template");f.innerHTML=`
   <style>
     ::slotted(a) {
       color: var(--color-fg, currentColor);
       position: relative;
       text-decoration: var(--decoration, underline);
-      transition: transform 0.1s linear;      
+      transition: transform 0.1s linear;    
+      display: inline-flex;
+      justify-content: center;  
     }
 
     ::slotted(a)::before {
@@ -163,6 +165,7 @@ var T=Object.defineProperty;var N=(n,o,t)=>o in n?T(n,o,{enumerable:!0,configura
 
     ::slotted(.button:hover:not([aria-disabled]))::before {
       opacity: 0.5;
+      outline-offset: 0.2rem;
     }
 
     ::slotted(a.pressed:not([aria-disabled])),
@@ -191,7 +194,7 @@ var T=Object.defineProperty;var N=(n,o,t)=>o in n?T(n,o,{enumerable:!0,configura
     ::slotted(a.button.pressed:not([aria-disabled])) {
       opacity: 0.8;
     }
-
+    
     ::slotted(a[aria-disabled]), ::slotted(.button[disabled]) {
       opacity: 0.4;
     }
@@ -223,7 +226,7 @@ var T=Object.defineProperty;var N=(n,o,t)=>o in n?T(n,o,{enumerable:!0,configura
   </style>
 
   <slot></slot>
-`;class p extends HTMLElement{constructor(){super();a(this,"linkElement",null);a(this,"pressing",!1);a(this,"prefetched",!1);this.attachShadow({mode:"open"}).appendChild(v.content.cloneNode(!0))}static get observedAttributes(){return["href","target","prefetch","disabled","decoration","button"]}connectedCallback(){this.linkElement=this.querySelector("a"),this._handlePrefetch=this.handlePrefetch.bind(this),this._handleKeyDown=this.handleKeyDown.bind(this),this._handleKeyUp=this.handleKeyUp.bind(this),this.linkElement.addEventListener("mousedown",this._handlePrefetch),this.linkElement.addEventListener("keydown",this._handleKeyDown),this.linkElement.addEventListener("keyup",this._handleKeyUp),p.observedAttributes.forEach(t=>{this.hasAttribute(t)&&this.attributeChangedCallback(t,null,this.getAttribute(t))})}disconnectedCallback(){this.linkElement.removeEventListener("mousedown",this._handlePrefetch),this.linkElement.removeEventListener("keydown",this._handleKeyDown),this.linkElement.removeEventListener("keyup",this._handleKeyUp)}attributeChangedCallback(t,e,s){if(this.linkElement)switch(t){case"disabled":this.handleDisable(s==="true");break;case"decoration":this.style.setProperty("--decoration",s);break;case"button":s==="true"?this.linkElement.classList.add("button"):this.linkElement.classList.remove("button");break;default:this.linkElement.setAttribute(t,s);break}}handleKeyDown(t){if(!this.pressing){switch(t.key){case"Enter":t.preventDefault(),this.linkElement.classList.add("pressed"),this.handlePrefetch(t);break}this.pressing=!0}}handleKeyUp(t){t.key==="Enter"&&(t.preventDefault(),this.linkElement.classList.remove("pressed"),this.linkElement.click()),this.pressing=!1}handlePrefetch(t){const e=t.currentTarget.getAttribute("href")||"";if(this.dataset.prefetched||!e||e.startsWith("#")||/^(http|https):\/\/[^ "]+$/.test(e)&&new URL(e).origin!==window.origin)return;const s=Object.assign(document.createElement("link"),{rel:"prefetch",href:e});document.head.append(s),this.dataset.prefetched=!0}handleDisable(t=!0){t===!0?(this.linkElement.setAttribute("aria-disabled",!0),this.linkElement.removeAttribute("href")):(this.linkElement.removeAttribute("aria-disabled"),this.linkElement.setAttribute("href",this.getAttribute("href")))}}customElements.define(D,p);const V="fn-header",f=document.createElement("template");f.innerHTML=`
+`;class p extends HTMLElement{constructor(){super();a(this,"linkElement",null);a(this,"pressing",!1);a(this,"prefetched",!1);this.attachShadow({mode:"open"}).appendChild(f.content.cloneNode(!0))}static get observedAttributes(){return["href","target","prefetch","disabled","decoration","button"]}connectedCallback(){this.linkElement=this.querySelector("a"),this._handlePrefetch=this.handlePrefetch.bind(this),this._handleKeyDown=this.handleKeyDown.bind(this),this._handleKeyUp=this.handleKeyUp.bind(this),this.linkElement.addEventListener("mousedown",this._handlePrefetch),this.linkElement.addEventListener("keydown",this._handleKeyDown),this.linkElement.addEventListener("keyup",this._handleKeyUp),p.observedAttributes.forEach(t=>{this.hasAttribute(t)&&this.attributeChangedCallback(t,null,this.getAttribute(t))})}disconnectedCallback(){this.linkElement.removeEventListener("mousedown",this._handlePrefetch),this.linkElement.removeEventListener("keydown",this._handleKeyDown),this.linkElement.removeEventListener("keyup",this._handleKeyUp)}attributeChangedCallback(t,e,s){if(this.linkElement)switch(t){case"disabled":this.handleDisable(s==="true");break;case"decoration":this.style.setProperty("--decoration",s);break;case"button":s==="true"?this.linkElement.classList.add("button"):this.linkElement.classList.remove("button");break;default:this.linkElement.setAttribute(t,s);break}}handleKeyDown(t){if(!this.pressing){switch(t.key){case"Enter":t.preventDefault(),this.linkElement.classList.add("pressed"),this.handlePrefetch(t);break}this.pressing=!0}}handleKeyUp(t){t.key==="Enter"&&(t.preventDefault(),this.linkElement.classList.remove("pressed"),this.linkElement.click()),this.pressing=!1}handlePrefetch(t){const e=t.currentTarget.getAttribute("href")||"";if(this.dataset.prefetched||!e||e.startsWith("#")||/^(http|https):\/\/[^ "]+$/.test(e)&&new URL(e).origin!==window.origin)return;const s=Object.assign(document.createElement("link"),{rel:"prefetch",href:e});document.head.append(s),this.dataset.prefetched=!0}handleDisable(t=!0){t===!0?(this.linkElement.setAttribute("aria-disabled",!0),this.linkElement.removeAttribute("href")):(this.linkElement.removeAttribute("aria-disabled"),this.linkElement.setAttribute("href",this.getAttribute("href")))}}customElements.define(D,p);const V="fn-header",v=document.createElement("template");v.innerHTML=`
   <style>
     :host {
       align-items: center;
@@ -279,7 +282,7 @@ var T=Object.defineProperty;var N=(n,o,t)=>o in n?T(n,o,{enumerable:!0,configura
       </fn-link>
     </nav>
   </header>
-`;class _ extends HTMLElement{static get observedAttributes(){return["next","prev","menu"]}constructor(){super(),this.attachShadow({mode:"open"}).appendChild(f.content.cloneNode(!0))}connectedCallback(){const o=this.getAttribute("prev"),t=this.getAttribute("next"),e=this.getAttribute("menu");o||this.setAttribute("prev",""),t||this.setAttribute("next",""),e||this.setAttribute("menu","")}attributeChangedCallback(o,t,e){if(t!==e)switch(o){case"next":this.handleUpdateLink("next",e);break;case"prev":this.handleUpdateLink("prev",e);break;case"menu":this.handleUpdateLink("menu",e);break}}handleUpdateLink(o,t){const e=this.shadowRoot.querySelector(`#${o}`);e.setAttribute("href",t||""),t?e.removeAttribute("disabled"):e.setAttribute("disabled","true")}}customElements.define(V,_);const O="fn-image",w=document.createElement("template");w.innerHTML=`
+`;class _ extends HTMLElement{static get observedAttributes(){return["next","prev","menu"]}constructor(){super(),this.attachShadow({mode:"open"}).appendChild(v.content.cloneNode(!0))}connectedCallback(){const o=this.getAttribute("prev"),t=this.getAttribute("next"),e=this.getAttribute("menu");o||this.setAttribute("prev",""),t||this.setAttribute("next",""),e||this.setAttribute("menu","")}attributeChangedCallback(o,t,e){if(t!==e)switch(o){case"next":this.handleUpdateLink("next",e);break;case"prev":this.handleUpdateLink("prev",e);break;case"menu":this.handleUpdateLink("menu",e);break}}handleUpdateLink(o,t){const e=this.shadowRoot.querySelector(`#${o}`);e.setAttribute("href",t||""),t?e.removeAttribute("disabled"):e.setAttribute("disabled","true")}}customElements.define(V,_);const O="fn-image",w=document.createElement("template");w.innerHTML=`
   <style>
     :host {
       --corner: 1rem;
