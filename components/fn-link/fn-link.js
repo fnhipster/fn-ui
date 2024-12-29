@@ -126,7 +126,7 @@ export default class Link extends HTMLElement {
   prefetched = false;
 
   static get observedAttributes() {
-    return ['href', 'target', 'prefetch', 'disabled', 'decoration', 'button'];
+    return ['href', 'target', 'prefetch', 'disabled', 'decoration', 'button', 'focus'];
   }
 
   constructor() {
@@ -178,6 +178,12 @@ export default class Link extends HTMLElement {
           this.linkElement.classList.add('button');
         } else {
           this.linkElement.classList.remove('button');
+        }
+        break;
+
+      case 'focus':
+        if (next === 'true') {
+          this.linkElement.focus();
         }
         break;
 

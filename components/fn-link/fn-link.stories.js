@@ -24,6 +24,7 @@ export const Primary = {
     innerHTML: '<a>Hello World</a>',
     disabled: false,
     button: false,
+    focus: false,
   },
 };
 
@@ -34,5 +35,6 @@ export const Button = {
     innerHTML: '<a>Hello World</a>',
     disabled: false,
     button: true,
+    focus: false,
   },
 };
