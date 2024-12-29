@@ -21,7 +21,7 @@ export const Primary = {
   args: {
     href: '/foo',
     target: '_blank',
-    innerHTML: 'Hello World',
+    innerHTML: '<a>Hello World</a>',
     disabled: false,
     button: false,
   },
@@ -31,7 +31,7 @@ export const Button = {
   args: {
     href: '/foo',
     target: '_blank',
-    innerHTML: 'Hello World',
+    innerHTML: '<a>Hello World</a>',
     disabled: false,
     button: true,
   },

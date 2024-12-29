@@ -4,17 +4,17 @@ const template = document.createElement('template');
 
 template.innerHTML = /* html */ `
   <style>
-    .link {
+    ::slotted(a) {
       color: var(--color-fg, currentColor);
       display: inline-flex;
       position: relative;
       text-decoration: var(--decoration, underline);
       transition: transform 0.1s linear;    
       justify-content: center;
-      gap: var(--spacing-xs);      
+      gap: var(--spacing-xs);   
     }
 
-    .link::before {
+    ::slotted(a)::before {
       content: '';
       position: absolute;
       width: 100%;
@@ -28,7 +28,7 @@ template.innerHTML = /* html */ `
       z-index: -1;
     }
 
-    .link::after {
+    ::slotted(a)::after {
       content: '';
       position: absolute;
       width: 100%;
@@ -42,54 +42,54 @@ template.innerHTML = /* html */ `
       outline: 0.2rem solid var(--color-fg);
     }
 
-    .link:focus {
+    ::slotted(a:focus) {
       outline: none;
     }
 
-    .link:not([aria-disabled]) {
+    ::slotted(a:not([aria-disabled])) {
       cursor: var(--cursor-pointer, pointer);
     }
 
-    .link:hover:not([aria-disabled]):not(.button)::before {
+    ::slotted(a:hover:not([aria-disabled]):not(.button))::before {
       opacity: 1;
     }
 
-    .button:hover:not([aria-disabled])::before {
+    ::slotted(.button:hover:not([aria-disabled]))::before {
       opacity: 0.5;
     }
 
-    .link.pressed:not([aria-disabled]),
-    .link:not([aria-disabled]):active {
+    ::slotted(a.pressed:not([aria-disabled])),
+    ::slotted(a:not([aria-disabled]):active) {
       transform: translateY(1px) scale(0.95);
       cursor: var(--cursor-pointer-click, pointer);
     }
 
-    .link:not([aria-disabled]):focus,
-    .link.pressed:not([aria-disabled]),
-    .link:not([aria-disabled]):active {
+    ::slotted(a:not([aria-disabled]):focus),
+    ::slotted(a.pressed:not([aria-disabled])),
+    ::slotted(a:not([aria-disabled]):active) {
       color: var(--color-bg);
     }
 
-    .button:not([aria-disabled]):focus::before {
+    ::slotted(.button:not([aria-disabled]):focus)::before {
       opacity: 0.5;
       outline-offset: 0.2rem;
     }
 
-    .link:not([aria-disabled]):not(.button):focus::after,
-    .link.pressed:not([aria-disabled]):not(.button),
-    .link:not([aria-disabled]):not(.button):active::after {
+    ::slotted(a:not([aria-disabled]):not(.button):focus)::after,
+    ::slotted(a.pressed:not([aria-disabled]):not(.button)),
+    ::slotted(a:not([aria-disabled]):not(.button):active)::after {
       opacity: 1;
     }
 
-    .button.pressed:not([aria-disabled]) {
+    ::slotted(a.button.pressed:not([aria-disabled])) {
       opacity: 0.8;
     }
 
-    .link[aria-disabled], .button[disabled] {
+    ::slotted(a[aria-disabled]), ::slotted(.button[disabled]) {
       opacity: 0.4;
     }
 
-    .button {
+    ::slotted(.button) {
       padding: var(--spacing-xs) var(--spacing-sm);
       background: var(--color-fg);
       color: var(--color-bg);
@@ -99,11 +99,11 @@ template.innerHTML = /* html */ `
       letter-spacing: 0.05em;
     }
 
-    .button::before {
+    ::slotted(.button)::before {
       opacity: 0;
     }
 
-    .button::after {
+    :slotted(.button)::after {
       transform: translateY(3px) translateX(4px);
       opacity: 0.35;
       width: 95%;
@@ -112,9 +112,7 @@ template.innerHTML = /* html */ `
 
   </style>
 
-  <a class="link">
-    <slot></slot>
-  </a>
+  <slot></slot>
 `;
 
 export default class Link extends HTMLElement {
@@ -130,15 +128,12 @@ export default class Link extends HTMLElement {
 
   constructor() {
     super();
-
     const shadowRoot = this.attachShadow({ mode: 'open' });
-
     shadowRoot.appendChild(template.content.cloneNode(true));
-
-    this.linkElement = this.shadowRoot.querySelector('a');
   }
 
   connectedCallback() {
+    this.linkElement = this.querySelector('a');
     this._handlePrefetch = this.handlePrefetch.bind(this);
     this._handleKeyDown = this.handleKeyDown.bind(this);
     this._handleKeyUp = this.handleKeyUp.bind(this);
@@ -147,6 +142,13 @@ export default class Link extends HTMLElement {
     this.linkElement.addEventListener('mousedown', this._handlePrefetch);
     this.linkElement.addEventListener('keydown', this._handleKeyDown);
     this.linkElement.addEventListener('keyup', this._handleKeyUp);
+
+    // itrgger attributeChangedCallback for initial values
+    Link.observedAttributes.forEach((attr) => {
+      if (this.hasAttribute(attr)) {
+        this.attributeChangedCallback(attr, null, this.getAttribute(attr));
+      }
+    });
   }
 
   disconnectedCallback() {
@@ -157,6 +159,8 @@ export default class Link extends HTMLElement {
   }
 
   attributeChangedCallback(name, prev, next) {
+    if (!this.linkElement) return;
+
     switch (name) {
       case 'disabled':
         this.handleDisable(next === 'true');

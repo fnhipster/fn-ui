@@ -14,15 +14,21 @@ export default {
     element.innerHTML = /* html */ `
       <ul slot="links">
         <li>
-          <fn-link href="/#one">First article title</fn-link>
+          <a>
+            <fn-link href="/#one">First article title</fn-link>
+          </a>
         </li>
 
         <li>
-          <fn-link href="/#two">Here is a scond article title</fn-link>
+          <a>
+            <fn-link href="/#two">Here is a scond article title</fn-link>
+          </a>
         </li>
 
         <li>
-          <fn-link href="/#three">Let's finish with a third article</fn-link>
+          <a>
+            <fn-link href="/#three">Let's finish with a third article</fn-link>
+          </a>
         </li>
       </ul>
     `;

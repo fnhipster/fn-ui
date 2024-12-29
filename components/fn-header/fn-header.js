@@ -35,20 +35,28 @@ template.innerHTML = /* html */ `
 
   <header>
     <fn-link href="/" aria-label="go to start of the line" prefetch>
-      <fn-logo aria-label="fnhipster.com"></fn-logo>
+      <a>
+        <fn-logo aria-label="fnhipster.com"></fn-logo>
+      </a>
     </fn-link>
 
     <nav>
       <fn-link id="prev" decoration="none" prefetch>
-        Prev
+        <a>
+          Prev
+        </a>
       </fn-link>
 
       <fn-link id="menu" decoration="none">
-        Go To
+        <a>
+          Go To
+        </a>
       </fn-link>
 
       <fn-link id="next" decoration="none" prefetch>
-        Next
+        <a>
+          Next
+        </a>
       </fn-link>
     </nav>
   </header>
