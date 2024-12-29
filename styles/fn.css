@@ -162,15 +162,15 @@ main blockquote {
 
 /* Sticky UI */
 @media screen and (width >= 70rem) {
-  header, footer {
+  body > header, body > footer {
     position: sticky;
   }
 
-  header {
+  body > header {
     top: 0;
   }
 
-  footer {
+  body > footer {
     bottom: 0;
   }
 }

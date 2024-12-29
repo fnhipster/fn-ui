@@ -216,13 +216,13 @@ var T=Object.defineProperty;var N=(n,o,t)=>o in n?T(n,o,{enumerable:!0,configura
       opacity: 0;
     }
 
-    :slotted(.button)::after {
-      transform: translateY(3px) translateX(4px);
+    ::slotted(.button)::after {
+      opacity: 1;
+      transform: translateY(2px) translateX(5px);
       opacity: 0.35;
       width: 95%;
       height: 95%;
     }
-
   </style>
 
   <slot></slot>
