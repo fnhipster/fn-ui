@@ -38,3 +38,14 @@ export const Button = {
     focus: false,
   },
 };
+
+export const Shortcut = {
+  args: {
+    href: '/foo',
+    target: '_blank',
+    innerHTML: '<a><em>H</em>ello World</a>',
+    disabled: false,
+    button: false,
+    focus: false,
+  },
+};

@@ -76,7 +76,7 @@ template.innerHTML = /* html */ `
     }
 
     ::slotted(a:not([aria-disabled]):not(.button):focus)::after,
-    ::slotted(a.pressed:not([aria-disabled]):not(.button)),
+    ::slotted(a.pressed:not([aria-disabled]):not(.button))::after,
     ::slotted(a:not([aria-disabled]):not(.button):active)::after {
       opacity: 1;
     }
@@ -112,7 +112,7 @@ template.innerHTML = /* html */ `
       opacity: 0.35;
       width: 95%;
       height: 95%;
-    }
+    }    
   </style>
 
   <slot></slot>
@@ -124,6 +124,8 @@ export default class Link extends HTMLElement {
   pressing = false;
 
   prefetched = false;
+
+  shortcut = null;
 
   static get observedAttributes() {
     return ['href', 'target', 'prefetch', 'disabled', 'decoration', 'button', 'focus'];
@@ -137,16 +139,28 @@ export default class Link extends HTMLElement {
 
   connectedCallback() {
     this.linkElement = this.querySelector('a');
+    this.shortcut = this.linkElement.querySelector('em')?.textContent;
+
     this._handlePrefetch = this.handlePrefetch.bind(this);
     this._handleKeyDown = this.handleKeyDown.bind(this);
     this._handleKeyUp = this.handleKeyUp.bind(this);
+    this._handleShortcutKeyDown = this.handleShortcutKeyDown.bind(this);
+    this._handleShortcutKeyUp = this.handleShowtcutKeyUp.bind(this);
 
     // add event listeners
     this.linkElement.addEventListener('mousedown', this._handlePrefetch);
     this.linkElement.addEventListener('keydown', this._handleKeyDown);
     this.linkElement.addEventListener('keyup', this._handleKeyUp);
 
-    // itrgger attributeChangedCallback for initial values
+    // listen to keydown that matches the shortcut
+    if (this.shortcut) {
+      document.addEventListener('keydown', this._handleShortcutKeyDown);
+      document.addEventListener('keyup', this._handleShortcutKeyUp);
+    }
+
+    // this.decorateShortcut();
+
+    // trigger attributeChangedCallback for initial values
     Link.observedAttributes.forEach((attr) => {
       if (this.hasAttribute(attr)) {
         this.attributeChangedCallback(attr, null, this.getAttribute(attr));
@@ -159,6 +173,11 @@ export default class Link extends HTMLElement {
     this.linkElement.removeEventListener('mousedown', this._handlePrefetch);
     this.linkElement.removeEventListener('keydown', this._handleKeyDown);
     this.linkElement.removeEventListener('keyup', this._handleKeyUp);
+
+    if (this.shortcut) {
+      document.removeEventListener('keydown', this._handleShortcutKeyDown);
+      document.removeEventListener('keyup', this._handleShortcutKeyUp);
+    }
   }
 
   attributeChangedCallback(name, prev, next) {
@@ -194,6 +213,35 @@ export default class Link extends HTMLElement {
     }
   }
 
+  handleShortcutKeyDown(event) {
+    if (this.pressing) return;
+    if (event.key.toLowerCase() === this.shortcut.toLowerCase()) {
+      this.pressing = true;
+      this.linkElement.classList.add('pressed');
+      this.handlePrefetch(event);
+    }
+  }
+
+  handleShowtcutKeyUp(event) {
+    if (!this.pressing) return;
+
+    if (event.key.toLowerCase() === this.shortcut.toLowerCase()) {
+      this.linkElement.classList.remove('pressed');
+      this.linkElement.click();
+      this.pressing = false;
+    }
+  }
+
+  decorateShortcut() {
+    if (!this.shortcut) return;
+    // find first letter that matches shortcut in link text and wrap it in a span
+    const sI = this.linkElement.textContent.toLowerCase().indexOf(this.shortcut.toLowerCase());
+    const text = this.linkElement.textContent;
+    const before = text.slice(0, sI);
+    const after = text.slice(sI + this.shortcut.length);
+    this.linkElement.innerHTML = `${before}<em class="link-shortcut">${this.shortcut}</em>${after}`;
+  }
+
   handleKeyDown(event) {
     if (this.pressing) return;
 
@@ -221,8 +269,8 @@ export default class Link extends HTMLElement {
     this.pressing = false;
   }
 
-  handlePrefetch(event) {
-    const href = event.currentTarget.getAttribute('href') || '';
+  handlePrefetch() {
+    const href = this.linkElement.getAttribute('href') || '';
 
     // check if the prefetched link is already in the document
     if (this.dataset.prefetched) return;

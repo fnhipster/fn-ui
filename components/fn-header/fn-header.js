@@ -34,88 +34,21 @@ template.innerHTML = /* html */ `
   </style>
 
   <header>
-    <fn-link href="/" aria-label="go to start of the line" prefetch>
+    <fn-link href="/" aria-label="go to start of the line">
       <a>
         <fn-logo aria-label="fnhipster.com"></fn-logo>
       </a>
     </fn-link>
 
-    <nav>
-      <fn-link id="prev" decoration="none" prefetch>
-        <a>
-          Prev
-        </a>
-      </fn-link>
-
-      <fn-link id="menu" decoration="none">
-        <a>
-          Go To
-        </a>
-      </fn-link>
-
-      <fn-link id="next" decoration="none" prefetch>
-        <a>
-          Next
-        </a>
-      </fn-link>
-    </nav>
+    <slot name="nav"></slot>
   </header>
 `;
 
 export default class Header extends HTMLElement {
-  static get observedAttributes() {
-    return ['next', 'prev', 'menu'];
-  }
-
   constructor() {
     super();
-
     const shadowRoot = this.attachShadow({ mode: 'open' });
-
     shadowRoot.appendChild(template.content.cloneNode(true));
-  }
-
-  connectedCallback() {
-    const prev = this.getAttribute('prev');
-    const next = this.getAttribute('next');
-    const menu = this.getAttribute('menu');
-
-    // trigger attributeChangedCallback on empty
-    if (!prev) this.setAttribute('prev', '');
-    if (!next) this.setAttribute('next', '');
-    if (!menu) this.setAttribute('menu', '');
-  }
-
-  attributeChangedCallback(name, prev, next) {
-    if (prev === next) return;
-
-    switch (name) {
-      case 'next':
-        this.handleUpdateLink('next', next);
-        break;
-
-      case 'prev':
-        this.handleUpdateLink('prev', next);
-        break;
-
-      case 'menu':
-        this.handleUpdateLink('menu', next);
-        break;
-
-      default:
-        break;
-    }
-  }
-
-  handleUpdateLink(id, href) {
-    const element = this.shadowRoot.querySelector(`#${id}`);
-    element.setAttribute('href', href || '');
-
-    if (!href) {
-      element.setAttribute('disabled', 'true');
-    } else {
-      element.removeAttribute('disabled');
-    }
   }
 }
 

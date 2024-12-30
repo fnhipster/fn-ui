@@ -160,6 +160,13 @@ main blockquote {
   border-left: 0.5em solid;
 }
 
+fn-link a > em {
+  background-color: var(--color-fg);
+  color: var(--color-bg);
+  font-style: normal;
+  font-weight: 600;
+}
+
 /* Sticky UI */
 @media screen and (width >= 70rem) {
   body > header, body > footer {

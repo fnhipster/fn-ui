@@ -8,15 +8,31 @@ export default {
     // More on how to position stories at: https://storybook.js.org/docs/configure/story-layout
     layout: 'fullscreen',
   },
-  render: ({ ...args }) => CustomElement('fn-header', args),
+  render: ({ innerHTML, ...args }) => {
+    const elm = CustomElement('fn-header', args);
+    elm.innerHTML = innerHTML;
+    return elm;
+  },
   argTypes: {},
 };
 
 // More on writing stories with args: https://storybook.js.org/docs/writing-stories/args
 export const Primary = {
   args: {
-    prev: '/prev',
-    next: '/next',
-    menu: '?menu=1',
+    innerHTML: `
+      <nav slot="nav">
+        <fn-link href="/prev" decoration="none">
+          <a>
+            <em>P</em>rev
+          </a>
+        </fn-link>
+
+        <fn-link href="/next" decoration="none">
+          <a>
+            <em>N</em>ext
+          </a>
+        </fn-link>
+      </nav>
+    `,
   },
 };
