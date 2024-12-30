@@ -24,7 +24,7 @@ template.innerHTML = /* html */ `
       font-size: 3rem;
     }
 
-    nav {
+    ::slotted(nav) {
       display: flex;
       gap: var(--spacing-md);
       font: var(--font-accent);
