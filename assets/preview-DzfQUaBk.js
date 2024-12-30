@@ -246,7 +246,7 @@ var T=Object.defineProperty;var N=(n,o,t)=>o in n?T(n,o,{enumerable:!0,configura
       font-size: 3rem;
     }
 
-    nav {
+    ::slotted(nav) {
       display: flex;
       gap: var(--spacing-md);
       font: var(--font-accent);
