@@ -40,7 +40,7 @@ export default class Icon extends HTMLElement {
   };
 
   static get observedAttributes() {
-    return ['icon', 'disabled'];
+    return ['icon', 'disabled', 'label'];
   }
 
   constructor() {
@@ -56,6 +56,10 @@ export default class Icon extends HTMLElement {
 
     if (name === 'disabled') {
       this.style.opacity = next ? 0.5 : 1;
+    }
+
+    if (name === 'label') {
+      this.shadowRoot.querySelector('svg').setAttribute('aria-label', next);
     }
   }
 }
