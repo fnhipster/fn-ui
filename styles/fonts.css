@@ -228,6 +228,15 @@
 }
 
 /**
+* Noto Sans Fallback
+*/
+@font-face {
+    font-family: "Noto Sans-fallback";
+    size-adjust: 106.54%;
+    src: local("Courier New");
+}
+
+/**
 * Press Start 2P
 */
 /* cyrillic-ext */
