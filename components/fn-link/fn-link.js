@@ -67,6 +67,7 @@ template.innerHTML = /* html */ `
     ::slotted(a:active), ::slotted(a.pressed) {
       transform: translateY(1px) scale(0.97);
       cursor: var(--cursor-pointer-click, pointer) !important;
+      outline: none !important;
     }
 
     ::slotted(a[aria-disabled]) {
@@ -174,7 +175,7 @@ export default class Link extends HTMLElement {
           this.linkElement.focus();
         }
         break;
-      
+
       case 'fill':
         if (next === 'true') {
           this.linkElement.classList.add('fill');
