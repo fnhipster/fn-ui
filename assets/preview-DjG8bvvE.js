@@ -485,7 +485,6 @@ var T=Object.defineProperty;var A=(n,o,t)=>o in n?T(n,o,{enumerable:!0,configura
       display: flex;
       gap: var(--spacing-sm);
       align-items: center;
-      opacity: 0.65;
       line-height: 0;
     }
   </style>
