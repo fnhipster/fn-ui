@@ -34,7 +34,7 @@ template.innerHTML = /* html */ `
   </style>
 
   <header>
-    <fn-link href="/" aria-label="go to start of the line">
+    <fn-link href="/" aria-label="go to start of the line" button="true">
       <a>
         <fn-logo aria-label="fnhipster.com"></fn-logo>
       </a>

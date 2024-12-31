@@ -6,113 +6,72 @@ template.innerHTML = /* html */ `
   <style>
     ::slotted(a) {
       color: var(--color-fg, currentColor);
-      position: relative;
       text-decoration: var(--decoration, underline);
-      transition: transform 0.1s linear;    
-      display: inline-flex;
-      justify-content: center;  
+      outline-offset: 0.2rem;
+      transition: transform 50ms ease-in;
     }
 
-    ::slotted(a)::before {
-      content: '';
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      outline: 0.2rem solid var(--color-fg);
-      top: 0;
-      left: 0;
-      box-sizing: border-box;
-      opacity: 0;
-      transition: opacity 200ms ease-out;
-      z-index: -1;
-    }
 
-    ::slotted(a)::after {
-      content: '';
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      top: 0;
-      left: 0;
-      background-color: var(--color-fg);
-      opacity: 0;
-      transition: opacity 0.2s linear;
-      z-index: -1;
-      outline: 0.2rem solid var(--color-fg);
-    }
-
-    ::slotted(a:focus) {
-      outline: none;
-    }
-
-    ::slotted(a:not([aria-disabled])) {
+    ::slotted(a:not(:disabled):not([aria-disabled])) {
       cursor: var(--cursor-pointer, pointer);
     }
 
-    ::slotted(a:hover:not([aria-disabled]):not(.button))::before {
-      opacity: 1;
+    ::slotted(a:not(:disabled):not([aria-disabled]):hover) {
+      outline: 0.2rem solid var(--color-fg);
     }
 
-    ::slotted(.button:hover:not([aria-disabled]))::before {
-      opacity: 0.5;
-      outline-offset: 0.2rem;
-    }
-
-    ::slotted(a.pressed:not([aria-disabled])),
-    ::slotted(a:not([aria-disabled]):active) {
-      transform: translateY(1px) scale(0.95);
-      cursor: var(--cursor-pointer-click, pointer);
-    }
-
-    ::slotted(a:not([aria-disabled]):focus),
-    ::slotted(a.pressed:not([aria-disabled])),
-    ::slotted(a:not([aria-disabled]):active) {
-      color: var(--color-bg);
-    }
-
-    ::slotted(.button:not([aria-disabled]):focus)::before {
-      opacity: 0.5;
-      outline-offset: 0.2rem;
-    }
-
-    ::slotted(a:not([aria-disabled]):not(.button):focus)::after,
-    ::slotted(a.pressed:not([aria-disabled]):not(.button))::after,
-    ::slotted(a:not([aria-disabled]):not(.button):active)::after {
-      opacity: 1;
-    }
-
-    ::slotted(a.button.pressed:not([aria-disabled])) {
-      opacity: 0.8;
-    }
-    
-    ::slotted(a[aria-disabled]), ::slotted(.button[disabled]) {
-      opacity: 0.4;
-    }
-
-    ::slotted(.button) {
-      background: var(--color-fg);
-      color: var(--color-bg);
+    ::slotted(a.button) {
       display: inline-flex;
       font: var(--font-accent);
       gap: var(--spacing-xs); 
       justify-content: center;
       letter-spacing: 0.05em;
-      padding: var(--spacing-xs) var(--spacing-sm);
       text-decoration: none;
       text-transform: uppercase;
     }
 
-    ::slotted(.button)::before {
-      opacity: 0;
+    ::slotted(a.button.fill) {
+      background: var(--color-fg);
+      color: var(--color-bg);
+      padding: var(--spacing-xs) var(--spacing-sm);
+      position: relative;
     }
 
-    ::slotted(.button)::after {
-      opacity: 1;
-      transform: translateY(2px) translateX(5px);
+    ::slotted(a.button.fill)::after {
+      content: '';
+      background-color: var(--color-fg);
       opacity: 0.35;
-      width: 95%;
-      height: 95%;
-    }    
+      transform: translateY(3px) translateX(3px);
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+    }
+
+    ::slotted(a.button.fill:hover), ::slotted(a.button.fill:focus) {
+      outline: 0.2rem solid var(--color-fg);
+    }
+
+    ::slotted(a:focus),
+    ::slotted(a:active) {
+      color: var(--color-bg);
+      background: var(--color-fg);
+      outline: none;
+    }
+
+    ::slotted(a:focus) {
+      cursor: var(--cursor-pointer, pointer) !important;
+    }
+
+    ::slotted(a:active), ::slotted(a.pressed) {
+      transform: translateY(1px) scale(0.97);
+      cursor: var(--cursor-pointer-click, pointer) !important;
+    }
+
+    ::slotted(a[aria-disabled]) {
+      opacity: 0.5;
+    }
   </style>
 
   <slot></slot>
@@ -128,7 +87,17 @@ export default class Link extends HTMLElement {
   shortcut = null;
 
   static get observedAttributes() {
-    return ['href', 'target', 'prefetch', 'disabled', 'decoration', 'button', 'focus'];
+    return [
+      'href',
+      'target',
+      'prefetch',
+      'disabled',
+      'decoration',
+      'button',
+      'fill',
+      'variant',
+      'focus',
+    ];
   }
 
   constructor() {
@@ -205,6 +174,14 @@ export default class Link extends HTMLElement {
           this.linkElement.focus();
         }
         break;
+      
+      case 'fill':
+        if (next === 'true') {
+          this.linkElement.classList.add('fill');
+        } else {
+          this.linkElement.classList.remove('fill');
+        }
+        break;
 
       // default to setting the attribute on the a tag
       default:
@@ -235,7 +212,9 @@ export default class Link extends HTMLElement {
   decorateShortcut() {
     if (!this.shortcut) return;
     // find first letter that matches shortcut in link text and wrap it in a span
-    const sI = this.linkElement.textContent.toLowerCase().indexOf(this.shortcut.toLowerCase());
+    const sI = this.linkElement.textContent
+      .toLowerCase()
+      .indexOf(this.shortcut.toLowerCase());
     const text = this.linkElement.textContent;
     const before = text.slice(0, sI);
     const after = text.slice(sI + this.shortcut.length);
@@ -279,7 +258,11 @@ export default class Link extends HTMLElement {
 
     // prefetch only relative links
     if (href.startsWith('#')) return;
-    if (/^(http|https):\/\/[^ "]+$/.test(href) && new URL(href).origin !== window.origin) return;
+    if (
+      /^(http|https):\/\/[^ "]+$/.test(href) &&
+      new URL(href).origin !== window.origin
+    )
+      return;
 
     const prefetchTag = Object.assign(document.createElement('link'), {
       rel: 'prefetch',

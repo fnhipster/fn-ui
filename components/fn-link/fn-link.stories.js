@@ -24,6 +24,7 @@ export const Primary = {
     innerHTML: '<a>Hello World</a>',
     disabled: false,
     button: false,
+    fill: false,
     focus: false,
   },
 };
@@ -35,6 +36,7 @@ export const Button = {
     innerHTML: '<a>Hello World</a>',
     disabled: false,
     button: true,
+    fill: true,
     focus: false,
   },
 };
@@ -47,5 +49,16 @@ export const Shortcut = {
     disabled: false,
     button: false,
     focus: false,
+  },
+};
+
+export const Focused = {
+  args: {
+    href: '/foo',
+    target: '_blank',
+    innerHTML: '<a><em>H</em>ello World</a>',
+    disabled: false,
+    button: false,
+    focus: true,
   },
 };

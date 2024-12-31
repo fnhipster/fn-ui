@@ -21,13 +21,13 @@ export const Primary = {
   args: {
     innerHTML: `
       <nav slot="nav">
-        <fn-link href="/prev" decoration="none">
+        <fn-link href="/prev">
           <a>
             <em>P</em>rev
           </a>
         </fn-link>
 
-        <fn-link href="/next" decoration="none">
+        <fn-link href="/next">
           <a>
             <em>N</em>ext
           </a>
