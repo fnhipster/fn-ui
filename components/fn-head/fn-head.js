@@ -23,7 +23,6 @@ template.innerHTML = /* html */ `
       display: flex;
       gap: var(--spacing-sm);
       align-items: center;
-      opacity: 0.65;
       line-height: 0;
     }
   </style>
