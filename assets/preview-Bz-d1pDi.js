@@ -1,4 +1,4 @@
-var T=Object.defineProperty;var N=(n,o,t)=>o in n?T(n,o,{enumerable:!0,configurable:!0,writable:!0,value:t}):n[o]=t;var a=(n,o,t)=>N(n,typeof o!="symbol"?o+"":o,t);import{N as A}from"./index-B0EJvtKl.js";import"./_commonjsHelpers-Cpj98o6Y.js";const U="fn-binary";class P extends HTMLElement{constructor(){super();a(this,"playing");a(this,"current",0);a(this,"binary",[]);a(this,"intersectionObserver",new IntersectionObserver(t=>{t.forEach(e=>{e.isIntersecting?this.play():this.stop()})}));this.attachShadow({mode:"open"})}static get observedAttributes(){return["message"]}connectedCallback(){this.intersectionObserver.observe(this),this.addEventListener("mouseenter",this.stop),this.addEventListener("mouseleave",this.play)}disconnectedCallback(){this.stop(),this.intersectionObserver.unobserve(this),this.removeEventListener("mouseenter",this.stop),this.removeEventListener("mouseleave",this.play)}attributeChangedCallback(t,e,s){if(e!==s&&t==="message"){const i=this.getAttribute("message");this.binary=i.split("").map(r=>r.charCodeAt(0).toString(2).padStart(8,"0"))}}play(){if(this.playing)return;const t=this.binary.length-1;this.render(this.binary[this.current]),this.playing=setInterval(()=>{this.current===t?this.current=0:this.current+=1,this.render(this.binary[this.current])},2e3)}stop(){clearInterval(this.playing),this.playing=void 0}render(t){t&&(this.shadowRoot.innerHTML=t)}}customElements.define(U,P);const I="fn-footer",m=document.createElement("template");m.innerHTML=`
+var T=Object.defineProperty;var N=(n,o,t)=>o in n?T(n,o,{enumerable:!0,configurable:!0,writable:!0,value:t}):n[o]=t;var a=(n,o,t)=>N(n,typeof o!="symbol"?o+"":o,t);import{N as A}from"./index-B0EJvtKl.js";import"./_commonjsHelpers-Cpj98o6Y.js";const U="fn-binary";class P extends HTMLElement{constructor(){super();a(this,"playing");a(this,"current",0);a(this,"binary",[]);a(this,"intersectionObserver",new IntersectionObserver(t=>{t.forEach(e=>{e.isIntersecting?this.play():this.stop()})}));this.attachShadow({mode:"open"})}static get observedAttributes(){return["message"]}connectedCallback(){this.intersectionObserver.observe(this),this.addEventListener("mouseenter",this.stop),this.addEventListener("mouseleave",this.play)}disconnectedCallback(){this.stop(),this.intersectionObserver.unobserve(this),this.removeEventListener("mouseenter",this.stop),this.removeEventListener("mouseleave",this.play)}attributeChangedCallback(t,e,s){if(e!==s&&t==="message"){const i=this.getAttribute("message");this.binary=i.split("").map(r=>r.charCodeAt(0).toString(2).padStart(8,"0"))}}play(){if(this.playing)return;const t=this.binary.length-1;this.render(this.binary[this.current]),this.playing=setInterval(()=>{this.current===t?this.current=0:this.current+=1,this.render(this.binary[this.current])},2e3)}stop(){clearInterval(this.playing),this.playing=void 0}render(t){t&&(this.shadowRoot.innerHTML=t)}}customElements.define(U,P);const I="fn-footer",p=document.createElement("template");p.innerHTML=`
   <style>
     :host {
       align-items: center;
@@ -22,7 +22,7 @@ var T=Object.defineProperty;var N=(n,o,t)=>o in n?T(n,o,{enumerable:!0,configura
     <fn-binary></fn-binary>
     <span>© ${new Date().getUTCFullYear()}, fnhipster</span>
   </footer>
-`;class B extends HTMLElement{static get observedAttributes(){return["message"]}constructor(){super(),this.attachShadow({mode:"open"}).appendChild(m.content.cloneNode(!0))}attributeChangedCallback(o,t,e){if(t!==e)switch(o){case"message":this.renderMessage(e);break}}renderMessage(o){this.shadowRoot.querySelector("fn-binary").setAttribute("message",o)}}customElements.define(I,B);const _="fn-logo",u=document.createElement("template");u.innerHTML=`
+`;class B extends HTMLElement{static get observedAttributes(){return["message"]}constructor(){super(),this.attachShadow({mode:"open"}).appendChild(p.content.cloneNode(!0))}attributeChangedCallback(o,t,e){if(t!==e)switch(o){case"message":this.renderMessage(e);break}}renderMessage(o){this.shadowRoot.querySelector("fn-binary").setAttribute("message",o)}}customElements.define(I,B);const _="fn-logo",u=document.createElement("template");u.innerHTML=`
   <style>
     :host {
       display: flex;
@@ -112,121 +112,81 @@ var T=Object.defineProperty;var N=(n,o,t)=>o in n?T(n,o,{enumerable:!0,configura
     />
     <path class="logo-cursor" d="m12.23,7.21v.6l-5.3-.02v-.6l5.3.02Z" />
   </svg>
-`;class D extends HTMLElement{constructor(){super(),this.attachShadow({mode:"open"}).appendChild(u.content.cloneNode(!0))}}customElements.define(_,D);const K="fn-link",f=document.createElement("template");f.innerHTML=`
+`;class D extends HTMLElement{constructor(){super(),this.attachShadow({mode:"open"}).appendChild(u.content.cloneNode(!0))}}customElements.define(_,D);const K="fn-link",v=document.createElement("template");v.innerHTML=`
   <style>
     ::slotted(a) {
       color: var(--color-fg, currentColor);
-      position: relative;
       text-decoration: var(--decoration, underline);
-      transition: transform 0.1s linear;    
-      display: inline-flex;
-      justify-content: center;  
+      outline-offset: 0.2rem;
+      transition: transform 50ms ease-in;
     }
 
-    ::slotted(a)::before {
-      content: '';
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      outline: 0.2rem solid var(--color-fg);
-      top: 0;
-      left: 0;
-      box-sizing: border-box;
-      opacity: 0;
-      transition: opacity 200ms ease-out;
-      z-index: -1;
-    }
 
-    ::slotted(a)::after {
-      content: '';
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      top: 0;
-      left: 0;
-      background-color: var(--color-fg);
-      opacity: 0;
-      transition: opacity 0.2s linear;
-      z-index: -1;
-      outline: 0.2rem solid var(--color-fg);
-    }
-
-    ::slotted(a:focus) {
-      outline: none;
-    }
-
-    ::slotted(a:not([aria-disabled])) {
+    ::slotted(a:not(:disabled):not([aria-disabled])) {
       cursor: var(--cursor-pointer, pointer);
     }
 
-    ::slotted(a:hover:not([aria-disabled]):not(.button))::before {
-      opacity: 1;
+    ::slotted(a:not(:disabled):not([aria-disabled]):hover) {
+      outline: 0.2rem solid var(--color-fg);
     }
 
-    ::slotted(.button:hover:not([aria-disabled]))::before {
-      opacity: 0.5;
-      outline-offset: 0.2rem;
-    }
-
-    ::slotted(a.pressed:not([aria-disabled])),
-    ::slotted(a:not([aria-disabled]):active) {
-      transform: translateY(1px) scale(0.95);
-      cursor: var(--cursor-pointer-click, pointer);
-    }
-
-    ::slotted(a:not([aria-disabled]):focus),
-    ::slotted(a.pressed:not([aria-disabled])),
-    ::slotted(a:not([aria-disabled]):active) {
-      color: var(--color-bg);
-    }
-
-    ::slotted(.button:not([aria-disabled]):focus)::before {
-      opacity: 0.5;
-      outline-offset: 0.2rem;
-    }
-
-    ::slotted(a:not([aria-disabled]):not(.button):focus)::after,
-    ::slotted(a.pressed:not([aria-disabled]):not(.button))::after,
-    ::slotted(a:not([aria-disabled]):not(.button):active)::after {
-      opacity: 1;
-    }
-
-    ::slotted(a.button.pressed:not([aria-disabled])) {
-      opacity: 0.8;
-    }
-    
-    ::slotted(a[aria-disabled]), ::slotted(.button[disabled]) {
-      opacity: 0.4;
-    }
-
-    ::slotted(.button) {
-      background: var(--color-fg);
-      color: var(--color-bg);
+    ::slotted(a.button) {
       display: inline-flex;
       font: var(--font-accent);
       gap: var(--spacing-xs); 
       justify-content: center;
       letter-spacing: 0.05em;
-      padding: var(--spacing-xs) var(--spacing-sm);
       text-decoration: none;
       text-transform: uppercase;
     }
 
-    ::slotted(.button)::before {
-      opacity: 0;
+    ::slotted(a.button.fill) {
+      background: var(--color-fg);
+      color: var(--color-bg);
+      padding: var(--spacing-xs) var(--spacing-sm);
+      position: relative;
     }
 
-    ::slotted(.button)::after {
-      opacity: 1;
-      transform: translateY(2px) translateX(5px);
+    ::slotted(a.button.fill)::after {
+      content: '';
+      background-color: var(--color-fg);
       opacity: 0.35;
-      width: 95%;
-      height: 95%;
-    }    
+      transform: translateY(3px) translateX(3px);
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+    }
+
+    ::slotted(a.button.fill:hover), ::slotted(a.button.fill:focus) {
+      outline: 0.2rem solid var(--color-fg);
+    }
+
+    ::slotted(a:focus),
+    ::slotted(a:active) {
+      color: var(--color-bg);
+      background: var(--color-fg);
+      outline: none;
+    }
+
+    ::slotted(a:focus) {
+      cursor: var(--cursor-pointer, pointer) !important;
+    }
+
+    ::slotted(a:active), ::slotted(a.pressed) {
+      transform: translateY(1px) scale(0.97);
+      cursor: var(--cursor-pointer-click, pointer) !important;
+      outline: none !important;
+    }
+
+    ::slotted(a[aria-disabled]) {
+      opacity: 0.5;
+    }
   </style>
 
   <slot></slot>
-`;class p extends HTMLElement{constructor(){super();a(this,"linkElement",null);a(this,"pressing",!1);a(this,"prefetched",!1);a(this,"shortcut",null);this.attachShadow({mode:"open"}).appendChild(f.content.cloneNode(!0))}static get observedAttributes(){return["href","target","prefetch","disabled","decoration","button","focus"]}connectedCallback(){var t;this.linkElement=this.querySelector("a"),this.shortcut=(t=this.linkElement.querySelector("em"))==null?void 0:t.textContent,this._handlePrefetch=this.handlePrefetch.bind(this),this._handleKeyDown=this.handleKeyDown.bind(this),this._handleKeyUp=this.handleKeyUp.bind(this),this._handleShortcutKeyDown=this.handleShortcutKeyDown.bind(this),this._handleShortcutKeyUp=this.handleShowtcutKeyUp.bind(this),this.linkElement.addEventListener("mousedown",this._handlePrefetch),this.linkElement.addEventListener("keydown",this._handleKeyDown),this.linkElement.addEventListener("keyup",this._handleKeyUp),this.shortcut&&(document.addEventListener("keydown",this._handleShortcutKeyDown),document.addEventListener("keyup",this._handleShortcutKeyUp)),p.observedAttributes.forEach(e=>{this.hasAttribute(e)&&this.attributeChangedCallback(e,null,this.getAttribute(e))})}disconnectedCallback(){this.linkElement.removeEventListener("mousedown",this._handlePrefetch),this.linkElement.removeEventListener("keydown",this._handleKeyDown),this.linkElement.removeEventListener("keyup",this._handleKeyUp),this.shortcut&&(document.removeEventListener("keydown",this._handleShortcutKeyDown),document.removeEventListener("keyup",this._handleShortcutKeyUp))}attributeChangedCallback(t,e,s){if(this.linkElement)switch(t){case"disabled":this.handleDisable(s==="true");break;case"decoration":this.style.setProperty("--decoration",s);break;case"button":s==="true"?this.linkElement.classList.add("button"):this.linkElement.classList.remove("button");break;case"focus":s==="true"&&this.linkElement.focus();break;default:this.linkElement.setAttribute(t,s);break}}handleShortcutKeyDown(t){this.pressing||t.key.toLowerCase()===this.shortcut.toLowerCase()&&(this.pressing=!0,this.linkElement.classList.add("pressed"),this.handlePrefetch(t))}handleShowtcutKeyUp(t){this.pressing&&t.key.toLowerCase()===this.shortcut.toLowerCase()&&(this.linkElement.classList.remove("pressed"),this.linkElement.click(),this.pressing=!1)}decorateShortcut(){if(!this.shortcut)return;const t=this.linkElement.textContent.toLowerCase().indexOf(this.shortcut.toLowerCase()),e=this.linkElement.textContent,s=e.slice(0,t),i=e.slice(t+this.shortcut.length);this.linkElement.innerHTML=`${s}<em class="link-shortcut">${this.shortcut}</em>${i}`}handleKeyDown(t){if(!this.pressing){switch(t.key){case"Enter":t.preventDefault(),this.linkElement.classList.add("pressed"),this.handlePrefetch(t);break}this.pressing=!0}}handleKeyUp(t){t.key==="Enter"&&(t.preventDefault(),this.linkElement.classList.remove("pressed"),this.linkElement.click()),this.pressing=!1}handlePrefetch(){const t=this.linkElement.getAttribute("href")||"";if(this.dataset.prefetched||!t||t.startsWith("#")||/^(http|https):\/\/[^ "]+$/.test(t)&&new URL(t).origin!==window.origin)return;const e=Object.assign(document.createElement("link"),{rel:"prefetch",href:t});document.head.append(e),this.dataset.prefetched=!0}handleDisable(t=!0){t===!0?(this.linkElement.setAttribute("aria-disabled",!0),this.linkElement.removeAttribute("href")):(this.linkElement.removeAttribute("aria-disabled"),this.linkElement.setAttribute("href",this.getAttribute("href")))}}customElements.define(K,p);const j="fn-header",v=document.createElement("template");v.innerHTML=`
+`;class m extends HTMLElement{constructor(){super();a(this,"linkElement",null);a(this,"pressing",!1);a(this,"prefetched",!1);a(this,"shortcut",null);this.attachShadow({mode:"open"}).appendChild(v.content.cloneNode(!0))}static get observedAttributes(){return["href","target","prefetch","disabled","decoration","button","fill","variant","focus"]}connectedCallback(){var t;this.linkElement=this.querySelector("a"),this.shortcut=(t=this.linkElement.querySelector("em"))==null?void 0:t.textContent,this._handlePrefetch=this.handlePrefetch.bind(this),this._handleKeyDown=this.handleKeyDown.bind(this),this._handleKeyUp=this.handleKeyUp.bind(this),this._handleShortcutKeyDown=this.handleShortcutKeyDown.bind(this),this._handleShortcutKeyUp=this.handleShowtcutKeyUp.bind(this),this.linkElement.addEventListener("mousedown",this._handlePrefetch),this.linkElement.addEventListener("keydown",this._handleKeyDown),this.linkElement.addEventListener("keyup",this._handleKeyUp),this.shortcut&&(document.addEventListener("keydown",this._handleShortcutKeyDown),document.addEventListener("keyup",this._handleShortcutKeyUp)),m.observedAttributes.forEach(e=>{this.hasAttribute(e)&&this.attributeChangedCallback(e,null,this.getAttribute(e))})}disconnectedCallback(){this.linkElement.removeEventListener("mousedown",this._handlePrefetch),this.linkElement.removeEventListener("keydown",this._handleKeyDown),this.linkElement.removeEventListener("keyup",this._handleKeyUp),this.shortcut&&(document.removeEventListener("keydown",this._handleShortcutKeyDown),document.removeEventListener("keyup",this._handleShortcutKeyUp))}attributeChangedCallback(t,e,s){if(this.linkElement)switch(t){case"disabled":this.handleDisable(s==="true");break;case"decoration":this.style.setProperty("--decoration",s);break;case"button":s==="true"?this.linkElement.classList.add("button"):this.linkElement.classList.remove("button");break;case"focus":s==="true"&&this.linkElement.focus();break;case"fill":s==="true"?this.linkElement.classList.add("fill"):this.linkElement.classList.remove("fill");break;default:this.linkElement.setAttribute(t,s);break}}handleShortcutKeyDown(t){this.pressing||t.key.toLowerCase()===this.shortcut.toLowerCase()&&(this.pressing=!0,this.linkElement.classList.add("pressed"),this.handlePrefetch(t))}handleShowtcutKeyUp(t){this.pressing&&t.key.toLowerCase()===this.shortcut.toLowerCase()&&(this.linkElement.classList.remove("pressed"),this.linkElement.click(),this.pressing=!1)}decorateShortcut(){if(!this.shortcut)return;const t=this.linkElement.textContent.toLowerCase().indexOf(this.shortcut.toLowerCase()),e=this.linkElement.textContent,s=e.slice(0,t),i=e.slice(t+this.shortcut.length);this.linkElement.innerHTML=`${s}<em class="link-shortcut">${this.shortcut}</em>${i}`}handleKeyDown(t){if(!this.pressing){switch(t.key){case"Enter":t.preventDefault(),this.linkElement.classList.add("pressed"),this.handlePrefetch(t);break}this.pressing=!0}}handleKeyUp(t){t.key==="Enter"&&(t.preventDefault(),this.linkElement.classList.remove("pressed"),this.linkElement.click()),this.pressing=!1}handlePrefetch(){const t=this.linkElement.getAttribute("href")||"";if(this.dataset.prefetched||!t||t.startsWith("#")||/^(http|https):\/\/[^ "]+$/.test(t)&&new URL(t).origin!==window.origin)return;const e=Object.assign(document.createElement("link"),{rel:"prefetch",href:t});document.head.append(e),this.dataset.prefetched=!0}handleDisable(t=!0){t===!0?(this.linkElement.setAttribute("aria-disabled",!0),this.linkElement.removeAttribute("href")):(this.linkElement.removeAttribute("aria-disabled"),this.linkElement.setAttribute("href",this.getAttribute("href")))}}customElements.define(K,m);const j="fn-header",f=document.createElement("template");f.innerHTML=`
   <style>
     :host {
       align-items: center;
@@ -256,7 +216,7 @@ var T=Object.defineProperty;var N=(n,o,t)=>o in n?T(n,o,{enumerable:!0,configura
   </style>
 
   <header>
-    <fn-link href="/" aria-label="go to start of the line">
+    <fn-link href="/" aria-label="go to start of the line" button="true">
       <a>
         <fn-logo aria-label="fnhipster.com"></fn-logo>
       </a>
@@ -264,7 +224,7 @@ var T=Object.defineProperty;var N=(n,o,t)=>o in n?T(n,o,{enumerable:!0,configura
 
     <slot name="nav"></slot>
   </header>
-`;class z extends HTMLElement{constructor(){super(),this.attachShadow({mode:"open"}).appendChild(v.content.cloneNode(!0))}}customElements.define(j,z);const q="fn-image",w=document.createElement("template");w.innerHTML=`
+`;class q extends HTMLElement{constructor(){super(),this.attachShadow({mode:"open"}).appendChild(f.content.cloneNode(!0))}}customElements.define(j,q);const z="fn-image",w=document.createElement("template");w.innerHTML=`
   <style>
     :host {
       --corner: 1rem;
@@ -324,7 +284,7 @@ var T=Object.defineProperty;var N=(n,o,t)=>o in n?T(n,o,{enumerable:!0,configura
     </div>
     <canvas id="glow" class="glow" aria-hidden></canvas>
   </div>
-`;class O extends HTMLElement{constructor(){super();a(this,"loaded",!1);a(this,"observer",new IntersectionObserver(t=>{t.forEach(e=>{e.isIntersecting&&(this.shadowRoot.querySelector(".wrapper").classList.add("loaded"),this.handleGlow(),this.loaded=!0,this.observer.disconnect())})}));this.attachShadow({mode:"open"}).appendChild(w.content.cloneNode(!0))}async connectedCallback(){var e,s;if(this.loaded)return;this.image=this.querySelector("img"),this._handlePoster=this.handlePoster.bind(this),this._handleLoad=()=>{this.observer.observe(this.image)};const t=this.getAttribute("poster");t&&(this.poster=new Image,this.poster.src=t,this.poster.complete?this._handlePoster():this.poster.addEventListener("load",this._handlePoster)),(e=this.image)!=null&&e.complete?this._handleLoad():(s=this.image)==null||s.addEventListener("load",this._handleLoad)}disconnectedCallback(){var t,e;(t=this.image)==null||t.removeEventListener("load",this._handleLoad),(e=this.poster)==null||e.removeEventListener("load",this._handlePoster),this.observer.disconnect()}handlePoster(){const t=this.shadowRoot.querySelector("canvas#poster"),e=t.getContext("2d"),{width:s,height:i}=this.image;t.width=s,t.height=i;const r=.05,h=t.width*r,l=t.height*r;e.drawImage(this.poster,0,0,h,l),e.msImageSmoothingEnabled=!1,e.mozImageSmoothingEnabled=!1,e.webkitImageSmoothingEnabled=!1,e.imageSmoothingEnabled=!1,e.drawImage(t,0,0,h,l,0,0,t.width,t.height);const d=getComputedStyle(this).getPropertyValue("--color-fg");e.globalCompositeOperation="color",e.fillStyle=d,e.fillRect(0,0,t.width,t.height),t.classList.add("loaded")}handleGlow(){const t=this.shadowRoot.querySelector("canvas#glow"),e=t.getContext("2d"),{width:s,height:i}=this.image;t.width=s,t.height=i,t.style.filter="blur(1.5rem) opacity(0.5)",e.drawImage(this.image,0,0,s,i),t.classList.add("loaded")}}customElements.define(q,O);const V="fn-columns",y=document.createElement("template");y.innerHTML=`
+`;class O extends HTMLElement{constructor(){super();a(this,"loaded",!1);a(this,"observer",new IntersectionObserver(t=>{t.forEach(e=>{e.isIntersecting&&(this.shadowRoot.querySelector(".wrapper").classList.add("loaded"),this.handleGlow(),this.loaded=!0,this.observer.disconnect())})}));this.attachShadow({mode:"open"}).appendChild(w.content.cloneNode(!0))}async connectedCallback(){var e,s;if(this.loaded)return;this.image=this.querySelector("img"),this._handlePoster=this.handlePoster.bind(this),this._handleLoad=()=>{this.observer.observe(this.image)};const t=this.getAttribute("poster");t&&(this.poster=new Image,this.poster.src=t,this.poster.complete?this._handlePoster():this.poster.addEventListener("load",this._handlePoster)),(e=this.image)!=null&&e.complete?this._handleLoad():(s=this.image)==null||s.addEventListener("load",this._handleLoad)}disconnectedCallback(){var t,e;(t=this.image)==null||t.removeEventListener("load",this._handleLoad),(e=this.poster)==null||e.removeEventListener("load",this._handlePoster),this.observer.disconnect()}handlePoster(){const t=this.shadowRoot.querySelector("canvas#poster"),e=t.getContext("2d"),{width:s,height:i}=this.image;t.width=s,t.height=i;const r=.05,h=t.width*r,l=t.height*r;e.drawImage(this.poster,0,0,h,l),e.msImageSmoothingEnabled=!1,e.mozImageSmoothingEnabled=!1,e.webkitImageSmoothingEnabled=!1,e.imageSmoothingEnabled=!1,e.drawImage(t,0,0,h,l,0,0,t.width,t.height);const d=getComputedStyle(this).getPropertyValue("--color-fg");e.globalCompositeOperation="color",e.fillStyle=d,e.fillRect(0,0,t.width,t.height),t.classList.add("loaded")}handleGlow(){const t=this.shadowRoot.querySelector("canvas#glow"),e=t.getContext("2d"),{width:s,height:i}=this.image;t.width=s,t.height=i,t.style.filter="blur(1.5rem) opacity(0.5)",e.drawImage(this.image,0,0,s,i),t.classList.add("loaded")}}customElements.define(z,O);const V="fn-columns",y=document.createElement("template");y.innerHTML=`
   <style>
     :host {
       --gap: var(--spacing-sm);
@@ -348,10 +308,6 @@ var T=Object.defineProperty;var N=(n,o,t)=>o in n?T(n,o,{enumerable:!0,configura
     :host {
       display: block;
       position: relative;
-      /*
-      margin-left: calc(var(--margin) * -1);
-      width: calc(100% + var(--margin) * 2);
-      */
       line-height: 0;
     }
 
