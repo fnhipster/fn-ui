@@ -127,9 +127,7 @@ export default class Link extends HTMLElement {
       document.addEventListener('keydown', this._handleShortcutKeyDown);
       document.addEventListener('keyup', this._handleShortcutKeyUp);
     }
-
-    // this.decorateShortcut();
-
+    
     // trigger attributeChangedCallback for initial values
     Link.observedAttributes.forEach((attr) => {
       if (this.hasAttribute(attr)) {
@@ -208,18 +206,6 @@ export default class Link extends HTMLElement {
       this.linkElement.click();
       this.pressing = false;
     }
-  }
-
-  decorateShortcut() {
-    if (!this.shortcut) return;
-    // find first letter that matches shortcut in link text and wrap it in a span
-    const sI = this.linkElement.textContent
-      .toLowerCase()
-      .indexOf(this.shortcut.toLowerCase());
-    const text = this.linkElement.textContent;
-    const before = text.slice(0, sI);
-    const after = text.slice(sI + this.shortcut.length);
-    this.linkElement.innerHTML = `${before}<em class="link-shortcut">${this.shortcut}</em>${after}`;
   }
 
   handleKeyDown(event) {
