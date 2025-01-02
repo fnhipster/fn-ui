@@ -57,7 +57,6 @@ template.innerHTML = /* html */ `
     ::slotted(a:not(:disabled):not([aria-disabled]):active) {
       color: var(--color-bg);
       background: var(--color-fg);
-      outline: none;
     }
 
     ::slotted(a:not(:disabled):not([aria-disabled]):focus) {
