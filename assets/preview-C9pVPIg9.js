@@ -133,13 +133,12 @@ var T=Object.defineProperty;var N=(n,o,t)=>o in n?T(n,o,{enumerable:!0,configura
     ::slotted(a.button) {
       display: inline-flex;
       font: var(--font-accent);
-      gap: var(--spacing-xs); 
       justify-content: center;
       letter-spacing: 0.05em;
       text-decoration: none;
       text-transform: uppercase;
     }
-
+  
     ::slotted(a.button.fill) {
       background: var(--color-fg);
       color: var(--color-bg);
@@ -164,7 +163,8 @@ var T=Object.defineProperty;var N=(n,o,t)=>o in n?T(n,o,{enumerable:!0,configura
     }
 
     ::slotted(a:not(:disabled):not(.fill):not([aria-disabled]):focus),
-    ::slotted(a:not(:disabled):not(.fill):not([aria-disabled]):active) {
+    ::slotted(a:not(:disabled):not(.fill):not([aria-disabled]):active),
+    ::slotted(a:not(:disabled):not([aria-disabled]).pressed) {
       color: var(--color-bg);
       background: var(--color-fg);
       outline: none;
@@ -174,7 +174,7 @@ var T=Object.defineProperty;var N=(n,o,t)=>o in n?T(n,o,{enumerable:!0,configura
       cursor: var(--cursor-pointer, pointer) !important;
     }
 
-    ::slotted(a:not(:disabled):not([aria-disabled]):active), ::slotted(a.pressed) {
+    ::slotted(a:not(:disabled):not([aria-disabled]):active), ::slotted(a:not(:disabled):not([aria-disabled]).pressed) {
       transform: translateY(1px) scale(0.97);
       cursor: var(--cursor-pointer-click, pointer) !important;
       outline: none !important;

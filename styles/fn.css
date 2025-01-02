@@ -167,6 +167,10 @@ fn-link a > em {
   font-style: normal;
 }
 
+fn-link a:has(fn-icon) {
+  gap: var(--spacing-xs);
+}
+
 /* Sticky UI */
 @media screen and (width >= 70rem) {
   body > header, body > footer {
