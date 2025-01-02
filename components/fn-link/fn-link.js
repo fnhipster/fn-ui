@@ -88,6 +88,8 @@ export default class Link extends HTMLElement {
 
   shortcut = null;
 
+  href;
+
   static get observedAttributes() {
     return [
       'prefetch',
@@ -108,6 +110,7 @@ export default class Link extends HTMLElement {
   connectedCallback() {
     this.linkElement = this.querySelector('a');
     this.shortcut = this.linkElement.querySelector('em')?.textContent;
+    this.href = this.linkElement.getAttribute('href');
 
     this._handlePrefetch = this.handlePrefetch.bind(this);
     this._handleKeyDown = this.handleKeyDown.bind(this);
@@ -261,7 +264,7 @@ export default class Link extends HTMLElement {
       this.linkElement.removeAttribute('href');
     } else {
       this.linkElement.removeAttribute('aria-disabled');
-      this.linkElement.setAttribute('href', this.getAttribute('href'));
+      this.linkElement.setAttribute('href', this.href);
     }
   }
 }
