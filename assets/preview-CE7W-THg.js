@@ -163,10 +163,11 @@ var T=Object.defineProperty;var N=(n,o,t)=>o in n?T(n,o,{enumerable:!0,configura
       outline: 0.2rem solid var(--color-fg);
     }
 
-    ::slotted(a:not(:disabled):not([aria-disabled]):focus),
-    ::slotted(a:not(:disabled):not([aria-disabled]):active) {
+    ::slotted(a:not(:disabled):not(.fill):not([aria-disabled]):focus),
+    ::slotted(a:not(:disabled):not(.fill):not([aria-disabled]):active) {
       color: var(--color-bg);
       background: var(--color-fg);
+      outline: none;
     }
 
     ::slotted(a:not(:disabled):not([aria-disabled]):focus) {

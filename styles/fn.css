@@ -165,7 +165,6 @@ fn-link a > em {
   background-color: var(--color-fg);
   color: var(--color-bg);
   font-style: normal;
-  font-weight: 600;
 }
 
 /* Sticky UI */
