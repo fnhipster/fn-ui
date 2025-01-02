@@ -163,18 +163,18 @@ var T=Object.defineProperty;var N=(n,o,t)=>o in n?T(n,o,{enumerable:!0,configura
       outline: 0.2rem solid var(--color-fg);
     }
 
-    ::slotted(a:focus),
-    ::slotted(a:active) {
+    ::slotted(a:not(:disabled):not([aria-disabled]):focus),
+    ::slotted(a:not(:disabled):not([aria-disabled]):active) {
       color: var(--color-bg);
       background: var(--color-fg);
       outline: none;
     }
 
-    ::slotted(a:focus) {
+    ::slotted(a:not(:disabled):not([aria-disabled]):focus) {
       cursor: var(--cursor-pointer, pointer) !important;
     }
 
-    ::slotted(a:active), ::slotted(a.pressed) {
+    ::slotted(a:not(:disabled):not([aria-disabled]):active), ::slotted(a.pressed) {
       transform: translateY(1px) scale(0.97);
       cursor: var(--cursor-pointer-click, pointer) !important;
       outline: none !important;
@@ -182,6 +182,7 @@ var T=Object.defineProperty;var N=(n,o,t)=>o in n?T(n,o,{enumerable:!0,configura
 
     ::slotted(a[aria-disabled]) {
       opacity: 0.5;
+      pointer-events: none;
     }
   </style>
 
