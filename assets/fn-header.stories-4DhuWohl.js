@@ -1,13 +1,13 @@
 import{C as m}from"./utils-CG_vfxgm.js";const i={title:"components/fn-header",tags:["autodocs"],parameters:{layout:"fullscreen"},render:({innerHTML:t,...o})=>{const e=m("fn-header",o);return e.innerHTML=t,e},argTypes:{}},n={args:{innerHTML:`
       <nav slot="nav">
-        <fn-link href="/prev">
-          <a>
+        <fn-link>
+          <a href="/prev">
             <em>P</em>rev
           </a>
         </fn-link>
 
-        <fn-link href="/next">
-          <a>
+        <fn-link>
+          <a href="/next">
             <em>N</em>ext
           </a>
         </fn-link>
@@ -16,14 +16,14 @@ import{C as m}from"./utils-CG_vfxgm.js";const i={title:"components/fn-header",ta
   args: {
     innerHTML: \`
       <nav slot="nav">
-        <fn-link href="/prev">
-          <a>
+        <fn-link>
+          <a href="/prev">
             <em>P</em>rev
           </a>
         </fn-link>
 
-        <fn-link href="/next">
-          <a>
+        <fn-link>
+          <a href="/next">
             <em>N</em>ext
           </a>
         </fn-link>
