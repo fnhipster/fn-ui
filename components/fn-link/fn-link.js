@@ -89,14 +89,11 @@ export default class Link extends HTMLElement {
 
   static get observedAttributes() {
     return [
-      'href',
-      'target',
       'prefetch',
       'disabled',
       'decoration',
       'button',
       'fill',
-      'variant',
       'focus',
     ];
   }
@@ -127,7 +124,7 @@ export default class Link extends HTMLElement {
       document.addEventListener('keydown', this._handleShortcutKeyDown);
       document.addEventListener('keyup', this._handleShortcutKeyUp);
     }
-    
+
     // trigger attributeChangedCallback for initial values
     Link.observedAttributes.forEach((attr) => {
       if (this.hasAttribute(attr)) {
@@ -182,9 +179,7 @@ export default class Link extends HTMLElement {
         }
         break;
 
-      // default to setting the attribute on the a tag
       default:
-        this.linkElement.setAttribute(name, next);
         break;
     }
   }
@@ -248,8 +243,7 @@ export default class Link extends HTMLElement {
     if (
       /^(http|https):\/\/[^ "]+$/.test(href) &&
       new URL(href).origin !== window.origin
-    )
-      return;
+    ) return;
 
     const prefetchTag = Object.assign(document.createElement('link'), {
       rel: 'prefetch',

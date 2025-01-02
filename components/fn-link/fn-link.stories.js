@@ -43,9 +43,7 @@ export const Button = {
 
 export const Shortcut = {
   args: {
-    href: '/foo',
-    target: '_blank',
-    innerHTML: '<a><em>H</em>ello World</a>',
+    innerHTML: '<a href: "/foo" target="_blank"><em>H</em>ello World</a>',
     disabled: false,
     button: false,
     focus: false,
@@ -54,9 +52,7 @@ export const Shortcut = {
 
 export const Focused = {
   args: {
-    href: '/foo',
-    target: '_blank',
-    innerHTML: '<a><em>H</em>ello World</a>',
+    innerHTML: '<a href: "/foo" target="_blank"><em>H</em>ello World</a>',
     disabled: false,
     button: false,
     focus: true,
