@@ -122,6 +122,7 @@ var R=Object.defineProperty;var T=(i,s,t)=>s in i?R(i,s,{enumerable:!0,configura
       text-decoration: var(--decoration, underline);
       outline-offset: 0.2rem;
       transition: transform 50ms ease-in;
+      padding: 0;
     }
 
 
