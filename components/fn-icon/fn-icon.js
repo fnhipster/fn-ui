@@ -9,6 +9,10 @@ template.innerHTML = /* html */ `
       align-items: center;
       line-height: 0;
     }
+
+    :host(.disabled) {
+      opacity: 0.5;
+    }
     
     span {
       line-height: 0;
@@ -37,7 +41,7 @@ export default class Icon extends HTMLElement {
         <path fill-rule="evenodd" clip-rule="evenodd" d="M20.5175 7.01946C20.8174 7.30513 20.829 7.77986 20.5433 8.07981L11.9716 17.0798C11.8201 17.2389 11.6065 17.3235 11.3872 17.3114C11.1679 17.2993 10.9649 17.1917 10.8318 17.0169L10.4035 16.4544C10.1526 16.1249 10.2163 15.6543 10.5458 15.4034C10.8289 15.1878 11.2161 15.2044 11.4787 15.4223L19.4571 7.04531C19.7428 6.74537 20.2175 6.73379 20.5175 7.01946Z" fill="currentColor"/>
       </svg>
     `,
-    rss: /* html */`
+    rss: /* html */ `
     <svg width="1em" height="1em" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path d="M3 1H1V3H3C8.52285 3 13 7.47715 13 13V15H15V13C15 6.37258 9.62742 1 3 1Z" fill="currentColor"/>
       <path d="M3 6H1V8H3C5.76142 8 8 10.2386 8 13V15H10V13C10 9.13401 6.86599 6 3 6Z" fill="currentColor"/>
@@ -62,7 +66,8 @@ export default class Icon extends HTMLElement {
     }
 
     if (name === 'disabled') {
-      this.style.opacity = next ? 0.5 : 1;
+      // eslint-disable-next-line wc/no-self-class
+      this.classList.toggle('disabled', next === 'true');
     }
 
     if (name === 'label') {
