@@ -144,7 +144,7 @@ export default class Action extends HTMLElement {
     }
 
     // trigger attributeChangedCallback for initial values
-    Link.observedAttributes.forEach((attr) => {
+    Action.observedAttributes.forEach((attr) => {
       if (this.hasAttribute(attr)) {
         this.attributeChangedCallback(attr, null, this.getAttribute(attr));
       }
