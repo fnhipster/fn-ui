@@ -21,6 +21,30 @@ export default {
 // More on writing stories with args: https://storybook.js.org/docs/writing-stories/args
 export const Primary = {
   args: {
-    innerHTML: 'This is a paragraph of text that will be tracked when it is viewed',
+    innerHTML: '<div>This is a paragraph of text that will be tracked when it is viewed</div>',
+  },
+};
+
+export const Long = {
+  args: {
+    innerHTML: `
+      <div>
+        <p style="margin-bottom: 30vh; background: red;">
+          This is a paragraph of text that will be tracked when it is viewed
+        </p>
+        <p style="margin-bottom: 30vh; background: red;">
+          This is a paragraph of text that will be tracked when it is viewed
+        </p>
+        <p style="margin-bottom: 30vh; background: red;">
+          This is a paragraph of text that will be tracked when it is viewed
+        </p>
+        <p style="margin-bottom: 30vh; background: red;">
+          This is a paragraph of text that will be tracked when it is viewed
+        </p>
+        <p style="margin-bottom: 30vh; background: red;">
+          This is a paragraph of text that will be tracked when it is viewed
+        </p>
+      </div>
+    `,
   },
 };

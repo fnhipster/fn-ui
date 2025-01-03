@@ -91,7 +91,7 @@ export default class Viewed extends HTMLElement {
       }
     },
     {
-      threshold: 1,
+      threshold: 0.1,
     },
   );
 
