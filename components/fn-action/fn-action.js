@@ -12,6 +12,7 @@ template.innerHTML = /* html */ `
       text-decoration: var(--decoration, underline);
       outline-offset: 0.2rem;
       transition: transform 50ms ease-in;
+      padding: 0;
     }
 
 
