@@ -161,13 +161,13 @@ main blockquote {
   border-left: 0.5em solid;
 }
 
-fn-link a > em {
+fn-action a > em {
   background-color: var(--color-fg);
   color: var(--color-bg);
   font-style: normal;
 }
 
-fn-link a:has(fn-icon) {
+fn-action a:has(fn-icon) {
   gap: var(--spacing-xs);
 }
 

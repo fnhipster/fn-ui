@@ -1,26 +1,31 @@
-const tagName = 'fn-link';
+const tagName = 'fn-action';
 
 const template = document.createElement('template');
 
 template.innerHTML = /* html */ `
   <style>
-    ::slotted(a) {
+    ::slotted(a),
+    ::slotted(button) {
       color: var(--color-fg, currentColor);
+      background: none;
+      border: none;
       text-decoration: var(--decoration, underline);
       outline-offset: 0.2rem;
       transition: transform 50ms ease-in;
     }
 
 
-    ::slotted(a:not(:disabled):not([aria-disabled])) {
+    ::slotted(a:not([aria-disabled])),
+    ::slotted(button:not(:disabled)) {
       cursor: var(--cursor-pointer, pointer);
     }
 
-    ::slotted(a:not(:disabled):not([aria-disabled]):hover) {
+    ::slotted(a:not([aria-disabled]):hover),
+    ::slotted(button:not(:disabled):hover) {
       outline: 0.2rem solid var(--color-fg);
     }
 
-    ::slotted(a.button) {
+    ::slotted(.button) {
       display: inline-flex;
       font: var(--font-accent);
       justify-content: center;
@@ -29,14 +34,14 @@ template.innerHTML = /* html */ `
       text-transform: uppercase;
     }
   
-    ::slotted(a.button.fill) {
+    ::slotted(.button.fill) {
       background: var(--color-fg);
       color: var(--color-bg);
       padding: var(--spacing-xs) var(--spacing-sm);
       position: relative;
     }
 
-    ::slotted(a.button.fill)::after {
+    ::slotted(.button.fill)::after {
       content: '';
       background-color: var(--color-fg);
       opacity: 0.35;
@@ -48,29 +53,38 @@ template.innerHTML = /* html */ `
       bottom: 0;
     }
 
-    ::slotted(a.button.fill:hover), ::slotted(a.button.fill:focus) {
+    ::slotted(.button.fill:hover), 
+    ::slotted(.button.fill:focus) {
       outline: 0.2rem solid var(--color-fg);
     }
 
-    ::slotted(a:not(:disabled):not(.fill):not([aria-disabled]):focus),
-    ::slotted(a:not(:disabled):not(.fill):not([aria-disabled]):active),
-    ::slotted(a:not(:disabled):not([aria-disabled]).pressed) {
+    ::slotted(a:not([aria-disabled]):not(.fill):focus),
+    ::slotted(button:not(:disabled):not(.fill):focus),
+    ::slotted(a:not([aria-disabled]):not(.fill):active),
+    ::slotted(button:not(:disabled):not(.fill):active),
+    ::slotted(a:not([aria-disabled]).pressed),
+    ::slotted(button:not(:disabled).pressed) {
       color: var(--color-bg);
       background: var(--color-fg);
       outline: none;
     }
 
-    ::slotted(a:not(:disabled):not([aria-disabled]):focus) {
+    ::slotted(a:not([aria-disabled]):focus),
+    ::slotted(button:not(:disabled):focus) {
       cursor: var(--cursor-pointer, pointer) !important;
     }
 
-    ::slotted(a:not(:disabled):not([aria-disabled]):active), ::slotted(a:not(:disabled):not([aria-disabled]).pressed) {
+    ::slotted(a:not([aria-disabled]):active), 
+    ::slotted(button:not(:disabled):active), 
+    ::slotted(a:not([aria-disabled]).pressed), 
+    ::slotted(button:not(:disabled).pressed) {
       transform: translateY(1px) scale(0.97);
       cursor: var(--cursor-pointer-click, pointer) !important;
       outline: none !important;
     }
 
-    ::slotted(a[aria-disabled]) {
+    ::slotted(a[aria-disabled]),
+    ::slotted(button:disabled) {
       opacity: 0.5;
       pointer-events: none;
     }
@@ -79,8 +93,8 @@ template.innerHTML = /* html */ `
   <slot></slot>
 `;
 
-export default class Link extends HTMLElement {
-  linkElement = null;
+export default class Action extends HTMLElement {
+  elem = null;
 
   pressing = false;
 
@@ -108,20 +122,20 @@ export default class Link extends HTMLElement {
   }
 
   connectedCallback() {
-    this.linkElement = this.querySelector('a');
-    this.shortcut = this.linkElement.querySelector('em')?.textContent;
-    this.href = this.linkElement.getAttribute('href');
+    this.elem = this.querySelector('a, button');
+    this.shortcut = this.elem.querySelector('em')?.textContent;
+    this.href = this.elem.getAttribute('href');
 
-    this._handlePrefetch = this.handlePrefetch.bind(this);
+    this._handleMouseDown = this.handleMouseDown.bind(this);
     this._handleKeyDown = this.handleKeyDown.bind(this);
     this._handleKeyUp = this.handleKeyUp.bind(this);
     this._handleShortcutKeyDown = this.handleShortcutKeyDown.bind(this);
     this._handleShortcutKeyUp = this.handleShowtcutKeyUp.bind(this);
 
     // add event listeners
-    this.linkElement.addEventListener('mousedown', this._handlePrefetch);
-    this.linkElement.addEventListener('keydown', this._handleKeyDown);
-    this.linkElement.addEventListener('keyup', this._handleKeyUp);
+    this.elem.addEventListener('mousedown', this._handleMouseDown);
+    this.elem.addEventListener('keydown', this._handleKeyDown);
+    this.elem.addEventListener('keyup', this._handleKeyUp);
 
     // listen to keydown that matches the shortcut
     if (this.shortcut) {
@@ -139,9 +153,9 @@ export default class Link extends HTMLElement {
 
   disconnectedCallback() {
     // remove event listeners
-    this.linkElement.removeEventListener('mousedown', this._handlePrefetch);
-    this.linkElement.removeEventListener('keydown', this._handleKeyDown);
-    this.linkElement.removeEventListener('keyup', this._handleKeyUp);
+    this.elem.removeEventListener('mousedown', this._handleMouseDown);
+    this.elem.removeEventListener('keydown', this._handleKeyDown);
+    this.elem.removeEventListener('keyup', this._handleKeyUp);
 
     if (this.shortcut) {
       document.removeEventListener('keydown', this._handleShortcutKeyDown);
@@ -150,7 +164,7 @@ export default class Link extends HTMLElement {
   }
 
   attributeChangedCallback(name, prev, next) {
-    if (!this.linkElement) return;
+    if (!this.elem) return;
 
     switch (name) {
       case 'disabled':
@@ -163,23 +177,23 @@ export default class Link extends HTMLElement {
 
       case 'button':
         if (next === 'true') {
-          this.linkElement.classList.add('button');
+          this.elem.classList.add('button');
         } else {
-          this.linkElement.classList.remove('button');
+          this.elem.classList.remove('button');
         }
         break;
 
       case 'focus':
         if (next === 'true') {
-          this.linkElement.focus();
+          this.elem.focus();
         }
         break;
 
       case 'fill':
         if (next === 'true') {
-          this.linkElement.classList.add('fill');
+          this.elem.classList.add('fill');
         } else {
-          this.linkElement.classList.remove('fill');
+          this.elem.classList.remove('fill');
         }
         break;
 
@@ -192,8 +206,10 @@ export default class Link extends HTMLElement {
     if (this.pressing) return;
     if (event.key.toLowerCase() === this.shortcut.toLowerCase()) {
       this.pressing = true;
-      this.linkElement.classList.add('pressed');
-      this.handlePrefetch(event);
+      this.elem.classList.add('pressed');
+      if (this.href) {
+        this.handlePrefetch(this.href);
+      }
     }
   }
 
@@ -201,9 +217,15 @@ export default class Link extends HTMLElement {
     if (!this.pressing) return;
 
     if (event.key.toLowerCase() === this.shortcut.toLowerCase()) {
-      this.linkElement.classList.remove('pressed');
-      this.linkElement.click();
+      this.elem.classList.remove('pressed');
+      this.elem.click();
       this.pressing = false;
+    }
+  }
+
+  handleMouseDown() {
+    if (this.href) {
+      this.handlePrefetch(this.href);
     }
   }
 
@@ -213,8 +235,11 @@ export default class Link extends HTMLElement {
     switch (event.key) {
       case 'Enter':
         event.preventDefault();
-        this.linkElement.classList.add('pressed');
-        this.handlePrefetch(event);
+        this.elem.classList.add('pressed');
+        if (this.href) {
+          this.handlePrefetch(this.href);
+        }
+
         break;
 
       default:
@@ -227,16 +252,14 @@ export default class Link extends HTMLElement {
   handleKeyUp(event) {
     if (event.key === 'Enter') {
       event.preventDefault();
-      this.linkElement.classList.remove('pressed');
-      this.linkElement.click();
+      this.elem.classList.remove('pressed');
+      this.elem.click();
     }
 
     this.pressing = false;
   }
 
-  handlePrefetch() {
-    const href = this.linkElement.getAttribute('href') || '';
-
+  handlePrefetch(href) {
     // check if the prefetched link is already in the document
     if (this.dataset.prefetched) return;
 
@@ -260,13 +283,19 @@ export default class Link extends HTMLElement {
 
   handleDisable(state = true) {
     if (state === true) {
-      this.linkElement.setAttribute('aria-disabled', true);
-      this.linkElement.removeAttribute('href');
+      if (this.elem.tagName === 'A') {
+        this.elem.setAttribute('aria-disabled', true);
+        this.elem.removeAttribute('href');
+      } else {
+        this.elem.setAttribute('disabled', true);
+      }
+    } else if (this.elem.tagName === 'A') {
+      this.elem.removeAttribute('aria-disabled');
+      this.elem.setAttribute('href', this.href);
     } else {
-      this.linkElement.removeAttribute('aria-disabled');
-      this.linkElement.setAttribute('href', this.href);
+      this.elem.removeAttribute('disabled');
     }
   }
 }
 
-customElements.define(tagName, Link);
+customElements.define(tagName, Action);

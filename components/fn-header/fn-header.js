@@ -1,5 +1,5 @@
 import '../fn-logo/fn-logo.js';
-import '../fn-link/fn-link.js';
+import '../fn-action/fn-action.js';
 
 const tagName = 'fn-header';
 
@@ -34,11 +34,11 @@ template.innerHTML = /* html */ `
   </style>
 
   <header>
-    <fn-link aria-label="go to start of the line" button="true">
+    <fn-action aria-label="go to start of the line" button="true">
       <a href="/">
         <fn-logo aria-label="fnhipster.com"></fn-logo>
       </a>
-    </fn-link>
+    </fn-action>
 
     <slot name="nav"></slot>
   </header>
