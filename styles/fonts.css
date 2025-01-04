@@ -233,7 +233,7 @@
 @font-face {
     font-family: "Noto Sans-fallback";
     size-adjust: 106.54%;
-    src: local("Courier New");
+    src: local("monospace");
 }
 
 /**
