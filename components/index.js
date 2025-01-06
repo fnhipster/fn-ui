@@ -13,12 +13,10 @@ export { default as Icon } from './fn-icon/fn-icon.js';
 export { default as Viewed } from './fn-viewed/fn-viewed.js';
 
 /** Cursors */
-function makeCursor(cursor = 'default') {
-  const doc = document.documentElement;
-
-  const fg = getComputedStyle(doc).getPropertyValue('--color-bg');
-  const bg = getComputedStyle(doc).getPropertyValue('--color-fg');
-
+function makeCursor(
+  fg = getComputedStyle(document.documentElement).getPropertyValue('--color-bg'),
+  bg = getComputedStyle(document.documentElement).getPropertyValue('--color-fg')
+) {
   const cursors = {
     default: `
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.89 25.09" width="20.89" height="30.09">
@@ -123,10 +121,10 @@ function makeCursor(cursor = 'default') {
   };
 
   // convert svg to data url
-  const defaultBlob = new Blob([cursors[cursor]], { type: 'image/svg+xml' });
+  const defaultBlob = new Blob([cursors.default], { type: 'image/svg+xml' });
   const defaultURI = URL.createObjectURL(defaultBlob);
 
-  const defaultClickBlob = new Blob([cursors[`${cursor}Click`]], { type: 'image/svg+xml' });
+  const defaultClickBlob = new Blob([cursors.defaultClick], { type: 'image/svg+xml' });
   const defaultClickURI = URL.createObjectURL(defaultClickBlob);
 
   const pointerBlob = new Blob([cursors.pointer], { type: 'image/svg+xml' });
@@ -138,15 +136,26 @@ function makeCursor(cursor = 'default') {
   const textBlob = new Blob([cursors.text], { type: 'image/svg+xml' });
   const textURI = URL.createObjectURL(textBlob);
 
-  doc.style.setProperty('--cursor-default', `url(${defaultURI}), auto`);
-  doc.style.setProperty('--cursor-default-click', `url(${defaultClickURI}), auto`);
-  doc.style.setProperty('--cursor-pointer', `url(${pointerURI}), auto`);
-  doc.style.setProperty('--cursor-pointer-click', `url(${pointerClickURI}), auto`);
-  doc.style.setProperty('--cursor-text', `url(${textURI}), auto`);
+  document.documentElement.style.setProperty('--cursor-default', `url(${defaultURI}), auto`);
+  document.documentElement.style.setProperty('--cursor-default-click', `url(${defaultClickURI}), auto`);
+  document.documentElement.style.setProperty('--cursor-pointer', `url(${pointerURI}), auto`);
+  document.documentElement.style.setProperty('--cursor-pointer-click', `url(${pointerClickURI}), auto`);
+  document.documentElement.style.setProperty('--cursor-text', `url(${textURI}), auto`);
 }
 
 function init() {
   makeCursor();
 }
+
+document.documentElement.addEventListener('theme', (e) => {
+  const { fg, bg } = e.detail;
+  if (!fg || !bg) return;
+
+  document.documentElement.style.setProperty('--color-fg', fg);
+  document.documentElement.style.setProperty('--color-bg', bg);
+  document.querySelector('meta[name="theme-color"]')?.setAttribute('content', bg);
+
+  makeCursor(fg, bg);
+});
 
 document.addEventListener('DOMContentLoaded', init);
