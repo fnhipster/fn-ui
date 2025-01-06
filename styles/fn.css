@@ -43,7 +43,8 @@
 
   /* Base */
   font-size: 10px;
-  animation: glitch 0.5s linear;
+  animation: glitch 750ms linear;
+  animation-delay: 500ms;
   line-height: 1.5;
   transform-origin: top center;
   color: var(--color-fg);
