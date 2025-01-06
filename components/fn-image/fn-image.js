@@ -106,6 +106,7 @@ export default class FnImage extends HTMLElement {
     const poster = this.getAttribute('poster');
 
     if (poster) {
+      this.image.style.visibility = 'hidden';
       this.poster = new Image();
       this.poster.src = poster;
 
@@ -166,6 +167,7 @@ export default class FnImage extends HTMLElement {
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 
     canvas.classList.add('loaded');
+    this.image.style.visibility = 'visible';
   }
 
   handleGlow() {
