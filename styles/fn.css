@@ -49,6 +49,7 @@
   color: var(--color-fg);
   background: var(--color-bg);
   cursor: var(--cursor-default, default);
+  transition: background-color 200ms ease, color 200ms ease;
 }
 
 :root::before {
