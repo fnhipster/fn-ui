@@ -13,10 +13,7 @@ export { default as Icon } from './fn-icon/fn-icon.js';
 export { default as Viewed } from './fn-viewed/fn-viewed.js';
 
 /** Cursors */
-function makeCursor(
-  fg = getComputedStyle(document.documentElement).getPropertyValue('--color-bg'),
-  bg = getComputedStyle(document.documentElement).getPropertyValue('--color-fg'),
-) {
+function makeCursor(fg, bg) {
   const cursors = {
     default: `
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.89 25.09" width="20.89" height="30.09">
@@ -144,9 +141,10 @@ function makeCursor(
 }
 
 export function applyTheme(fg, bg) {
-  if (!fg || !bg) return;
-  document.documentElement.style.setProperty('--color-fg', fg);
-  document.documentElement.style.setProperty('--color-bg', bg);
-  document.querySelector('meta[name="theme-color"]')?.setAttribute('content', bg);
-  makeCursor(fg, bg);
+  const _fg = fg || getComputedStyle(document.documentElement).getPropertyValue('--color-fg');
+  const _bg = bg || getComputedStyle(document.documentElement).getPropertyValue('--color-bg');
+  document.documentElement.style.setProperty('--color-fg', _fg);
+  document.documentElement.style.setProperty('--color-bg', _bg);
+  document.querySelector('meta[name="theme-color"]')?.setAttribute('content', _bg);
+  makeCursor(_fg, _bg);
 }
