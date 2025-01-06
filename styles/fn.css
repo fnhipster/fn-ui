@@ -1,7 +1,7 @@
 :root {
   /* Colors */
-  --color-fg: rgb(255, 176, 0);
-  --color-bg: rgb(17, 17, 17);
+  --color-fg: #ffb000;
+  --color-bg: #111111;
 
   /* Typography: Main */
   --font-family: 'Noto Sans Mono', 'Noto Sans-fallback', 'Courier New', Courier, 'Lucida Console', monospace;
@@ -43,8 +43,6 @@
 
   /* Base */
   font-size: 10px;
-  animation: glitch 750ms linear;
-  animation-delay: 500ms;
   line-height: 1.5;
   transform-origin: top center;
   color: var(--color-fg);
@@ -86,6 +84,10 @@ body {
   min-height: 100vh;
   min-height: 100dvh;
   margin: 0;
+}
+
+body.appear {
+  animation: glitch 0.5s linear;
 }
 
 p, p:active {
