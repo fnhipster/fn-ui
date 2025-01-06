@@ -1,4 +1,4 @@
-var R=Object.defineProperty;var T=(i,s,t)=>s in i?R(i,s,{enumerable:!0,configurable:!0,writable:!0,value:t}):i[s]=t;var r=(i,s,t)=>T(i,typeof s!="symbol"?s+"":s,t);import{N as A}from"./index-B0EJvtKl.js";import"./_commonjsHelpers-Cpj98o6Y.js";const N="fn-binary";class U extends HTMLElement{constructor(){super();r(this,"playing");r(this,"current",0);r(this,"binary",[]);r(this,"intersectionObserver",new IntersectionObserver(t=>{t.forEach(e=>{e.isIntersecting?this.play():this.stop()})}));this.attachShadow({mode:"open"})}static get observedAttributes(){return["message"]}connectedCallback(){this.intersectionObserver.observe(this),this.addEventListener("mouseenter",this.stop),this.addEventListener("mouseleave",this.play)}disconnectedCallback(){this.stop(),this.intersectionObserver.unobserve(this),this.removeEventListener("mouseenter",this.stop),this.removeEventListener("mouseleave",this.play)}attributeChangedCallback(t,e,o){if(e!==o&&t==="message"){const n=this.getAttribute("message");this.binary=n.split("").map(a=>a.charCodeAt(0).toString(2).padStart(8,"0"))}}play(){if(this.playing)return;const t=this.binary.length-1;this.render(this.binary[this.current]),this.playing=setInterval(()=>{this.current===t?this.current=0:this.current+=1,this.render(this.binary[this.current])},2e3)}stop(){clearInterval(this.playing),this.playing=void 0}render(t){t&&(this.shadowRoot.innerHTML=t)}}customElements.define(N,U);const D="fn-footer",p=document.createElement("template");p.innerHTML=`
+var S=Object.defineProperty;var R=(i,s,t)=>s in i?S(i,s,{enumerable:!0,configurable:!0,writable:!0,value:t}):i[s]=t;var n=(i,s,t)=>R(i,typeof s!="symbol"?s+"":s,t);import{N as T}from"./index-B0EJvtKl.js";import"./_commonjsHelpers-Cpj98o6Y.js";const A="fn-binary";class N extends HTMLElement{constructor(){super();n(this,"playing");n(this,"current",0);n(this,"binary",[]);n(this,"intersectionObserver",new IntersectionObserver(t=>{t.forEach(e=>{e.isIntersecting?this.play():this.stop()})}));this.attachShadow({mode:"open"})}static get observedAttributes(){return["message"]}connectedCallback(){this.intersectionObserver.observe(this),this.addEventListener("mouseenter",this.stop),this.addEventListener("mouseleave",this.play)}disconnectedCallback(){this.stop(),this.intersectionObserver.unobserve(this),this.removeEventListener("mouseenter",this.stop),this.removeEventListener("mouseleave",this.play)}attributeChangedCallback(t,e,o){if(e!==o&&t==="message"){const r=this.getAttribute("message");this.binary=r.split("").map(a=>a.charCodeAt(0).toString(2).padStart(8,"0"))}}play(){if(this.playing)return;const t=this.binary.length-1;this.render(this.binary[this.current]),this.playing=setInterval(()=>{this.current===t?this.current=0:this.current+=1,this.render(this.binary[this.current])},2e3)}stop(){clearInterval(this.playing),this.playing=void 0}render(t){t&&(this.shadowRoot.innerHTML=t)}}customElements.define(A,N);const U="fn-footer",g=document.createElement("template");g.innerHTML=`
   <style>
     :host {
       align-items: center;
@@ -22,7 +22,7 @@ var R=Object.defineProperty;var T=(i,s,t)=>s in i?R(i,s,{enumerable:!0,configura
     <fn-binary></fn-binary>
     <span>© ${new Date().getUTCFullYear()}, fnhipster</span>
   </footer>
-`;class I extends HTMLElement{static get observedAttributes(){return["message"]}constructor(){super(),this.attachShadow({mode:"open"}).appendChild(p.content.cloneNode(!0))}attributeChangedCallback(s,t,e){if(t!==e)switch(s){case"message":this.renderMessage(e);break}}renderMessage(s){this.shadowRoot.querySelector("fn-binary").setAttribute("message",s)}}customElements.define(D,I);const _="fn-logo",u=document.createElement("template");u.innerHTML=`
+`;class D extends HTMLElement{static get observedAttributes(){return["message"]}constructor(){super(),this.attachShadow({mode:"open"}).appendChild(g.content.cloneNode(!0))}attributeChangedCallback(s,t,e){if(t!==e)switch(s){case"message":this.renderMessage(e);break}}renderMessage(s){this.shadowRoot.querySelector("fn-binary").setAttribute("message",s)}}customElements.define(U,D);const I="fn-logo",p=document.createElement("template");p.innerHTML=`
   <style>
     :host {
       display: flex;
@@ -112,7 +112,7 @@ var R=Object.defineProperty;var T=(i,s,t)=>s in i?R(i,s,{enumerable:!0,configura
     />
     <path class="logo-cursor" d="m12.23,7.21v.6l-5.3-.02v-.6l5.3.02Z" />
   </svg>
-`;class P extends HTMLElement{constructor(){super(),this.attachShadow({mode:"open"}).appendChild(u.content.cloneNode(!0))}}customElements.define(_,P);const V="fn-action",v=document.createElement("template");v.innerHTML=`
+`;class P extends HTMLElement{constructor(){super(),this.attachShadow({mode:"open"}).appendChild(p.content.cloneNode(!0))}}customElements.define(I,P);const _="fn-action",v=document.createElement("template");v.innerHTML=`
   <style>
     ::slotted(a),
     ::slotted(button) {
@@ -202,7 +202,7 @@ var R=Object.defineProperty;var T=(i,s,t)=>s in i?R(i,s,{enumerable:!0,configura
   </style>
 
   <slot></slot>
-`;class m extends HTMLElement{constructor(){super();r(this,"elem",null);r(this,"pressing",!1);r(this,"prefetched",!1);r(this,"shortcut",null);r(this,"href");this.attachShadow({mode:"open"}).appendChild(v.content.cloneNode(!0))}static get observedAttributes(){return["prefetch","disabled","decoration","button","fill","focus"]}connectedCallback(){var t;this.elem=this.querySelector("a, button"),this.shortcut=(t=this.elem.querySelector("em"))==null?void 0:t.textContent,this.href=this.elem.getAttribute("href"),this._handleMouseDown=this.handleMouseDown.bind(this),this._handleKeyDown=this.handleKeyDown.bind(this),this._handleKeyUp=this.handleKeyUp.bind(this),this._handleShortcutKeyDown=this.handleShortcutKeyDown.bind(this),this._handleShortcutKeyUp=this.handleShowtcutKeyUp.bind(this),this.elem.addEventListener("mousedown",this._handleMouseDown),this.elem.addEventListener("keydown",this._handleKeyDown),this.elem.addEventListener("keyup",this._handleKeyUp),this.shortcut&&(document.addEventListener("keydown",this._handleShortcutKeyDown),document.addEventListener("keyup",this._handleShortcutKeyUp)),m.observedAttributes.forEach(e=>{this.hasAttribute(e)&&this.attributeChangedCallback(e,null,this.getAttribute(e))})}disconnectedCallback(){this.elem.removeEventListener("mousedown",this._handleMouseDown),this.elem.removeEventListener("keydown",this._handleKeyDown),this.elem.removeEventListener("keyup",this._handleKeyUp),this.shortcut&&(document.removeEventListener("keydown",this._handleShortcutKeyDown),document.removeEventListener("keyup",this._handleShortcutKeyUp))}attributeChangedCallback(t,e,o){if(this.elem)switch(t){case"disabled":this.handleDisable(o==="true");break;case"decoration":this.style.setProperty("--decoration",o);break;case"button":o==="true"?this.elem.classList.add("button"):this.elem.classList.remove("button");break;case"focus":o==="true"&&this.elem.focus();break;case"fill":o==="true"?this.elem.classList.add("fill"):this.elem.classList.remove("fill");break}}handleShortcutKeyDown(t){this.pressing||t.key.toLowerCase()===this.shortcut.toLowerCase()&&(this.pressing=!0,this.elem.classList.add("pressed"),this.href&&this.handlePrefetch(this.href))}handleShowtcutKeyUp(t){this.pressing&&t.key.toLowerCase()===this.shortcut.toLowerCase()&&(this.elem.classList.remove("pressed"),this.elem.click(),this.pressing=!1)}handleMouseDown(){this.href&&this.handlePrefetch(this.href)}handleKeyDown(t){if(!this.pressing){switch(t.key){case"Enter":t.preventDefault(),this.elem.classList.add("pressed"),this.href&&this.handlePrefetch(this.href);break}this.pressing=!0}}handleKeyUp(t){t.key==="Enter"&&(t.preventDefault(),this.elem.classList.remove("pressed"),this.elem.click()),this.pressing=!1}handlePrefetch(t){if(this.dataset.prefetched||!t||t.startsWith("#")||/^(http|https):\/\/[^ "]+$/.test(t)&&new URL(t).origin!==window.origin)return;const e=Object.assign(document.createElement("link"),{rel:"prefetch",href:t});document.head.append(e),this.dataset.prefetched=!0}handleDisable(t=!0){t===!0?this.elem.tagName==="A"?(this.elem.setAttribute("aria-disabled",!0),this.elem.removeAttribute("href")):this.elem.setAttribute("disabled",!0):this.elem.tagName==="A"?(this.elem.removeAttribute("aria-disabled"),this.elem.setAttribute("href",this.href)):this.elem.removeAttribute("disabled")}}customElements.define(V,m);const B="fn-header",f=document.createElement("template");f.innerHTML=`
+`;class m extends HTMLElement{constructor(){super();n(this,"elem",null);n(this,"pressing",!1);n(this,"prefetched",!1);n(this,"shortcut",null);n(this,"href");this.attachShadow({mode:"open"}).appendChild(v.content.cloneNode(!0))}static get observedAttributes(){return["prefetch","disabled","decoration","button","fill","focus"]}connectedCallback(){var t;this.elem=this.querySelector("a, button"),this.shortcut=(t=this.elem.querySelector("em"))==null?void 0:t.textContent,this.href=this.elem.getAttribute("href"),this._handleMouseDown=this.handleMouseDown.bind(this),this._handleKeyDown=this.handleKeyDown.bind(this),this._handleKeyUp=this.handleKeyUp.bind(this),this._handleShortcutKeyDown=this.handleShortcutKeyDown.bind(this),this._handleShortcutKeyUp=this.handleShowtcutKeyUp.bind(this),this.elem.addEventListener("mousedown",this._handleMouseDown),this.elem.addEventListener("keydown",this._handleKeyDown),this.elem.addEventListener("keyup",this._handleKeyUp),this.shortcut&&(document.addEventListener("keydown",this._handleShortcutKeyDown),document.addEventListener("keyup",this._handleShortcutKeyUp)),m.observedAttributes.forEach(e=>{this.hasAttribute(e)&&this.attributeChangedCallback(e,null,this.getAttribute(e))})}disconnectedCallback(){this.elem.removeEventListener("mousedown",this._handleMouseDown),this.elem.removeEventListener("keydown",this._handleKeyDown),this.elem.removeEventListener("keyup",this._handleKeyUp),this.shortcut&&(document.removeEventListener("keydown",this._handleShortcutKeyDown),document.removeEventListener("keyup",this._handleShortcutKeyUp))}attributeChangedCallback(t,e,o){if(this.elem)switch(t){case"disabled":this.handleDisable(o==="true");break;case"decoration":this.style.setProperty("--decoration",o);break;case"button":o==="true"?this.elem.classList.add("button"):this.elem.classList.remove("button");break;case"focus":o==="true"&&this.elem.focus();break;case"fill":o==="true"?this.elem.classList.add("fill"):this.elem.classList.remove("fill");break}}handleShortcutKeyDown(t){this.pressing||t.key.toLowerCase()===this.shortcut.toLowerCase()&&(this.pressing=!0,this.elem.classList.add("pressed"),this.href&&this.handlePrefetch(this.href))}handleShowtcutKeyUp(t){this.pressing&&t.key.toLowerCase()===this.shortcut.toLowerCase()&&(this.elem.classList.remove("pressed"),this.elem.click(),this.pressing=!1)}handleMouseDown(){this.href&&this.handlePrefetch(this.href)}handleKeyDown(t){if(!this.pressing){switch(t.key){case"Enter":t.preventDefault(),this.elem.classList.add("pressed"),this.href&&this.handlePrefetch(this.href);break}this.pressing=!0}}handleKeyUp(t){t.key==="Enter"&&(t.preventDefault(),this.elem.classList.remove("pressed"),this.elem.click()),this.pressing=!1}handlePrefetch(t){if(this.dataset.prefetched||!t||t.startsWith("#")||/^(http|https):\/\/[^ "]+$/.test(t)&&new URL(t).origin!==window.origin)return;const e=Object.assign(document.createElement("link"),{rel:"prefetch",href:t});document.head.append(e),this.dataset.prefetched=!0}handleDisable(t=!0){t===!0?this.elem.tagName==="A"?(this.elem.setAttribute("aria-disabled",!0),this.elem.removeAttribute("href")):this.elem.setAttribute("disabled",!0):this.elem.tagName==="A"?(this.elem.removeAttribute("aria-disabled"),this.elem.setAttribute("href",this.href)):this.elem.removeAttribute("disabled")}}customElements.define(_,m);const V="fn-header",f=document.createElement("template");f.innerHTML=`
   <style>
     :host {
       align-items: center;
@@ -240,7 +240,7 @@ var R=Object.defineProperty;var T=(i,s,t)=>s in i?R(i,s,{enumerable:!0,configura
 
     <slot name="nav"></slot>
   </header>
-`;class K extends HTMLElement{constructor(){super(),this.attachShadow({mode:"open"}).appendChild(f.content.cloneNode(!0))}}customElements.define(B,K);const q="fn-image",w=document.createElement("template");w.innerHTML=`
+`;class B extends HTMLElement{constructor(){super(),this.attachShadow({mode:"open"}).appendChild(f.content.cloneNode(!0))}}customElements.define(V,B);const K="fn-image",w=document.createElement("template");w.innerHTML=`
   <style>
     :host {
       --corner: 1rem;
@@ -300,7 +300,7 @@ var R=Object.defineProperty;var T=(i,s,t)=>s in i?R(i,s,{enumerable:!0,configura
     </div>
     <canvas id="glow" class="glow" aria-hidden></canvas>
   </div>
-`;class O extends HTMLElement{constructor(){super();r(this,"loaded",!1);r(this,"observer",new IntersectionObserver(t=>{t.forEach(e=>{e.isIntersecting&&(this.shadowRoot.querySelector(".wrapper").classList.add("loaded"),this.handleGlow(),this.loaded=!0,this.observer.disconnect())})}));this.attachShadow({mode:"open"}).appendChild(w.content.cloneNode(!0))}async connectedCallback(){var e,o;if(this.loaded)return;this.image=this.querySelector("img"),this._handlePoster=this.handlePoster.bind(this),this._handleLoad=()=>{this.observer.observe(this.image)};const t=this.getAttribute("poster");t&&(this.poster=new Image,this.poster.src=t,this.poster.complete?this._handlePoster():this.poster.addEventListener("load",this._handlePoster)),(e=this.image)!=null&&e.complete?this._handleLoad():(o=this.image)==null||o.addEventListener("load",this._handleLoad)}disconnectedCallback(){var t,e;(t=this.image)==null||t.removeEventListener("load",this._handleLoad),(e=this.poster)==null||e.removeEventListener("load",this._handlePoster),this.observer.disconnect()}handlePoster(){const t=this.shadowRoot.querySelector("canvas#poster"),e=t.getContext("2d"),{width:o,height:n}=this.image;t.width=o,t.height=n;const a=.05,h=t.width*a,l=t.height*a;e.drawImage(this.poster,0,0,h,l),e.msImageSmoothingEnabled=!1,e.mozImageSmoothingEnabled=!1,e.webkitImageSmoothingEnabled=!1,e.imageSmoothingEnabled=!1,e.drawImage(t,0,0,h,l,0,0,t.width,t.height);const c=getComputedStyle(this).getPropertyValue("--color-fg");e.globalCompositeOperation="color",e.fillStyle=c,e.fillRect(0,0,t.width,t.height),t.classList.add("loaded")}handleGlow(){const t=this.shadowRoot.querySelector("canvas#glow"),e=t.getContext("2d"),{width:o,height:n}=this.image;t.width=o,t.height=n,t.style.filter="blur(1.5rem) opacity(0.5)",e.drawImage(this.image,0,0,o,n),t.classList.add("loaded")}}customElements.define(q,O);const j="fn-columns",y=document.createElement("template");y.innerHTML=`
+`;class q extends HTMLElement{constructor(){super();n(this,"loaded",!1);n(this,"observer",new IntersectionObserver(t=>{t.forEach(e=>{e.isIntersecting&&(this.shadowRoot.querySelector(".wrapper").classList.add("loaded"),this.handleGlow(),this.loaded=!0,this.observer.disconnect())})}));this.attachShadow({mode:"open"}).appendChild(w.content.cloneNode(!0))}async connectedCallback(){var e,o;if(this.loaded)return;this.image=this.querySelector("img"),this._handlePoster=this.handlePoster.bind(this),this._handleLoad=()=>{this.observer.observe(this.image)};const t=this.getAttribute("poster");t&&(this.poster=new Image,this.poster.src=t,this.poster.complete?this._handlePoster():this.poster.addEventListener("load",this._handlePoster)),(e=this.image)!=null&&e.complete?this._handleLoad():(o=this.image)==null||o.addEventListener("load",this._handleLoad)}disconnectedCallback(){var t,e;(t=this.image)==null||t.removeEventListener("load",this._handleLoad),(e=this.poster)==null||e.removeEventListener("load",this._handlePoster),this.observer.disconnect()}handlePoster(){const t=this.shadowRoot.querySelector("canvas#poster"),e=t.getContext("2d"),{width:o,height:r}=this.image;t.width=o,t.height=r;const a=.05,h=t.width*a,l=t.height*a;e.drawImage(this.poster,0,0,h,l),e.msImageSmoothingEnabled=!1,e.mozImageSmoothingEnabled=!1,e.webkitImageSmoothingEnabled=!1,e.imageSmoothingEnabled=!1,e.drawImage(t,0,0,h,l,0,0,t.width,t.height);const c=getComputedStyle(this).getPropertyValue("--color-fg");e.globalCompositeOperation="color",e.fillStyle=c,e.fillRect(0,0,t.width,t.height),t.classList.add("loaded")}handleGlow(){const t=this.shadowRoot.querySelector("canvas#glow"),e=t.getContext("2d"),{width:o,height:r}=this.image;t.width=o,t.height=r,t.style.filter="blur(1.5rem) opacity(0.5)",e.drawImage(this.image,0,0,o,r),t.classList.add("loaded")}}customElements.define(K,q);const O="fn-columns",y=document.createElement("template");y.innerHTML=`
   <style>
     :host {
       --gap: var(--spacing-sm);
@@ -319,7 +319,7 @@ var R=Object.defineProperty;var T=(i,s,t)=>s in i?R(i,s,{enumerable:!0,configura
   </style>
 
   <slot name="row"></slot>
-`;class Z extends HTMLElement{static get observedAttributes(){return["columns"]}constructor(){super(),this.attachShadow({mode:"open"}).appendChild(y.content.cloneNode(!0))}connectedCallback(){this.style.setProperty("--size",this.children[0].children.length),[...this.children].forEach(s=>{s.style.setProperty("display","grid"),s.style.setProperty("grid-gap","var(--gap)"),s.style.setProperty("grid-template-columns","repeat(var(--columns), 1fr)")})}}customElements.define(j,Z);const z="fn-hero",b=document.createElement("template");b.innerHTML=`
+`;class j extends HTMLElement{static get observedAttributes(){return["columns"]}constructor(){super(),this.attachShadow({mode:"open"}).appendChild(y.content.cloneNode(!0))}connectedCallback(){this.style.setProperty("--size",this.children[0].children.length),[...this.children].forEach(s=>{s.style.setProperty("display","grid"),s.style.setProperty("grid-gap","var(--gap)"),s.style.setProperty("grid-template-columns","repeat(var(--columns), 1fr)")})}}customElements.define(O,j);const Z="fn-hero",b=document.createElement("template");b.innerHTML=`
   <style>
     :host {
       display: block;
@@ -356,7 +356,7 @@ var R=Object.defineProperty;var T=(i,s,t)=>s in i?R(i,s,{enumerable:!0,configura
   <slot class="image" name="image"></slot>
     
   <slot class="title" name="title"></slot>
-`;class X extends HTMLElement{constructor(){super(),this.attachShadow({mode:"open"}).appendChild(b.content.cloneNode(!0))}connectedCallback(){this.image=this.querySelector("img"),this.image.style.width="100%",this.image.style.height="auto"}}customElements.define(z,X);const Y="fn-section",x=document.createElement("template");x.innerHTML=`
+`;class z extends HTMLElement{constructor(){super(),this.attachShadow({mode:"open"}).appendChild(b.content.cloneNode(!0))}connectedCallback(){this.image=this.querySelector("img"),this.image.style.width="100%",this.image.style.height="auto"}}customElements.define(Z,z);const X="fn-section",x=document.createElement("template");x.innerHTML=`
   <style>
     :host {
       max-width: 70rem;
@@ -376,7 +376,7 @@ var R=Object.defineProperty;var T=(i,s,t)=>s in i?R(i,s,{enumerable:!0,configura
   </style>
 
   <slot></slot>
-`;class F extends HTMLElement{constructor(){super(),this.attachShadow({mode:"open"}).appendChild(x.content.cloneNode(!0))}}customElements.define(Y,F);const W="fn-timeago",k=document.createElement("template");k.innerHTML=`
+`;class Y extends HTMLElement{constructor(){super(),this.attachShadow({mode:"open"}).appendChild(x.content.cloneNode(!0))}}customElements.define(X,Y);const F="fn-timeago",k=document.createElement("template");k.innerHTML=`
   <style>
     :host {
       font: var(--font-accent);
@@ -386,7 +386,7 @@ var R=Object.defineProperty;var T=(i,s,t)=>s in i?R(i,s,{enumerable:!0,configura
   </style>
     
   <time class="fnh-timeago"></time>
-`;class g extends HTMLElement{constructor(){super();r(this,"timeElement",null);this.attachShadow({mode:"open"}).appendChild(k.content.cloneNode(!0)),this.timeElement=this.shadowRoot.querySelector("time")}static get observedAttributes(){return["date"]}attributeChangedCallback(t,e,o){if(t==="date"){const n=parseInt(o,10),a=new Date(n);this.timeElement.setAttribute("datetime",a.toISOString()),this.timeElement.textContent=g.timeAgo(o)}}static timeAgo(t){const o=Date.now()-t,n=Math.floor(o/1e3),a=Math.floor(n/60),h=Math.floor(a/60),l=Math.floor(h/24),d=Math.floor(l/30),c=Math.floor(l/365);return n<60?"just now":a<60?`${a} minute${a!==1?"s":""} ago`:h<24?`${h} hour${h!==1?"s":""} ago`:l<30?`${l} day${l!==1?"s":""} ago`:d<12?`${d} month${d!==1?"s":""} ago`:`${c} year${c!==1?"s":""} ago`}}customElements.define(W,g);const G="fn-head",C=document.createElement("template");C.innerHTML=`
+`;class u extends HTMLElement{constructor(){super();n(this,"timeElement",null);this.attachShadow({mode:"open"}).appendChild(k.content.cloneNode(!0)),this.timeElement=this.shadowRoot.querySelector("time")}static get observedAttributes(){return["date"]}attributeChangedCallback(t,e,o){if(t==="date"){const r=parseInt(o,10),a=new Date(r);this.timeElement.setAttribute("datetime",a.toISOString()),this.timeElement.textContent=u.timeAgo(o)}}static timeAgo(t){const o=Date.now()-t,r=Math.floor(o/1e3),a=Math.floor(r/60),h=Math.floor(a/60),l=Math.floor(h/24),d=Math.floor(l/30),c=Math.floor(l/365);return r<60?"just now":a<60?`${a} minute${a!==1?"s":""} ago`:h<24?`${h} hour${h!==1?"s":""} ago`:l<30?`${l} day${l!==1?"s":""} ago`:d<12?`${d} month${d!==1?"s":""} ago`:`${c} year${c!==1?"s":""} ago`}}customElements.define(F,u);const W="fn-head",C=document.createElement("template");C.innerHTML=`
   <style>
     :host {
       display: flex;
@@ -413,7 +413,7 @@ var R=Object.defineProperty;var T=(i,s,t)=>s in i?R(i,s,{enumerable:!0,configura
 
   <slot name="hero"></slot>
   <slot name="ctas" class="ctas"></slot>
-`;class J extends HTMLElement{constructor(){super(),this.attachShadow({mode:"open"}).appendChild(C.content.cloneNode(!0))}}customElements.define(G,J);const Q="fn-icon",L=document.createElement("template");L.innerHTML=`
+`;class G extends HTMLElement{constructor(){super(),this.attachShadow({mode:"open"}).appendChild(C.content.cloneNode(!0))}}customElements.define(W,G);const J="fn-icon",L=document.createElement("template");L.innerHTML=`
   <style>
     :host {
       display: inline-flex;
@@ -430,7 +430,7 @@ var R=Object.defineProperty;var T=(i,s,t)=>s in i?R(i,s,{enumerable:!0,configura
     }
   </style>
   <span></span>
-`;class tt extends HTMLElement{constructor(){super();r(this,"icons",{external:`
+`;class Q extends HTMLElement{constructor(){super();n(this,"icons",{external:`
       <svg fill="currentColor" width="1em" height="1em" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
         <path d="M14 3.5L8.5 9 7 7.5 12.5 2H10V0h6v6h-2V3.5zM6 0v2H2v12h12v-4h2v6H0V0h6z" fill-rule="evenodd"/>
       </svg>
@@ -451,23 +451,23 @@ var R=Object.defineProperty;var T=(i,s,t)=>s in i?R(i,s,{enumerable:!0,configura
       <path d="M3 6H1V8H3C5.76142 8 8 10.2386 8 13V15H10V13C10 9.13401 6.86599 6 3 6Z" fill="currentColor"/>
       <path d="M3 15C4.10457 15 5 14.1046 5 13C5 11.8954 4.10457 11 3 11C1.89543 11 1 11.8954 1 13C1 14.1046 1.89543 15 3 15Z" fill="currentColor"/>
     </svg>
-    `});this.attachShadow({mode:"open"}).appendChild(L.content.cloneNode(!0))}static get observedAttributes(){return["icon","disabled","label"]}attributeChangedCallback(t,e,o){t==="icon"&&(this.shadowRoot.querySelector("span").innerHTML=this.icons[o]),t==="disabled"&&this.classList.toggle("disabled",o==="true"),t==="label"&&this.shadowRoot.querySelector("svg").setAttribute("aria-label",o)}}customElements.define(Q,tt);const et="fn-viewed",E=document.createElement("template");E.innerHTML=`
+    `});this.attachShadow({mode:"open"}).appendChild(L.content.cloneNode(!0))}static get observedAttributes(){return["icon","disabled","label"]}attributeChangedCallback(t,e,o){t==="icon"&&(this.shadowRoot.querySelector("span").innerHTML=this.icons[o]),t==="disabled"&&this.classList.toggle("disabled",o==="true"),t==="label"&&this.shadowRoot.querySelector("svg").setAttribute("aria-label",o)}}customElements.define(J,Q);const tt="fn-viewed",E=document.createElement("template");E.innerHTML=`
   <style>
     :host {
       display: contents;
     }
   </style>
   <slot></slot>
-`;class st extends HTMLElement{constructor(){super();r(this,"_state","idle");r(this,"timer",null);r(this,"root",null);r(this,"observer",new IntersectionObserver(t=>{const{isIntersecting:e}=t[0];e&&this.state==="idle"?(this.state="viewing",this.startTimer()):!e&&this.state==="viewing"?(this.state="idle",this.stopTimer()):this.stopTimer()},{threshold:.1}));this.attachShadow({mode:"open"}).appendChild(E.content.cloneNode(!0))}static get observedAttributes(){return["disabled"]}connectedCallback(){this.root=this.querySelector(":scope > *"),this.getAttribute("disabled")!=="true"&&this.observer.observe(this.root)}disconnectedCallback(){this.stopTimer(),this.observer.disconnect()}get time(){return this.textContent.trim().split(" ").filter(e=>!!e&&e!==`
-`).length*50}get state(){return this._state}set state(t){this._state=t,this.setAttribute("data-state",t),this.dispatchEvent(new CustomEvent(t,{bubbles:!0}))}attributeChangedCallback(t,e,o){if(t==="disabled"){if(e===o)return;o==="true"?(this.stopTimer(),this.observer.disconnect()):this.observer.observe(this.root)}}startTimer(){this.timer=setTimeout(()=>{this.setAsViewed()},this.time)}stopTimer(){clearTimeout(this.timer)}setAsViewed(){this.observer.disconnect(),this.state="viewed"}}customElements.define(et,st);function ot(i="default"){const s=document.documentElement,t=getComputedStyle(s).getPropertyValue("--color-bg"),e=getComputedStyle(s).getPropertyValue("--color-fg"),o={default:`
+`;class et extends HTMLElement{constructor(){super();n(this,"_state","idle");n(this,"timer",null);n(this,"root",null);n(this,"observer",new IntersectionObserver(t=>{const{isIntersecting:e}=t[0];e&&this.state==="idle"?(this.state="viewing",this.startTimer()):!e&&this.state==="viewing"?(this.state="idle",this.stopTimer()):this.stopTimer()},{threshold:.1}));this.attachShadow({mode:"open"}).appendChild(E.content.cloneNode(!0))}static get observedAttributes(){return["disabled"]}connectedCallback(){this.root=this.querySelector(":scope > *"),this.getAttribute("disabled")!=="true"&&this.observer.observe(this.root)}disconnectedCallback(){this.stopTimer(),this.observer.disconnect()}get time(){return this.textContent.trim().split(" ").filter(e=>!!e&&e!==`
+`).length*50}get state(){return this._state}set state(t){this._state=t,this.setAttribute("data-state",t),this.dispatchEvent(new CustomEvent(t,{bubbles:!0}))}attributeChangedCallback(t,e,o){if(t==="disabled"){if(e===o)return;o==="true"?(this.stopTimer(),this.observer.disconnect()):this.observer.observe(this.root)}}startTimer(){this.timer=setTimeout(()=>{this.setAsViewed()},this.time)}stopTimer(){clearTimeout(this.timer)}setAsViewed(){this.observer.disconnect(),this.state="viewed"}}customElements.define(tt,et);function M(i=getComputedStyle(document.documentElement).getPropertyValue("--color-bg"),s=getComputedStyle(document.documentElement).getPropertyValue("--color-fg")){const t={default:`
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.89 25.09" width="20.89" height="30.09">
-        <g fill="${e}" stroke="${t}">
+        <g fill="${s}" stroke="${i}">
           <path d="M14.62,14.62v-1.33h-1.33v-1.33h-1.33v-1.33h-1.33v-1.33h-1.33v-1.33h-1.33v-1.33h-1.33v-1.33h-1.33v-1.33h-1.33v-1.33h-1.33v-1.33h-1.33V0H0v22.47h2.64v-1.33h1.33v-1.33h1.33v-1.33h1.33v2.64h1.33v2.64h1.33v1.33h2.64v-1.33h1.33v-2.64h-1.33v-2.64h-1.33v-1.33h5.28v-2.64h-1.33l.07.12Z"/>
         </g>
       </svg>
     `,defaultClick:`
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20.44 29.11" width="20.44" height="29.11">
-        <g fill="${e}">
+        <g fill="${s}">
           <rect x="3.61" y="1.7" width="1.25" height="1.25" transform="translate(.77 5.69) rotate(-72.88)"/>
           <rect x="2.8" y=".16" width="1.25" height="1.25" transform="translate(1.67 3.82) rotate(-72.88)"/>
           <rect x="7.22" y="2.54" width="1.25" height="1.25" transform="translate(-.61 3.41) rotate(-23.62)"/>
@@ -476,17 +476,17 @@ var R=Object.defineProperty;var T=(i,s,t)=>s in i?R(i,s,{enumerable:!0,configura
           <rect x=".21" y="4.64" width="1.25" height="1.25" transform="translate(-2.25 .92) rotate(-26.34)"/>
         </g>
         
-        <g fill="${e}" stroke="${t}">
+        <g fill="${s}" stroke="${i}">
           <path d="M19.18,18.64v-1.33h-1.33v-1.33h-1.33v-1.33h-1.33v-1.33h-1.33v-1.33h-1.33v-1.33h-1.33v-1.33h-1.33v-1.33h-1.33v-1.33h-1.33v-1.33h-1.33v-1.33h-1.33v22.47h2.64v-1.33h1.33v-1.33h1.33v-1.33h1.33v2.64h1.33v2.64h1.33v1.33h2.64v-1.33h1.33v-2.64h-1.33v-2.64h-1.33v-1.33h5.28v-2.64h-1.33l.07.12Z"/>
         </g>
       </svg>
     `,pointer:`
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 21.05 27.03" width="25.05" height="32.03">
-        <g fill="${e}" stroke="${t}">
+        <g fill="${s}" stroke="${i}">
           <path d="M19.76,11.25v-1.26h-1.26v-1.26h-2.5v-1.26h-3.76v-1.26h-2.02V1.26h-1.26V0h-2.98v1.26h-1.26v10.93h-.6l-.03-1.22H0l.03,4.04h.99v1.26h1.26v2.5h1.26v2.5h1.26v2.5h1.26v3.27h12.49v-3.27h1.26v-3.76h1.26l-.07-9.11h-1.26l.04.36Z"/>
         </g>
 
-        <g fill="${t}">
+        <g fill="${i}">
           <rect x="5.1" y="1.87" width="1.18" height="14.07"/>
           <rect x="6.28" y=".7" width="2.34" height="1.18"/>
           <rect x="8.62" y="1.87" width="1.18" height="10.55"/>
@@ -512,7 +512,7 @@ var R=Object.defineProperty;var T=(i,s,t)=>s in i?R(i,s,{enumerable:!0,configura
       </svg>
     `,pointerClick:`
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 21.05 31.65" width="21.05" height="31.65">
-        <g fill="${e}">
+        <g fill="${s}">
           <rect x="4.42" y="1.61" width="1.18" height="1.18" transform="translate(.72 5.39) rotate(-72.88)"/>
           <rect x="3.65" y=".15" width="1.18" height="1.18" transform="translate(1.58 3.62) rotate(-72.88)"/>
           <rect x="7.81" y="2.41" width="1.18" height="1.18" transform="translate(-.58 3.22) rotate(-23.62)"/>
@@ -521,11 +521,11 @@ var R=Object.defineProperty;var T=(i,s,t)=>s in i?R(i,s,{enumerable:!0,configura
           <rect x="1.2" y="4.38" width="1.18" height="1.18" transform="translate(-2.12 .87) rotate(-26.34)"/>
         </g>
 
-        <g fill="${e}" stroke="${t}">
+        <g fill="${s}" stroke="${i}">
           <path class="cls-1" d="M19.76,15.87v-1.26h-1.26v-1.26h-2.5v-1.26h-3.76v-1.26h-2.02v-4.97h-1.26v-1.26h-2.98v1.26h-1.26v10.93h-.6l-.03-1.22H0l.03,4.04h.99v1.26h1.26v2.5h1.26v2.5h1.26v2.5h1.26v3.27h12.49v-3.27h1.26v-3.76h1.26l-.07-9.11h-1.26l.04.36Z"/>
         </g>
         
-        <g fill="${t}">
+        <g fill="${i}">
           <rect x="5.1" y="6.49" width="1.18" height="14.07"/>
           <rect x="6.28" y="5.33" width="2.34" height="1.18"/>
           <rect x="8.62" y="6.49" width="1.18" height="10.55"/>
@@ -551,7 +551,7 @@ var R=Object.defineProperty;var T=(i,s,t)=>s in i?R(i,s,{enumerable:!0,configura
       </svg>
     `,text:`
      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12.14 32.67" width="10.14" height="30.67">
-      <polygon fill="${e}" points=".15 32.54 .15 30.88 1.55 30.88 1.55 29.48 5.26 29.48 5.26 26.57 2.93 26.57 2.93 25.38 5.26 25.38 5.26 3.2 2.91 3.2 2.91 3.19 1.53 3.19 1.53 1.78 .12 1.78 .12 .13 1.78 .13 1.78 1.53 3.19 1.53 3.19 2 8.94 2 8.94 1.53 10.34 1.53 10.34 .13 12 .13 12 1.79 10.6 1.79 10.6 3.19 9.22 3.19 9.1 3.2 6.92 3.2 6.92 25.38 9.24 25.38 9.24 26.57 6.92 26.57 6.92 29.48 10.62 29.48 10.62 30.88 12.02 30.88 12.02 32.54 10.36 32.54 10.36 31.14 8.96 31.14 8.96 30.68 3.21 30.68 3.21 31.14 1.81 31.14 1.81 32.54 .15 32.54"/>
-      <path fill="${t}" d="M1.66.25v1.4h1.41v.47h6v-.47h1.4V.25h1.41v1.41h-1.4v1.4h-1.38s-2.3,0-2.3,0v22.43h2.33v.95h-2.33v3.16h3.7v1.4h1.4v1.41h-1.41v-1.4h-1.4v-.46H3.09v.46h-1.41v1.4H.27v-1.41h1.41v-1.4h3.7v-3.16h-2.33v-.95h2.33V3.07h-2.35s-1.38,0-1.38,0v-1.4H.25V.25h1.41M1.91,0H0v1.91h1.41v1.4h1.63s2.1,0,2.1,0v21.93h-2.33v1.45h2.33v2.66H1.43v1.4H.02v1.91h1.91v-1.4h1.41v-.46h5.5v.46h1.4v1.4h1.91v-1.91h-1.4v-1.4h-3.7v-2.66h2.33v-1.45h-2.33V3.32h2.3s1.13,0,1.13,0h.25v-1.4h1.4V0h-1.91v1.4h-1.4v.47H3.32v-.47h-1.41V0h0Z"/>
+      <polygon fill="${s}" points=".15 32.54 .15 30.88 1.55 30.88 1.55 29.48 5.26 29.48 5.26 26.57 2.93 26.57 2.93 25.38 5.26 25.38 5.26 3.2 2.91 3.2 2.91 3.19 1.53 3.19 1.53 1.78 .12 1.78 .12 .13 1.78 .13 1.78 1.53 3.19 1.53 3.19 2 8.94 2 8.94 1.53 10.34 1.53 10.34 .13 12 .13 12 1.79 10.6 1.79 10.6 3.19 9.22 3.19 9.1 3.2 6.92 3.2 6.92 25.38 9.24 25.38 9.24 26.57 6.92 26.57 6.92 29.48 10.62 29.48 10.62 30.88 12.02 30.88 12.02 32.54 10.36 32.54 10.36 31.14 8.96 31.14 8.96 30.68 3.21 30.68 3.21 31.14 1.81 31.14 1.81 32.54 .15 32.54"/>
+      <path fill="${i}" d="M1.66.25v1.4h1.41v.47h6v-.47h1.4V.25h1.41v1.41h-1.4v1.4h-1.38s-2.3,0-2.3,0v22.43h2.33v.95h-2.33v3.16h3.7v1.4h1.4v1.41h-1.41v-1.4h-1.4v-.46H3.09v.46h-1.41v1.4H.27v-1.41h1.41v-1.4h3.7v-3.16h-2.33v-.95h2.33V3.07h-2.35s-1.38,0-1.38,0v-1.4H.25V.25h1.41M1.91,0H0v1.91h1.41v1.4h1.63s2.1,0,2.1,0v21.93h-2.33v1.45h2.33v2.66H1.43v1.4H.02v1.91h1.91v-1.4h1.41v-.46h5.5v.46h1.4v1.4h1.91v-1.91h-1.4v-1.4h-3.7v-2.66h2.33v-1.45h-2.33V3.32h2.3s1.13,0,1.13,0h.25v-1.4h1.4V0h-1.91v1.4h-1.4v.47H3.32v-.47h-1.41V0h0Z"/>
     </svg>
-    `},n=new Blob([o[i]],{type:"image/svg+xml"}),a=URL.createObjectURL(n),h=new Blob([o[`${i}Click`]],{type:"image/svg+xml"}),l=URL.createObjectURL(h),d=new Blob([o.pointer],{type:"image/svg+xml"}),c=URL.createObjectURL(d),$=new Blob([o.pointerClick],{type:"image/svg+xml"}),M=URL.createObjectURL($),H=new Blob([o.text],{type:"image/svg+xml"}),S=URL.createObjectURL(H);s.style.setProperty("--cursor-default",`url(${a}), auto`),s.style.setProperty("--cursor-default-click",`url(${l}), auto`),s.style.setProperty("--cursor-pointer",`url(${c}), auto`),s.style.setProperty("--cursor-pointer-click",`url(${M}), auto`),s.style.setProperty("--cursor-text",`url(${S}), auto`)}function it(){ot()}document.addEventListener("DOMContentLoaded",it);const lt={parameters:{controls:{matchers:{color:/(background|color)$/i,date:/Date$/i}},docs:{theme:A.dark}}};export{lt as default};
+    `},e=new Blob([t.default],{type:"image/svg+xml"}),o=URL.createObjectURL(e),r=new Blob([t.defaultClick],{type:"image/svg+xml"}),a=URL.createObjectURL(r),h=new Blob([t.pointer],{type:"image/svg+xml"}),l=URL.createObjectURL(h),d=new Blob([t.pointerClick],{type:"image/svg+xml"}),c=URL.createObjectURL(d),$=new Blob([t.text],{type:"image/svg+xml"}),H=URL.createObjectURL($);document.documentElement.style.setProperty("--cursor-default",`url(${o}), auto`),document.documentElement.style.setProperty("--cursor-default-click",`url(${a}), auto`),document.documentElement.style.setProperty("--cursor-pointer",`url(${l}), auto`),document.documentElement.style.setProperty("--cursor-pointer-click",`url(${c}), auto`),document.documentElement.style.setProperty("--cursor-text",`url(${H}), auto`)}function st(){M()}document.documentElement.addEventListener("theme",i=>{var e;const{fg:s,bg:t}=i.detail;!s||!t||(document.documentElement.style.setProperty("--color-fg",s),document.documentElement.style.setProperty("--color-bg",t),(e=document.querySelector('meta[name="theme-color"]'))==null||e.setAttribute("content",t),M(s,t))});document.addEventListener("DOMContentLoaded",st);const rt={parameters:{controls:{matchers:{color:/(background|color)$/i,date:/Date$/i}},docs:{theme:T.dark}}};export{rt as default};
