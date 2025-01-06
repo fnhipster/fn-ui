@@ -15,7 +15,7 @@ export { default as Viewed } from './fn-viewed/fn-viewed.js';
 /** Cursors */
 function makeCursor(
   fg = getComputedStyle(document.documentElement).getPropertyValue('--color-bg'),
-  bg = getComputedStyle(document.documentElement).getPropertyValue('--color-fg')
+  bg = getComputedStyle(document.documentElement).getPropertyValue('--color-fg'),
 ) {
   const cursors = {
     default: `
@@ -143,19 +143,10 @@ function makeCursor(
   document.documentElement.style.setProperty('--cursor-text', `url(${textURI}), auto`);
 }
 
-function init() {
-  makeCursor();
-}
-
-document.documentElement.addEventListener('theme', (e) => {
-  const { fg, bg } = e.detail;
+export function applyTheme(fg, bg) {
   if (!fg || !bg) return;
-
   document.documentElement.style.setProperty('--color-fg', fg);
   document.documentElement.style.setProperty('--color-bg', bg);
   document.querySelector('meta[name="theme-color"]')?.setAttribute('content', bg);
-
   makeCursor(fg, bg);
-});
-
-document.addEventListener('DOMContentLoaded', init);
+}
