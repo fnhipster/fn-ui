@@ -99,15 +99,14 @@ export default class Action extends HTMLElement {
 
   pressing = false;
 
-  prefetched = false;
-
   shortcut = null;
+
+  disabled = false;
 
   href;
 
   static get observedAttributes() {
     return [
-      'prefetch',
       'disabled',
       'decoration',
       'button',
@@ -125,13 +124,12 @@ export default class Action extends HTMLElement {
   connectedCallback() {
     this.elem = this.querySelector('a, button');
     this.shortcut = this.elem.querySelector('em')?.textContent;
-    this.href = this.elem.getAttribute('href');
 
     this._handleMouseDown = this.handleMouseDown.bind(this);
     this._handleKeyDown = this.handleKeyDown.bind(this);
     this._handleKeyUp = this.handleKeyUp.bind(this);
     this._handleShortcutKeyDown = this.handleShortcutKeyDown.bind(this);
-    this._handleShortcutKeyUp = this.handleShowtcutKeyUp.bind(this);
+    this._handleShortcutKeyUp = this.handleShortcutKeyUp.bind(this);
 
     // add event listeners
     this.elem.addEventListener('mousedown', this._handleMouseDown);
@@ -204,17 +202,21 @@ export default class Action extends HTMLElement {
   }
 
   handleShortcutKeyDown(event) {
+    if (this.disabled) return;
     if (this.pressing) return;
     if (event.key.toLowerCase() === this.shortcut.toLowerCase()) {
+      const href = this.elem.getAttribute('href');
+
       this.pressing = true;
       this.elem.classList.add('pressed');
-      if (this.href) {
-        this.handlePrefetch(this.href);
+      if (href) {
+        this.handlePrefetch(href);
       }
     }
   }
 
-  handleShowtcutKeyUp(event) {
+  handleShortcutKeyUp(event) {
+    if (this.disabled) return;
     if (!this.pressing) return;
 
     if (event.key.toLowerCase() === this.shortcut.toLowerCase()) {
@@ -225,20 +227,27 @@ export default class Action extends HTMLElement {
   }
 
   handleMouseDown() {
-    if (this.href) {
-      this.handlePrefetch(this.href);
+    if (this.disabled) return;
+    const href = this.elem.getAttribute('href');
+
+    if (href) {
+      this.handlePrefetch(href);
     }
   }
 
   handleKeyDown(event) {
+    if (this.disabled) return;
     if (this.pressing) return;
+
+    const href = this.elem.getAttribute('href');
 
     switch (event.key) {
       case 'Enter':
         event.preventDefault();
         this.elem.classList.add('pressed');
-        if (this.href) {
-          this.handlePrefetch(this.href);
+
+        if (href) {
+          this.handlePrefetch(href);
         }
 
         break;
@@ -251,6 +260,8 @@ export default class Action extends HTMLElement {
   }
 
   handleKeyUp(event) {
+    if (this.disabled) return;
+
     if (event.key === 'Enter') {
       event.preventDefault();
       this.elem.classList.remove('pressed');
@@ -283,6 +294,8 @@ export default class Action extends HTMLElement {
   }
 
   handleDisable(state = true) {
+    this.disabled = state;
+
     if (state === true) {
       if (this.elem.tagName === 'A') {
         this.elem.setAttribute('aria-disabled', true);
@@ -291,8 +304,9 @@ export default class Action extends HTMLElement {
         this.elem.setAttribute('disabled', true);
       }
     } else if (this.elem.tagName === 'A') {
+      const href = this.elem.getAttribute('href');
       this.elem.removeAttribute('aria-disabled');
-      this.elem.setAttribute('href', this.href);
+      this.elem.setAttribute('href', href);
     } else {
       this.elem.removeAttribute('disabled');
     }
