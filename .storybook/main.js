@@ -21,6 +21,11 @@ const config = {
     <link rel="stylesheet" href="styles/fn.css">
     <link rel="stylesheet" href="styles/fonts.css">
 
+    <script type="module">
+      import { applyTheme } from '../components/index.js';
+      applyTheme('#ffb000', '#111111');
+    </script>
+
     <style>
       :root {
         background: var(--color-bg);

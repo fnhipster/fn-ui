@@ -1,6 +1,4 @@
 import { themes } from '@storybook/theming';
-import { applyTheme } from '../components/index.js';
-import '../components/index.js';
 
 /** @type { import('@storybook/html').Preview } */
 const preview = {
@@ -18,5 +16,3 @@ const preview = {
 };
 
 export default preview;
-
-applyTheme('#ffb000', '#111111)');
