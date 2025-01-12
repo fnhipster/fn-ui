@@ -125,6 +125,18 @@ main h3 {
   word-spacing: -0.25em;
 }
 
+main h1 span,
+main h2 span,
+main h3 span {
+  font: var(--font-accent);
+  text-transform: uppercase;
+  word-spacing: normal;
+  letter-spacing: 0.05em;
+  font-size: var(--font-accent-lg);
+  display: block;
+  margin-top: var(--spacing-xs);
+}
+
 main h1 {
   font-size: var(--font-heading-xl);
 }
