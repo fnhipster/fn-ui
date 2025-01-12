@@ -43,7 +43,7 @@ export default class Icon extends HTMLElement {
 
   attributeChangedCallback(name, prev, next) {
     if (name === 'icon') {
-      this.icons[next]()
+      this.icons[next.toLowerCase()]()
         .then((icon) => {
           this.shadowRoot.querySelector('span').innerHTML = icon.default?.trim();
         })

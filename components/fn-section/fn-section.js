@@ -10,10 +10,8 @@ template.innerHTML = /* html */ `
     }
 
     :host([layout="centered"]) {
-        display: flex;
-        flex: 1;
-        justify-content: center;
-        align-items: center;
+      display: flex;
+      justify-self: center;
     }
 
     slot {
