@@ -59,7 +59,7 @@ export default class Icon extends HTMLElement {
     }
 
     if (name === 'label') {
-      this.shadowRoot.querySelector('svg').setAttribute('aria-label', next);
+      this.shadowRoot.querySelector('svg')?.setAttribute('aria-label', next);
     }
   }
 }

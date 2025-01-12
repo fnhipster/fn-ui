@@ -16,9 +16,9 @@ template.innerHTML = /* html */ `
       bottom: 0;
       display: flex;
       flex-direction: column;
+      justify-content: var(--valign, center);
+      align-items: var(--align, center);
       gap: var(--spacing-lg);
-      justify-content: var(--align, center);
-      align-items: var(--valign, center);
       padding: var(--spacing-xl);
     }
 
@@ -29,11 +29,12 @@ template.innerHTML = /* html */ `
 
     ::slotted([slot="title"]) {
       font: var(--font-heading);
-      margin: 0;
+      margin: 0 !important;
     }
 
     ::slotted([slot="songs"]) {
       font: var(--font-accent);
+      font-size: var(--font-size-md);
       list-style: decimal-leading-zero;
       list-style-position: inside;
       margin: 0;
@@ -71,13 +72,13 @@ template.innerHTML = /* html */ `
       <slot name="songs"></slot>
 
       <footer>
-        <fn-action id="spotify-link" button="true">
+        <fn-action id="spotify-link" button="true" fill="true">
           <a href="">
             <fn-icon icon="spotify"></fn-icon>
             Listen on Spotify
           </a>
         </fn-action> 
-        <fn-action id="apple-music-link" button="true">
+        <fn-action id="apple-music-link" button="true" fill="true">
           <a href="">
             <fn-icon icon="apple-music"></fn-icon>
             Listen on Apple Music
@@ -142,3 +143,5 @@ export default class Playlist extends HTMLElement {
 }
 
 customElements.define(tagName, Playlist);
+
+
