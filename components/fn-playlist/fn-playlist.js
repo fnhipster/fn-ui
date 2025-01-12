@@ -29,12 +29,13 @@ template.innerHTML = /* html */ `
 
     ::slotted([slot="title"]) {
       font: var(--font-heading);
+      font-size: var(--font-heading-xl) !important;
       margin: 0 !important;
     }
 
     ::slotted([slot="songs"]) {
       font: var(--font-accent);
-      font-size: var(--font-size-md);
+      font-size: var(--font-accent-lg);
       list-style: decimal-leading-zero;
       list-style-position: inside;
       margin: 0;

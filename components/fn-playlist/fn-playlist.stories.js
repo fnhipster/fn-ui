@@ -11,6 +11,7 @@ export default {
   render: ({ innerHTML, ...args }) => {
     const element = CustomElement('fn-playlist', args);
     element.innerHTML = innerHTML;
+    element.style.setProperty('max-width', '70rem');
     return element;
   },
   argTypes: { },
@@ -25,7 +26,7 @@ export const Primary = {
     valign: 'center',
     innerHTML: `
       <fn-image slot="cover" poster="https://picsum.photos/100/100">
-        <img loading="lazy" src="https://picsum.photos/1000/1000" width="1000" height="1000" alt="Test">
+        <img loading="lazy" src="https://picsum.photos/700/700" width="700" height="700" alt="Test">
       </fn-image>
 
       <h1 slot="title">Playlist Title</h1>

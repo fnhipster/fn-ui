@@ -1,5 +1,4 @@
 import { themes } from '@storybook/theming';
-
 /** @type { import('@storybook/html').Preview } */
 const preview = {
   parameters: {
