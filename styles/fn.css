@@ -125,9 +125,9 @@ main h3 {
   word-spacing: -0.25em;
 }
 
-main h1 span,
-main h2 span,
-main h3 span {
+main h1 > .subtitle,
+main h2 > .subtitle,
+main h3 > .subtitle {
   font: var(--font-accent);
   text-transform: uppercase;
   word-spacing: normal;
