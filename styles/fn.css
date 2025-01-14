@@ -132,9 +132,9 @@ main h3 > span {
   display: block;
 }
 
-main h1 > .accent,
-main h2 > .accent,
-main h3 > .accent {
+main h1 .accent,
+main h2 .accent,
+main h3 .accent {
   font: var(--font-accent);
   text-transform: uppercase;
   word-spacing: normal;
