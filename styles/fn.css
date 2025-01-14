@@ -126,9 +126,15 @@ main h3 {
   word-spacing: -0.25em;
 }
 
-main h1 > .subtitle,
-main h2 > .subtitle,
-main h3 > .subtitle {
+main h1 > span,
+main h2 > span,
+main h3 > span {
+  display: block;
+}
+
+main h1 > .accent,
+main h2 > .accent,
+main h3 > .accent {
   font: var(--font-accent);
   text-transform: uppercase;
   word-spacing: normal;
@@ -178,12 +184,6 @@ main blockquote {
   margin: 0;
   padding: var(--spacing-md);
   border-left: 0.5em solid;
-}
-
-fn-action a > em {
-  background-color: var(--color-fg);
-  color: var(--color-bg);
-  font-style: normal;
 }
 
 fn-action a:has(fn-icon) {
