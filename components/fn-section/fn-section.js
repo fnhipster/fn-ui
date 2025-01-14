@@ -6,25 +6,21 @@ template.innerHTML = /* html */ `
   <style>    
     .wrapper {
       display: flex;
-      max-width: 70rem;
       align-items: start;
-      justify-self: center;
     }
 
     :host([layout="centered"]) .wrapper {
-      display: flex;
-      align-items: center;
       min-height: 60vh;
       text-align: center;
+      justify-content: center;
     }
 
-    slot {
-      display: block;
-      justify-self: center;
+    .content {
       align-self: center;
+      flex: 1;
     }
 
-    .indicator {
+    .indicator.active {
       position: sticky;
       top: 0;
       height: 60vh;
@@ -35,40 +31,91 @@ template.innerHTML = /* html */ `
   </style>
 
   <div class="wrapper">
-    <slot></slot>
+    <div class="content">
+      <slot></slot>
+    </div>
+    <div class="indicator"></div>
   </div>
 `;
 
 export default class Section extends HTMLElement {
+  _state = 'idle'; // idle, viewing, viewed
+
+  timer = null;
+
   constructor() {
     super();
-
     const shadowRoot = this.attachShadow({ mode: 'open' });
-
     shadowRoot.appendChild(template.content.cloneNode(true));
   }
 
-  observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        this.dispatchEvent(new CustomEvent('active'));
-      } else {
-        this.dispatchEvent(new CustomEvent('inactive'));
-      }
-    });
-  }, {
-    threshold: 1,
-  });
+  observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        // emit event
+        this.dispatchEvent(new CustomEvent('visibility', { detail: entry.isIntersecting }));
+
+        // track viewed
+        if (entry.isIntersecting && this.state === 'idle') {
+          // detect if started viewing
+          this.state = 'viewing';
+          this.startTimer();
+        } else if (!entry.isIntersecting && this.state === 'viewing') {
+          // detect if stopped viewing
+          this.state = 'idle';
+          this.stopTimer();
+        } else {
+          // detect if viewed
+          this.stopTimer();
+        }
+      });
+    },
+    {
+      threshold: 1,
+    }
+  );
 
   connectedCallback() {
-    this.$indicator = document.createElement('div');
-    this.$indicator.classList.add('indicator');
-    this.shadowRoot.querySelector('.wrapper').appendChild(this.$indicator);
-    this.observer.observe(this.$indicator);
+    if (this.getAttribute('track-visibility') === 'true') {
+      const $indicator = this.shadowRoot.querySelector('.indicator');
+      $indicator.classList.add('active');
+      this.observer.observe($indicator);
+    }
   }
 
   disconnectedCallback() {
-    this.observer.disconnect();
+    if (this.getAttribute('track-visibility') === 'true') {
+      this.observer.disconnect();
+      this.stopTimer();
+    }
+  }
+
+  get time() {
+    const estimatedWordCount = this.textContent
+      .trim()
+      .split(' ')
+      .filter((w) => !!w && w !== '\n').length;
+
+    return estimatedWordCount * 50;
+  }
+
+  get state() {
+    return this._state;
+  }
+
+  set state(value) {
+    this._state = value;
+    this.dispatchEvent(new CustomEvent(value));
+  }
+
+  startTimer() {
+    this.timer = setTimeout(() => {
+      this.state = 'viewed';
+    }, this.time);
+  }
+
+  stopTimer() {
+    clearTimeout(this.timer);
   }
 }
 
