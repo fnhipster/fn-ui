@@ -24,12 +24,18 @@ template.innerHTML = /* html */ `
       font-size: 3rem;
     }
 
-    ::slotted(nav) {
+    nav {
       display: flex;
       gap: var(--spacing-md);
       font: var(--font-accent);
       text-transform: uppercase;
       font-size: 1.4rem;
+    }
+
+    fn-action a > em {
+      background-color: var(--color-fg);
+      color: var(--color-bg);
+      font-style: normal;
     }
   </style>
 
@@ -40,7 +46,7 @@ template.innerHTML = /* html */ `
       </a>
     </fn-action>
 
-    <slot name="nav"></slot>
+    <nav></nav>
   </header>
 `;
 
@@ -49,6 +55,46 @@ export default class Header extends HTMLElement {
     super();
     const shadowRoot = this.attachShadow({ mode: 'open' });
     shadowRoot.appendChild(template.content.cloneNode(true));
+  }
+
+  connectedCallback() {
+    this.addEventListener('set-nav', this.handleSetNav);
+  }
+
+  disconnectedCallback() {
+    this.removeEventListener('set-nav', this.handleSetNav);
+  }
+
+  handleSetNav({ detail }) {
+    const nav = this.shadowRoot.querySelector('nav');
+    nav.innerHTML = '';
+
+    detail?.forEach(({
+      label,
+      shortcut,
+      disabled,
+      href,
+      callback,
+    }) => {
+      const navLink = document.createRange().createContextualFragment(`
+        <fn-action button="true" disabled="${disabled}" data-umami-event="nav-link-click" data-umami-event-url="${href}">
+          <a href="${href}">
+            ${label.replace(shortcut, `<em>${shortcut}</em>`)}
+          </a>
+        </fn-action>
+      `);
+
+      const action = navLink.querySelector('fn-action');
+
+      if (callback) {
+        action.addEventListener('click', (e) => {
+          e.preventDefault();
+          callback();
+        });
+      }
+
+      nav.appendChild(action);
+    });
   }
 }
 
