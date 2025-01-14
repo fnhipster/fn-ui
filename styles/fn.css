@@ -126,21 +126,27 @@ main h3 {
   word-spacing: -0.25em;
 }
 
-main h1 > span,
-main h2 > span,
-main h3 > span {
-  display: block;
+main h1 span,
+main h2 span,
+main h3 span {
+  display: inline-block;
 }
 
-main h1 .accent,
-main h2 .accent,
-main h3 .accent {
+main h1 span:not(:last-of-type)::after,
+main h2 span:not(:last-of-type)::after,
+main h3 span:not(:last-of-type)::after {
+  content: '\00a0';
+}
+
+main h1 > em,
+main h2 > em,
+main h3 > em {
   font: var(--font-accent);
   text-transform: uppercase;
   word-spacing: normal;
   letter-spacing: 0.05em;
   font-size: var(--font-accent-lg);
-  display: block;
+  display: inline-block;
   margin-top: var(--spacing-xs);
 }
 
