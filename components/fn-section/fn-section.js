@@ -1,5 +1,5 @@
 /* eslint-disable import/no-cycle */
-import { applyTheme } from "../index.js";
+import { applyTheme } from '../index.js';
 
 const tagName = 'fn-section';
 
@@ -60,7 +60,7 @@ export default class Section extends HTMLElement {
         const bgColor = this.getAttribute('bg-color');
 
         if (fgColor && bgColor) {
-          applyTheme(fgColor, bgColor);
+          applyTheme(fgColor, bgColor, false);
         }
 
         // emit event

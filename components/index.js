@@ -1,3 +1,4 @@
+/* eslint-disable import/no-cycle */
 export { default as Binary } from './fn-binary/fn-binary.js';
 export { default as Footer } from './fn-footer/fn-footer.js';
 export { default as Header } from './fn-header/fn-header.js';
@@ -140,11 +141,11 @@ function makeCursor(fg, bg) {
   document.documentElement.style.setProperty('--cursor-text', `url(${textURI}), auto`);
 }
 
-export function applyTheme(fg, bg) {
+export function applyTheme(fg, bg, meta = true) {
   const _fg = fg || getComputedStyle(document.documentElement).getPropertyValue('--color-fg');
   const _bg = bg || getComputedStyle(document.documentElement).getPropertyValue('--color-bg');
   document.documentElement.style.setProperty('--color-fg', _fg);
   document.documentElement.style.setProperty('--color-bg', _bg);
-  document.querySelector('meta[name="theme-color"]')?.setAttribute('content', _bg);
+  if (meta) document.querySelector('meta[name="theme-color"]')?.setAttribute('content', _bg);
   makeCursor(_fg, _bg);
 }
