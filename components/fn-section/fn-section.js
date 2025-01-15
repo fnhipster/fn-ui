@@ -56,15 +56,18 @@ export default class Section extends HTMLElement {
   observer = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {
-        const fgColor = this.getAttribute('fg-color');
-        const bgColor = this.getAttribute('bg-color');
-
-        if (fgColor && bgColor) {
-          applyTheme(fgColor, bgColor, false);
-        }
-
         // emit event
         this.dispatchEvent(new CustomEvent('visibility', { detail: entry.isIntersecting }));
+
+        if (entry.isIntersecting) {
+           // set theme
+           const fgColor = this.getAttribute('fg-color');
+           const bgColor = this.getAttribute('bg-color');
+           
+           if (fgColor && bgColor) {
+             applyTheme(fgColor, bgColor, false);
+           }
+        }
 
         // track viewed
         if (entry.isIntersecting && this.state === 'idle') {
