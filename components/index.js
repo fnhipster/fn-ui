@@ -149,3 +149,56 @@ export function applyTheme(fg, bg, meta = true) {
   if (meta) document.querySelector('meta[name="theme-color"]')?.setAttribute('content', _bg);
   makeCursor(_fg, _bg);
 }
+
+// Scrolls the page to a given point, mimicking an Apple II computer
+export function scrollToPoint(targetY, step = 20, interval = 10) {
+  const currentY = window.scrollY || document.documentElement.scrollTop;
+  const direction = targetY > currentY ? 1 : -1; // Determine scroll direction
+
+  function stepScroll() {
+    const newY = window.scrollY + direction * step;
+    const reachedTarget = direction === 1 ? newY >= targetY : newY <= targetY;
+
+    // Update scroll position
+    window.scrollTo(0, reachedTarget ? targetY : newY);
+
+    if (!reachedTarget) {
+      setTimeout(stepScroll, interval);
+    }
+  }
+  // Start the scrolling
+  stepScroll();
+}
+
+export function scrollToActive(hash, choppy = false) {
+  // scroll to the hash
+  const path = hash.replace(/^#/, '');
+
+  if (path) {
+    const element = document.body.querySelector(`fn-section[data-path="${path}"]`);
+
+    if (element) {
+      const rect = element.getBoundingClientRect();
+      const windowHeight = window.innerHeight;
+      const offset = (document.querySelector('body > header')?.offsetHeight ?? 0) + 10;
+      // If element's height is greater than the window height, scroll to the top with an offset
+      if (rect.height + offset > windowHeight) {
+        const pos = rect.top + window.scrollY - offset;
+        if (choppy) {
+          scrollToPoint(pos);
+        } else {
+          window.scrollTo({ top: pos });
+        }
+      } else {
+        // Otherwise, center the element with an offset
+        // eslint-disable-next-line max-len
+        const pos = (rect.top + window.scrollY - windowHeight / 2 + rect.height / 2) - (offset / 2.5);
+        if (choppy) {
+          scrollToPoint(pos);
+        } else {
+          window.scrollTo({ top: pos });
+        }
+      }
+    }
+  }
+}
