@@ -1,3 +1,6 @@
+/* eslint-disable import/no-cycle */
+import { applyTheme } from "../index.js";
+
 const tagName = 'fn-section';
 
 const template = document.createElement('template');
@@ -22,9 +25,10 @@ template.innerHTML = /* html */ `
 
     .indicator.active {
       position: sticky;
-      top: 0;
+      top: var(--offset, 0);
       height: 60vh;
-      z-index: -1;
+      height: 60dvh;
+      z-index: 9999;
       width: 1px;
       margin-left: -1px;
     }
@@ -52,6 +56,13 @@ export default class Section extends HTMLElement {
   observer = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {
+        const fgColor = this.getAttribute('fg-color');
+        const bgColor = this.getAttribute('bg-color');
+
+        if (fgColor && bgColor) {
+          applyTheme(fgColor, bgColor);
+        }
+
         // emit event
         this.dispatchEvent(new CustomEvent('visibility', { detail: entry.isIntersecting }));
 
@@ -72,11 +83,12 @@ export default class Section extends HTMLElement {
     },
     {
       threshold: 1,
-    }
+    },
   );
 
   connectedCallback() {
     if (this.getAttribute('track-visibility') === 'true') {
+      this.style.setProperty('--offset', `${this.getAttribute('track-visibility-offset') ?? '0'}`);
       const $indicator = this.shadowRoot.querySelector('.indicator');
       $indicator.classList.add('active');
       this.observer.observe($indicator);

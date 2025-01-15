@@ -36,6 +36,7 @@ template.innerHTML = /* html */ `
       background-color: var(--color-fg);
       color: var(--color-bg);
       font-style: normal;
+      transition: inherit;
     }
   </style>
 

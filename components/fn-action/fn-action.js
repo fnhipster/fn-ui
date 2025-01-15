@@ -11,7 +11,7 @@ template.innerHTML = /* html */ `
       border: none;
       text-decoration: var(--decoration, underline);
       outline-offset: 0.2rem;
-      transition: transform 50ms ease-in;
+      transition: transform 50ms ease-in, background-color 200ms ease, color 200ms ease;
       padding: 0;
     }
 
