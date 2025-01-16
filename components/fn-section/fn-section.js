@@ -65,7 +65,7 @@ export default class Section extends HTMLElement {
            const bgColor = this.getAttribute('bg-color');
            
            if (fgColor && bgColor) {
-             applyTheme(fgColor, bgColor, false);
+             applyTheme(fgColor, bgColor);
            }
         }
 

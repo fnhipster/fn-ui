@@ -4,6 +4,10 @@ const template = document.createElement('template');
 
 template.innerHTML = /* html */ `
   <style>
+    :host {
+      display: inline-block;
+    }
+    
     ::slotted(a),
     ::slotted(button) {
       color: var(--color-fg, currentColor);
