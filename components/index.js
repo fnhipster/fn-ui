@@ -151,23 +151,23 @@ export function applyTheme(fg, bg, meta = true) {
 }
 
 // Scrolls the page to a given point, mimicking an Apple II computer
-function scrollToPoint(targetY, step = 20, interval = 10) {
+function scrollToPoint(targetY, step = 50) {
   let currentY = window.scrollY || document.documentElement.scrollTop;
   const direction = targetY > currentY ? 1 : -1; // Determine scroll direction
 
   function stepScroll() {
-      // Update the current position at the start of each step
-      currentY = window.scrollY || document.documentElement.scrollTop;
+    // Update the current position at the start of each step
+    currentY = window.scrollY || document.documentElement.scrollTop;
 
-      const newY = currentY + direction * step;
-      const reachedTarget = direction === 1 ? newY >= targetY : newY <= targetY;
+    const newY = currentY + direction * step;
+    const reachedTarget = direction === 1 ? newY >= targetY : newY <= targetY;
 
-      // Update scroll position
-      window.scrollTo(0, reachedTarget ? targetY : newY);
+    // Update scroll position
+    window.scrollTo(0, reachedTarget ? targetY : newY);
 
-      if (!reachedTarget) {
-          setTimeout(stepScroll, interval);
-      }
+    if (!reachedTarget) {
+      requestAnimationFrame(stepScroll);
+    }
   }
 
   // Start the scrolling
