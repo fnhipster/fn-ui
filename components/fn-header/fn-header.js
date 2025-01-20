@@ -32,7 +32,7 @@ template.innerHTML = /* html */ `
       font-size: 1.4rem;
     }
 
-    fn-action a > em {
+    fn-action a > em, fn-action button > em {
       background-color: var(--color-fg);
       color: var(--color-bg);
       font-style: normal;
@@ -77,11 +77,12 @@ export default class Header extends HTMLElement {
       href,
       callback,
     }) => {
+      const tag = href ? 'a' : 'button';
       const navLink = document.createRange().createContextualFragment(`
         <fn-action button="true" disabled="${disabled}" data-umami-event="nav-link-click" data-umami-event-url="${href}">
-          <a href="${href}">
+          <${tag} ${href ? `href=${href}` : ''}>
             ${label.replace(shortcut, `<em>${shortcut}</em>`)}
-          </a>
+          </${tag}>
         </fn-action>
       `);
 
@@ -90,7 +91,7 @@ export default class Header extends HTMLElement {
       if (callback) {
         action.addEventListener('click', (e) => {
           e.preventDefault();
-          callback();
+          callback(action);
         });
       }
 

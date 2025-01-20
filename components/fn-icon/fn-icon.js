@@ -17,12 +17,17 @@ template.innerHTML = /* html */ `
     span {
       line-height: 0;
     }
+
+    :host([active]) svg {
+      fill: currentColor;
+    }
   </style>
   <span></span>
 `;
 
 export default class Icon extends HTMLElement {
   icons = {
+    heart: () => import('./icons/heart.js'),
     external: () => import('./icons/external.js'),
     link: () => import('./icons/link.js'),
     viewed: () => import('./icons/viewed.js'),
