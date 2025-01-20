@@ -53,6 +53,12 @@ template.innerHTML = /* html */ `
       background: var(--color-fg);
       clip-path: polygon(0 var(--corner),var(--corner) 0,calc(100% - var(--corner)) 0,100% var(--corner),100% calc(100% - var(--corner)),calc(100% - var(--corner)) 100%,var(--corner) 100%,0 calc(100% - var(--corner)));
     }
+
+    ::slotted(img) {
+      width: 100%;
+      height: auto;
+      object-fit: cover;
+    }
   </style>
 
   <div class="wrapper">

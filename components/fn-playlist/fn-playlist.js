@@ -6,6 +6,7 @@ template.innerHTML = /* html */ `
   <style>
     :host > div {
       position: relative;
+      overflow: hidden;
     }
 
     .wrapper {
@@ -23,8 +24,8 @@ template.innerHTML = /* html */ `
     }
 
     ::slotted([slot="cover"]) {
-      max-width: 100%;
-      max-height: 100%;
+      width: 100%;
+      height: auto;
     }
 
     ::slotted([slot="title"]) {
@@ -64,7 +65,7 @@ template.innerHTML = /* html */ `
     
   <div>
     <slot name="cover"></slot>
-
+  
     <div class="wrapper">
       <header>
         <slot name="title"></slot>
