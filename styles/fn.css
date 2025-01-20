@@ -77,6 +77,10 @@
   cursor: var(--cursor-default-click, default);
 }
 
+*:focus-visible {
+  outline: none;
+}
+
 body {
   box-sizing: border-box;
   display: flex;
@@ -193,6 +197,11 @@ main blockquote {
 
 fn-action a:has(fn-icon) {
   gap: var(--spacing-xs);
+}
+
+fn-head span.divider::after {
+  content: "|";
+  opacity: 0.25;
 }
 
 /* Sticky UI */
