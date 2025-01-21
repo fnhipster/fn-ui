@@ -27,6 +27,7 @@ template.innerHTML = /* html */ `
     }
   </style>
 
+  <slot name="cover"></slot>
   <slot name="hero"></slot>
   <slot name="ctas" class="ctas"></slot>
 `;
