@@ -21,8 +21,10 @@ template.innerHTML = /* html */ `
 
     ::slotted([slot="cover"]) {
       margin-bottom: var(--spacing-sm);
+      display: block;
+      line-height: 0;
     }
-
+   
     ::slotted([slot="ctas"]) {
       display: flex;
       gap: var(--spacing-sm);

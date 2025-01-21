@@ -27,7 +27,6 @@ template.innerHTML = /* html */ `
       position: sticky;
       top: var(--offset, 0);
       height: 60vh;
-      height: 60dvh;
       z-index: 9999;
       width: 1px;
       margin-left: -1px;
