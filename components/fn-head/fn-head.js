@@ -19,6 +19,10 @@ template.innerHTML = /* html */ `
       padding: 0 !important;
     }
 
+    ::slotted([slot="cover"]) {
+      margin-bottom: var(--spacing-sm);
+    }
+
     ::slotted([slot="ctas"]) {
       display: flex;
       gap: var(--spacing-sm);
