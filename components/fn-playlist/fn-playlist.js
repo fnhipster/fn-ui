@@ -61,7 +61,7 @@ template.innerHTML = /* html */ `
       gap: var(--spacing-xs);
     }
 
-    @container (min-width: 768px) {
+    @container (min-width: 650px) {
       ol ::slotted(li) {
         gap: var(--spacing-md);
         grid-template-columns: 1.7em 1fr 1fr;
