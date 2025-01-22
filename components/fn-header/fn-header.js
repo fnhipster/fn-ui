@@ -28,6 +28,7 @@ template.innerHTML = /* html */ `
       display: flex;
       gap: var(--spacing-md);
       font: var(--font-accent);
+      letter-spacing: 0.05em;
       text-transform: uppercase;
       font-size: 1.4rem;
     }

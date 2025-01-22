@@ -15,7 +15,7 @@ template.innerHTML = /* html */ `
       align-items: center;
       display: flex;
       font: var(--font-accent);
-      font-size: 1.4rem;
+      letter-spacing: 0.05em;
       gap: var(--spacing-sm);
       justify-content: space-between;
       padding: var(--margin);

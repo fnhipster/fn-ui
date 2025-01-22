@@ -11,7 +11,8 @@ template.innerHTML = /* html */ `
 
     ol {
       font: var(--font-accent);
-      font-size: var(--font-accent-lg);
+      letter-spacing: 0.05em;
+      font-size: var(--font-accent-md);
       list-style: decimal-leading-zero;
       list-style-position: inside;
       margin: 0;
@@ -43,6 +44,10 @@ template.innerHTML = /* html */ `
       height: 100%;
       background: var(--color-fg);
       opacity: 0.1;
+    }
+
+    ol ::slotted(strong) {
+      font-weight: 400;
     }
 
     slot[name="cover"] {

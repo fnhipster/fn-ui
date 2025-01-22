@@ -6,8 +6,8 @@ template.innerHTML = /* html */ `
   <style>
     :host {
       font: var(--font-accent);
-      text-transform: uppercase;
       letter-spacing: 0.05em;
+      text-transform: uppercase;
     }
   </style>
     

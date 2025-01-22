@@ -33,9 +33,9 @@ template.innerHTML = /* html */ `
     ::slotted(.button) {
       display: inline-flex;
       font: var(--font-accent);
-      font-size: var(--font-accent-lg);
-      justify-content: center;
       letter-spacing: 0.05em;
+      font-size: var(--font-accent-md);
+      justify-content: center;
       text-decoration: none;
       text-transform: uppercase;
     }

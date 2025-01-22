@@ -5,6 +5,11 @@
   font-style: normal;
   font-weight: 400;
   src: url('../fonts/press-start-2p-v15-latin-regular.woff2') format('woff2');
+
+  size-adjust: 50%;
+  ascent-override: 178%;
+  descent-override: 56%;
+  line-gap-override: normal;
 }
 
 /* noto-sans-mono-regular - latin */
@@ -25,6 +30,13 @@
   src: url('../fonts/noto-sans-mono-v30-latin-800.woff2') format('woff2');
 }
 
+/* Noto Sans Mono Fallback */
+@font-face {
+  font-family: 'Noto Sans Mono Fallback';
+  size-adjust: 106.54%;
+  src: local('monospace');
+}
+
 /* handjet-regular - latin */
 @font-face {
   font-display: swap;
@@ -32,6 +44,11 @@
   font-style: normal;
   font-weight: 400;
   src: url('../fonts/handjet-v19-latin-regular.woff2') format('woff2');
+
+  size-adjust: 140%;
+  ascent-override: 78%;
+  descent-override: 13%;
+  line-gap-override: normal;
 }
 
 /* handjet-600 - latin */
@@ -40,5 +57,10 @@
   font-family: 'Handjet';
   font-style: normal;
   font-weight: 600;
-  src: url('../fonts/handjet-v19-latin-600.woff2') format('woff2');
+  src: url('../fonts/handjet-v19-latin-regular.woff2') format('woff2');
+
+  size-adjust: 125%;
+  ascent-override: 78%;
+  descent-override: 13%;
+  line-gap-override: normal;
 }
