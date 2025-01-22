@@ -20,7 +20,7 @@ template.innerHTML = /* html */ `
 
     ol ::slotted(li) {
       position: relative;
-      padding: var(--spacing-sm);
+      padding: var(--spacing-xs);
       counter-increment: item-number;
       display: grid;
       grid-template-columns: 1.7em auto;
@@ -50,7 +50,6 @@ template.innerHTML = /* html */ `
       display: block;
     }
 
-
     footer {
       display: grid;
       gap: var(--spacing-sm);
@@ -79,6 +78,7 @@ template.innerHTML = /* html */ `
         gap: var(--spacing-md);
         grid-template-columns: 1.7em 1fr 1fr;
         grid-template-rows: 1fr;
+        padding: var(--spacing-sm);
       }
 
       ol ::slotted(li)::before {

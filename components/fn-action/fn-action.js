@@ -33,6 +33,7 @@ template.innerHTML = /* html */ `
     ::slotted(.button) {
       display: inline-flex;
       font: var(--font-accent);
+      font-size: var(--font-accent-lg);
       justify-content: center;
       letter-spacing: 0.05em;
       text-decoration: none;
