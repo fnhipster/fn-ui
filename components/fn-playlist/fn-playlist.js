@@ -56,6 +56,7 @@ template.innerHTML = /* html */ `
       gap: var(--spacing-sm);
       margin-top: var(--spacing-sm);
     }
+    
 
     footer > fn-action {
       display: inline-flex;
@@ -64,6 +65,13 @@ template.innerHTML = /* html */ `
     footer > fn-action > a {
       flex-grow: 1;
       gap: var(--spacing-xs);
+    }
+
+    @container (min-width: 390px) {
+      footer {
+        grid-auto-flow: column;
+        grid-auto-columns: 1fr;
+      }
     }
 
     @container (min-width: 650px) {
