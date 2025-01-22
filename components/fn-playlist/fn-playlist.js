@@ -45,6 +45,11 @@ template.innerHTML = /* html */ `
       opacity: 0.1;
     }
 
+    slot[name="cover"] {
+      margin-bottom: var(--spacing-xs);
+      display: block;
+    }
+
 
     footer {
       display: grid;
@@ -82,6 +87,7 @@ template.innerHTML = /* html */ `
     
   <div>
     <div class="wrapper">  
+      <slot name="cover"></slot>
       <ol>
         <slot name="song"></slot>
       </ol>
