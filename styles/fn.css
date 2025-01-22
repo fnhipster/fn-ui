@@ -142,9 +142,9 @@ main h3 span:not(:last-of-type)::after {
   content: '\00a0';
 }
 
-main h1 > em,
-main h2 > em,
-main h3 > em {
+main h1 em,
+main h2 em,
+main h3 em {
   font: var(--font-accent);
   text-transform: uppercase;
   word-spacing: normal;
