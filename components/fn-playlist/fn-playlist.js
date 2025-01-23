@@ -40,6 +40,7 @@ template.innerHTML = /* html */ `
       padding: var(--spacing-sm) var(--spacing-xs);
       counter-increment: item-number;
       display: grid;
+      align-items: center;
       grid-template-columns: 1.7em auto;
       grid-template-rows: max-content max-content;
       grid-column-gap: var(--spacing-xs);
@@ -49,7 +50,7 @@ template.innerHTML = /* html */ `
       scroll-snap-align: center;
     }
 
-    ol ::slotted(li)::before {
+    ol ::slotted(li:not(:empty))::before {
       content: counter(item-number) ". ";
       grid-column: 1; 
       grid-row: 1 / span 2;
@@ -65,6 +66,10 @@ template.innerHTML = /* html */ `
       height: 100%;
       background: var(--color-fg);
       opacity: 0.1;
+    }
+
+    ol ::slotted(li:empty)::after {
+      opacity: 0.05;
     }
 
     .wrapper:not(.compact) ol ::slotted(li:nth-child(even))::after {
@@ -100,7 +105,6 @@ template.innerHTML = /* html */ `
 
     @container (min-width: 600px) {
       ol ::slotted(li) {
-        gap: var(--spacing-sm);
         grid-template-columns: 1.7em 1fr 1fr;
         grid-template-rows: 1fr;
         padding: var(--spacing-sm);
@@ -153,6 +157,17 @@ export default class Playlist extends HTMLElement {
     this.attributeChangedCallback('variant', null, this.getAttribute('variant'));
     this.attributeChangedCallback('apple-music-url', null, this.getAttribute('apple-music-url'));
     this.attributeChangedCallback('spotify-url', null, this.getAttribute('spotify-url'));
+
+    // if compact, add an empty li to the end of the list if there are an odd number of songs
+    if (this.getAttribute('variant') === 'compact') {
+      const songs = this.querySelectorAll('[slot="song"]');
+      if (songs.length % 2 === 1) {
+        const emptyLi = document.createElement('li');
+        emptyLi.setAttribute('aria-hidden', 'true');
+        emptyLi.setAttribute('slot', 'song');
+        this.appendChild(emptyLi);
+      }
+    }
   }
 
   attributeChangedCallback(name, oldValue, newValue) {
