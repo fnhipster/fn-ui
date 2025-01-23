@@ -17,6 +17,22 @@ template.innerHTML = /* html */ `
       list-style-position: inside;
       margin: 0;
       padding: 0;
+      -ms-overflow-style: none;  /* Internet Explorer 10+ */
+      scrollbar-width: none;  /* Firefox */
+    }
+
+    ol::-webkit-scrollbar { 
+      display: none;  /* Safari and Chrome */
+    }
+
+    .compact ol {
+      display: grid;
+      grid-auto-flow: column;
+      grid-template-rows: repeat(2, auto);
+      grid-auto-columns: 90%;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      gap: var(--spacing-sm);
     }
 
     ol ::slotted(li) {
@@ -26,6 +42,11 @@ template.innerHTML = /* html */ `
       display: grid;
       grid-template-columns: 1.7em auto;
       grid-template-rows: max-content max-content;
+      grid-column-gap: var(--spacing-xs);
+    }
+
+    .compact ol ::slotted(li) {
+      scroll-snap-align: center;
     }
 
     ol ::slotted(li)::before {
@@ -35,7 +56,7 @@ template.innerHTML = /* html */ `
       opacity: 0.5;
     }
 
-    ol ::slotted(li:nth-child(odd))::after {
+    ol ::slotted(li)::after {
       content: '';
       position: absolute;
       top: 0;
@@ -44,6 +65,10 @@ template.innerHTML = /* html */ `
       height: 100%;
       background: var(--color-fg);
       opacity: 0.1;
+    }
+
+    .wrapper:not(.compact) ol ::slotted(li:nth-child(even))::after {
+      background: none;
     }
 
     ol ::slotted(strong) {
@@ -131,6 +156,7 @@ export default class Playlist extends HTMLElement {
 
   connectedCallback() {
     // trigger attributeChangedCallback to set initial values
+    this.attributeChangedCallback('variant', null, this.getAttribute('variant'));
     this.attributeChangedCallback('apple-music-url', null, this.getAttribute('apple-music-url'));
     this.attributeChangedCallback('spotify-url', null, this.getAttribute('spotify-url'));
   }
@@ -146,6 +172,10 @@ export default class Playlist extends HTMLElement {
       const spotifyLink = this.shadowRoot.querySelector('#spotify-link');
       spotifyLink.querySelector('a').setAttribute('href', newValue);
       spotifyLink.style.setProperty('display', newValue ? 'inline-flex' : 'none');
+    }
+
+    if (name === 'variant') {
+      this.shadowRoot.querySelector('.wrapper').classList.toggle('compact', newValue === 'compact');
     }
   }
 }
