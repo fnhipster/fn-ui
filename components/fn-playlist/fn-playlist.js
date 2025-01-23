@@ -21,7 +21,7 @@ template.innerHTML = /* html */ `
 
     ol ::slotted(li) {
       position: relative;
-      padding: var(--spacing-xs);
+      padding: var(--spacing-sm) var(--spacing-xs);
       counter-increment: item-number;
       display: grid;
       grid-template-columns: 1.7em auto;
@@ -71,29 +71,24 @@ template.innerHTML = /* html */ `
       gap: var(--spacing-xs);
     }
 
-    @container (min-width: 390px) {
+    @container (min-width: 450px) {
       footer {
         grid-auto-flow: column;
         grid-auto-columns: 1fr;
       }
     }
 
-    @container (min-width: 650px) {
+    @container (min-width: 600px) {
       ol ::slotted(li) {
-        gap: var(--spacing-md);
+        gap: var(--spacing-sm);
         grid-template-columns: 1.7em 1fr 1fr;
         grid-template-rows: 1fr;
-        padding: var(--spacing-sm);
+        padding: var(--spacing-md) var(--spacing-sm);
       }
 
       ol ::slotted(li)::before {
         grid-column: 1; 
         grid-row: 1;
-      }
-      
-      footer {
-        grid-auto-flow: column;
-        grid-auto-columns: 1fr;
       }
     }
   </style>

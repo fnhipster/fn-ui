@@ -10,19 +10,15 @@ template.innerHTML = /* html */ `
       line-height: 0;
     }
 
-    .title::slotted(h1) {
-      bottom: 0.1em;
+    .title {
+      bottom: 0;
       box-sizing: border-box;
       display: inline;
-      font: var(--font-heading) !important;
-      font-size: 7rem !important;
       left: 0;
-      margin: 0 !important;
-      max-width: 90%;
-      padding: var(--margin);
+      width: 100%;
+      padding: 0 var(--margin);
       position: absolute;
       text-shadow: 0 0 .8em var(--color-bg);
-      text-transform: uppercase !important;
     }
 
     fn-image {

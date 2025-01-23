@@ -15,8 +15,9 @@
   /* Typography: Accent */
   --font-accent-family: Handjet, Arial Narrow, sans-serif;
   --font-accent-normal: 400;
-  --font-accent-md: 1.2rem;
-  --font-accent-lg: 1.4rem;
+  --font-accent-sm: 1.3rem;
+  --font-accent-md: 1.4rem;
+  --font-accent-lg: 1.6rem;
   --font-accent-leading: 1.5;
   --font-accent-xxl: 5.4rem;
   --font-accent: var(--font-accent-normal) var(--font-accent-md) /
@@ -150,7 +151,7 @@ main h3 em {
   letter-spacing: 0.05em;
   text-transform: uppercase;
   word-spacing: normal;
-  font-size: var(--font-accent-lg);
+  font-size: var(--font-accent-md);
   display: inline-block;
 }
 

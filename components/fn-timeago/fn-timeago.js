@@ -6,6 +6,7 @@ template.innerHTML = /* html */ `
   <style>
     :host {
       font: var(--font-accent);
+      font-size: var(--font-accent-sm);
       letter-spacing: 0.05em;
       text-transform: uppercase;
     }
