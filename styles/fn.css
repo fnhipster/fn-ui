@@ -217,6 +217,14 @@ fn-image {
   width: 100%;
 }
 
+fn-playlist li {
+  font-size: var(--font-accent-sm);
+}
+
+fn-playlist li > strong {
+  font-size: var(--font-accent-md);
+}
+
 /* Sticky UI */
 
 /* Small Viewport */
