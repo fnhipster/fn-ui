@@ -46,6 +46,10 @@ export default class Icon extends HTMLElement {
     shadowRoot.appendChild(template.content.cloneNode(true));
   }
 
+  connectedCallback() {
+    this.setAttribute('role', 'img');
+  }
+
   attributeChangedCallback(name, prev, next) {
     if (name === 'icon') {
       this.icons[next.toLowerCase()]()
@@ -64,7 +68,7 @@ export default class Icon extends HTMLElement {
     }
 
     if (name === 'label') {
-      this.shadowRoot.querySelector('svg')?.setAttribute('aria-label', next);
+      this.setAttribute('aria-label', next);
     }
   }
 }
