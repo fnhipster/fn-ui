@@ -75,11 +75,6 @@ template.innerHTML = /* html */ `
       font-weight: 400;
     }
 
-    slot[name="cover"] {
-      margin-bottom: var(--spacing-xs);
-      display: block;
-    }
-
     footer {
       display: grid;
       gap: var(--spacing-sm);
@@ -108,7 +103,7 @@ template.innerHTML = /* html */ `
         gap: var(--spacing-sm);
         grid-template-columns: 1.7em 1fr 1fr;
         grid-template-rows: 1fr;
-        padding: var(--spacing-md) var(--spacing-sm);
+        padding: var(--spacing-sm);
       }
 
       ol ::slotted(li)::before {
@@ -120,7 +115,6 @@ template.innerHTML = /* html */ `
     
   <div>
     <div class="wrapper">  
-      <slot name="cover"></slot>
       <ol>
         <slot name="song"></slot>
       </ol>
