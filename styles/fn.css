@@ -225,6 +225,32 @@ fn-playlist li > strong {
   font-size: var(--font-accent-md);
 }
 
+[data-tooltip] {
+  position: relative;
+}
+
+[data-tooltip]::before {
+  content: attr(data-tooltip);
+  position: absolute;
+  top: calc(-100% - 1.5em);
+  left: 50%;
+  transform: translate(-50%, 0);
+  padding: 0.2em 0.5em;
+  background: var(--color-fg);
+  color: var(--color-bg);
+  font-size: var(--font-accent-sm);
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 200ms ease;
+  font: var(--font-accent);
+  text-transform: uppercase;
+}
+
+[data-tooltip]:hover::before {
+  opacity: 1;
+}
+
 /* Sticky UI */
 
 /* Small Viewport */

@@ -1,4 +1,4 @@
-import{C as g}from"./utils-CG_vfxgm.js";const m={title:"components/fn-playlist",tags:["autodocs"],parameters:{layout:"padded"},render:({innerHTML:l,...i})=>{const s=g("fn-playlist",i);return s.innerHTML=l,s},argTypes:{}},o={args:{"apple-music-url":"https://music.apple.com/us/playlist/playlist-name/pl.u-76oNkXoT9G","spotify-url":"https://open.spotify.com/playlist/playlist-id",innerHTML:`
+import{C as g}from"./utils-CG_vfxgm.js";const a={title:"components/fn-playlist",tags:["autodocs"],parameters:{layout:"padded"},render:({innerHTML:r,...i})=>{const t=g("fn-playlist",i);return t.innerHTML=r,t},argTypes:{variant:{control:{type:"select",options:["default","compact"]}}}},o={args:{"apple-music-url":"https://music.apple.com/us/playlist/playlist-name/pl.u-76oNkXoT9G","spotify-url":"https://open.spotify.com/playlist/playlist-id",variant:"default",innerHTML:`
       <li slot="song"><strong>Song 1</strong> by Some Artist</li>
       <li slot="song"><strong>Song 2</strong> by Some Artist</li>
       <li slot="song"><strong>Song 3</strong> by Some Artist</li>
@@ -9,10 +9,11 @@ import{C as g}from"./utils-CG_vfxgm.js";const m={title:"components/fn-playlist",
       <li slot="song"><strong>Song 8</strong> by Some Artist</li>
       <li slot="song"><strong>Song 9</strong> by Some Artist</li>
       <li slot="song"><strong>Song 10</strong> by Some Artist</li>
-    `}};var t,n,r;o.parameters={...o.parameters,docs:{...(t=o.parameters)==null?void 0:t.docs,source:{originalSource:`{
+    `}};var s,n,l;o.parameters={...o.parameters,docs:{...(s=o.parameters)==null?void 0:s.docs,source:{originalSource:`{
   args: {
     'apple-music-url': 'https://music.apple.com/us/playlist/playlist-name/pl.u-76oNkXoT9G',
     'spotify-url': 'https://open.spotify.com/playlist/playlist-id',
+    variant: 'default',
     innerHTML: \`
       <li slot="song"><strong>Song 1</strong> by Some Artist</li>
       <li slot="song"><strong>Song 2</strong> by Some Artist</li>
@@ -26,4 +27,4 @@ import{C as g}from"./utils-CG_vfxgm.js";const m={title:"components/fn-playlist",
       <li slot="song"><strong>Song 10</strong> by Some Artist</li>
     \`
   }
-}`,...(r=(n=o.parameters)==null?void 0:n.docs)==null?void 0:r.source}}};const a=["Primary"];export{o as Primary,a as __namedExportsOrder,m as default};
+}`,...(l=(n=o.parameters)==null?void 0:n.docs)==null?void 0:l.source}}};const m=["Primary"];export{o as Primary,m as __namedExportsOrder,a as default};
