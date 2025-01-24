@@ -76,11 +76,11 @@ export default class Header extends HTMLElement {
       shortcut,
       disabled,
       href,
-      callback,
+      mount,
     }) => {
       const tag = href ? 'a' : 'button';
       const navLink = document.createRange().createContextualFragment(`
-        <fn-action button="true" disabled="${disabled}" data-umami-event="nav-link-click" data-umami-event-url="${href}">
+        <fn-action button="true" disabled="${disabled}">
           <${tag} ${href ? `href=${href}` : ''}>
             ${label.replace(shortcut, `<em>${shortcut}</em>`)}
           </${tag}>
@@ -89,12 +89,7 @@ export default class Header extends HTMLElement {
 
       const action = navLink.querySelector('fn-action');
 
-      if (callback) {
-        action.addEventListener('click', (e) => {
-          e.preventDefault();
-          callback(action);
-        });
-      }
+      mount?.(action);
 
       nav.appendChild(action);
     });

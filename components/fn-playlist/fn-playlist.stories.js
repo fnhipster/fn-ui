@@ -13,7 +13,14 @@ export default {
     element.innerHTML = innerHTML;
     return element;
   },
-  argTypes: { },
+  argTypes: {
+    variant: {
+      control: {
+        type: 'select',
+        options: ['default', 'compact'],
+      },
+    },
+  },
 };
 
 // More on writing stories with args: https://storybook.js.org/docs/writing-stories/args
@@ -21,6 +28,7 @@ export const Primary = {
   args: {
     'apple-music-url': 'https://music.apple.com/us/playlist/playlist-name/pl.u-76oNkXoT9G',
     'spotify-url': 'https://open.spotify.com/playlist/playlist-id',
+    variant: 'default',
     innerHTML: `
       <li slot="song"><strong>Song 1</strong> by Some Artist</li>
       <li slot="song"><strong>Song 2</strong> by Some Artist</li>
