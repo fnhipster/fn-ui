@@ -28,8 +28,10 @@ template.innerHTML = /* html */ `
     .image::slotted(*) {
       width: 100%;
       height: auto;
+      aspect-ratio: var(--aspect-ratio);
       display: block;
     }    
+
   </style>
 
   <slot class="image" name="image"></slot>
@@ -47,10 +49,11 @@ export default class Hero extends HTMLElement {
   }
 
   connectedCallback() {
-    this.image = this.querySelector('img');
-
-    this.image.style.width = '100%';
-    this.image.style.height = 'auto';
+    const image = this.querySelector('img, object');
+    if (image) {
+      const aspectRatio = Number(image.width ?? 1) / Number(image.height ?? 1);
+      this.style.setProperty('--aspect-ratio', aspectRatio);
+    }
   }
 }
 
