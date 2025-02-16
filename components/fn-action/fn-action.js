@@ -108,6 +108,8 @@ export default class Action extends HTMLElement {
 
   disabled = false;
 
+  ignoreElements = ['input', 'textarea', 'select'];
+
   href;
 
   static get observedAttributes() {
@@ -207,6 +209,8 @@ export default class Action extends HTMLElement {
   }
 
   handleShortcutKeyDown(event) {
+    const [origin] = event.composedPath();
+    if (this.ignoreElements.includes(origin.tagName.toLowerCase())) return;
     if (this.disabled) return;
     if (this.pressing) return;
     if (event.key.toLowerCase() === this.shortcut.toLowerCase()) {
@@ -221,6 +225,7 @@ export default class Action extends HTMLElement {
   }
 
   handleShortcutKeyUp(event) {
+    if (this.ignoreElements.includes(event.target.tagName.toLowerCase())) return;
     if (this.disabled) return;
     if (!this.pressing) return;
 
