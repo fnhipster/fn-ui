@@ -89,6 +89,13 @@ template.innerHTML = /* html */ `
       outline: none !important;
     }
 
+    ::slotted(a:not([aria-disabled]):active)::after, 
+    ::slotted(button:not(:disabled):active)::after, 
+    ::slotted(a:not([aria-disabled]).pressed)::after, 
+    ::slotted(button:not(:disabled).pressed)::after {
+      opacity: 0;
+    }
+
     ::slotted(a[aria-disabled]),
     ::slotted(button:disabled) {
       opacity: 0.5;
