@@ -33,6 +33,9 @@ export default class Icon extends HTMLElement {
     viewed: () => import('./icons/viewed.js'),
     rss: () => import('./icons/rss.js'),
     spotify: () => import('./icons/spotify.js'),
+    dreams: () => import('./icons/dreams.js'),
+    constructs: () => import('./icons/constructs.js'),
+    echoes: () => import('./icons/echoes.js'),
     'apple-music': () => import('./icons/apple-music.js'),
   };
 

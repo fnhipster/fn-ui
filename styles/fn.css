@@ -4,7 +4,8 @@
   --color-bg: #111111;
 
   /* Typography: Main */
-  --font-family: 'Noto Sans Mono', 'Noto Sans Mono Fallback', 'Courier New', Courier, 'Lucida Console', monospace;
+  --font-family: 'Noto Sans Mono', 'Noto Sans Mono Fallback', 'Courier New',
+    Courier, 'Lucida Console', monospace;
   --font-normal: 400;
   --font-bold: 800;
   --font-md: 1.6rem;
@@ -50,7 +51,7 @@
   color: var(--color-fg);
   background: var(--color-bg);
   cursor: var(--cursor-default, default);
-    transition: color 200ms ease;
+  transition: color 200ms ease;
 }
 
 :root::before {
@@ -95,7 +96,8 @@ body.appear {
   animation: glitch 0.5s linear;
 }
 
-p, p:active {
+p,
+p:active {
   cursor: var(--cursor-text, text);
 }
 
@@ -114,7 +116,7 @@ main {
 }
 
 main fn-head {
-  margin-bottom: var(--spacing-md)
+  margin-bottom: var(--spacing-md);
 }
 
 main strong {
@@ -209,7 +211,7 @@ fn-action a:has(fn-icon) {
 }
 
 fn-head span.divider::after {
-  content: "|";
+  content: '|';
   opacity: 0.25;
 }
 
@@ -225,30 +227,32 @@ fn-playlist li > strong {
   font-size: var(--font-accent-md);
 }
 
-[data-tooltip] {
-  position: relative;
-}
+@media (hover: hover) {
+  [data-tooltip] {
+    position: relative;
+  }
 
-[data-tooltip]::before {
-  content: attr(data-tooltip);
-  position: absolute;
-  top: calc(-100% - 1.5em);
-  left: 50%;
-  transform: translate(-50%, 0);
-  padding: 0.2em 0.5em;
-  background: var(--color-fg);
-  color: var(--color-bg);
-  font-size: var(--font-accent-sm);
-  white-space: nowrap;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 200ms ease;
-  font: var(--font-accent);
-  text-transform: uppercase;
-}
+  [data-tooltip]::before {
+    content: attr(data-tooltip);
+    position: absolute;
+    top: calc(-100% - 1.5em);
+    left: 50%;
+    transform: translate(-50%, 0);
+    padding: 0.2em 0.5em;
+    background: var(--color-fg);
+    color: var(--color-bg);
+    font-size: var(--font-accent-sm);
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 200ms ease;
+    font: var(--font-accent);
+    text-transform: uppercase;
+  }
 
-[data-tooltip]:hover::before {
-  opacity: 1;
+  [data-tooltip]:hover::before {
+    opacity: 1;
+  }
 }
 
 /* Sticky UI */
