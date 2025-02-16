@@ -30,9 +30,9 @@ export default class Type extends HTMLElement {
   }
 
   connectedCallback() {
-    this.minSpeed = this.getAttribute('min-speed') || this.minSpeed;
-    this.maxSpeed = this.getAttribute('max-speed') || this.maxSpeed;
-    this.wait = this.getAttribute('wait') || this.wait;
+    this.minSpeed = Number(this.getAttribute('min-speed')) || this.minSpeed;
+    this.maxSpeed = Number(this.getAttribute('max-speed')) || this.maxSpeed;
+    this.wait = Number(this.getAttribute('wait')) || this.wait;
     this.ellipsis = this.getAttribute('ellipsis') || this.ellipsis;
     this.nodes = [...this.childNodes];
     this.innerHTML = '';
