@@ -40,7 +40,7 @@ export default class Icon extends HTMLElement {
   };
 
   static get observedAttributes() {
-    return ['icon', 'disabled', 'label'];
+    return ['icon', 'disabled', 'label', 'width', 'height'];
   }
 
   constructor() {
@@ -54,10 +54,13 @@ export default class Icon extends HTMLElement {
   }
 
   attributeChangedCallback(name, prev, next) {
+    const $svg = this.shadowRoot.querySelector('svg');
     if (name === 'icon') {
       this.icons[next.toLowerCase()]()
         .then((icon) => {
           this.shadowRoot.querySelector('span').innerHTML = icon.default?.trim();
+          this.shadowRoot.querySelector('svg').setAttribute('width', this.getAttribute('width') || '1em');
+          this.shadowRoot.querySelector('svg').setAttribute('height', this.getAttribute('height') || '1em');
         })
         .catch((error) => {
           // eslint-disable-next-line no-console
@@ -72,6 +75,18 @@ export default class Icon extends HTMLElement {
 
     if (name === 'label') {
       this.setAttribute('aria-label', next);
+    }
+
+    if (name === 'width') {
+      if ($svg) {
+        $svg.setAttribute('width', next);
+      }
+    }
+
+    if (name === 'height') {
+      if ($svg) {
+        $svg.setAttribute('height', next);
+      }
     }
   }
 }
