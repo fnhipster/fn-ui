@@ -248,6 +248,7 @@ fn-playlist li > strong {
     transition: opacity 200ms ease;
     font: var(--font-accent);
     text-transform: uppercase;
+    text-shadow: none;
   }
 
   [data-tooltip]:hover::before {
