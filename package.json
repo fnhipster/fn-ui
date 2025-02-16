@@ -1,6 +1,6 @@
 {
   "name": "@fnhipster/fn-ui",
-  "version": "1.24.0",
+  "version": "1.24.1",
   "description": "",
   "homepage": "http://fnhipster.github.io/fn-ui",
   "main": "dist/components.js",
