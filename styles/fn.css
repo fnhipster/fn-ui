@@ -249,6 +249,7 @@ fn-playlist li > strong {
     font: var(--font-accent);
     text-transform: uppercase;
     text-shadow: none;
+    border: 0.4rem solid color-mix(in srgb, var(--color-fg) 30%, var(--color-bg));
   }
 
   [data-tooltip]:hover::before {
