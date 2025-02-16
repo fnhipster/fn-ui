@@ -49,14 +49,14 @@ template.innerHTML = /* html */ `
 
     ::slotted(.button.fill)::after {
       content: '';
-      background-color: var(--color-fg);
-      opacity: 0.35;
-      transform: translateY(3px) translateX(3px);
+      background-color: color-mix(in srgb, var(--color-fg) 30%, var(--color-bg));
+      transform: translateY(0.3rem) translateX(0.3rem);
       position: absolute;
       top: 0;
       left: 0;
       right: 0;
       bottom: 0;
+      z-index: -1;
     }
 
     ::slotted(.button.fill:hover), 
