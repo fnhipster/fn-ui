@@ -13,15 +13,8 @@ export default class Type extends HTMLElement {
 
   timer = null;
 
-  observer = new IntersectionObserver((entries) => {
-    if (entries[0].isIntersecting) {
-      setTimeout(() => this.typeWriter(this.shadowRoot, this.nodes), this.wait);
-      this.observer.disconnect();
-    }
-  }, { threshold: 1 });
-
   static get observedAttributes() {
-    return [];
+    return ['disabled'];
   }
 
   constructor() {
@@ -36,11 +29,21 @@ export default class Type extends HTMLElement {
     this.ellipsis = this.getAttribute('ellipsis') || this.ellipsis;
     this.nodes = [...this.childNodes];
     this.innerHTML = '';
-    this.observer.observe(this);
+
+    this.attributeChangedCallback('disabled', null, this.getAttribute('disabled') ?? 'false');
+  }
+
+  attributeChangedCallback(name, oldValue, newValue) {
+    if (name === 'disabled' && oldValue !== newValue) {
+      if (newValue === 'true') {
+        clearTimeout(this.timer);
+      } else {
+        this.typeWriter(this.shadowRoot, this.nodes);
+      }
+    }
   }
 
   disconnectedCallback() {
-    this.observer.disconnect();
     clearTimeout(this.timer);
   }
 
