@@ -189,6 +189,35 @@ main iframe {
   block-size: auto;
 }
 
+main [data-object="svg"] {
+  position: relative;
+}
+
+main [data-object="svg"] object {
+  display: block;
+  width: 100%;
+  height: auto;
+  position: relative;
+  aspect-ratio: calc(var(--width) / var(--height));
+}
+
+main [data-object="svg"]::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: color-mix(in srgb, var(--color-fg) 30%, var(--color-bg));
+    z-index: 1;
+    opacity: 1;
+    transition: opacity 200ms ease;
+}
+
+main [data-object="svg"][data-loaded="true"]::after {
+    opacity: 0;
+}
+
 main hr {
   border-color: var(--color-fg);
   border-style: solid;
