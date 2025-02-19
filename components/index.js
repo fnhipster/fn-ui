@@ -13,7 +13,6 @@ export { default as Head } from './fn-head/fn-head.js';
 export { default as Icon } from './fn-icon/fn-icon.js';
 export { default as Playlist } from './fn-playlist/fn-playlist.js';
 export { default as Type } from './fn-type/fn-type.js';
-export { default as Mermaid } from './fn-mermaid/fn-mermaid.js';
 
 /** Cursors */
 function makeCursor(fg, bg) {
