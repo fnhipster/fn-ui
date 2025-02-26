@@ -3,7 +3,7 @@ const tagName = 'fn-action';
 const template = document.createElement('template');
 
 template.innerHTML = /* html */ `
-  <style>
+  <style>  
     :host {
       display: inline-block;
     }
@@ -17,6 +17,7 @@ template.innerHTML = /* html */ `
       outline-offset: 0.2rem;
       transition: transform 50ms ease-in, background-color 200ms ease, color 200ms ease;
       padding: 0;
+      width: 100%;
     }
 
 
