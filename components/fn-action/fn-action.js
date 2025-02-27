@@ -18,6 +18,7 @@ template.innerHTML = /* html */ `
       transition: transform 50ms ease-in, background-color 200ms ease, color 200ms ease;
       padding: 0;
       width: 100%;
+      box-sizing: border-box;
     }
 
 
