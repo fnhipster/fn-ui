@@ -258,7 +258,8 @@ main hr::after {
 
 main blockquote {
   font-size: 1.1em;
-  margin: 0;
+  margin-left: 0;
+  margin-right: 0;
   padding: var(--spacing-md);
   border-left: 0.5em solid;
 }
