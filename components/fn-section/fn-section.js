@@ -13,7 +13,7 @@ template.innerHTML = /* html */ `
     }
 
     :host([layout="centered"]) .wrapper {
-      min-height: 80vh;
+      min-height: 60vh;
       text-align: center;
       justify-content: center;
     }
@@ -26,7 +26,7 @@ template.innerHTML = /* html */ `
     .indicator.active {
       position: sticky;
       top: var(--offset, 0);
-      height: 80vh;
+      height: 60vh;
       z-index: 9999;
       width: 1px;
       margin-left: -1px;
